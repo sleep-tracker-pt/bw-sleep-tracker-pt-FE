@@ -1,5 +1,5 @@
 import React from "react";
-import BlogAggregator from "./";
+import BlogAggregator from "./BlogAggregator";
 
 const HomeContainer = () => {
   return (

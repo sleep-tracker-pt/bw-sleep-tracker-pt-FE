@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
 class BlogAggregator extends Component {
+  getUrl = () => {
+  };
+
   render() {
-    return (
-      <div className="HomeContainer">
-        <BlogAggregator />
-      </div>
-    );
+    return<div className="BlogAggregator">
+    </div>
   }
 }
 
