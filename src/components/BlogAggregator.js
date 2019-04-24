@@ -1,22 +1,42 @@
 import React, { Component } from "react";
 import axios from "axios";
-var parser = require("rss-parser-browser");
+import stripHtml from "string-strip-html";
 
 class BlogAggregator extends Component {
-  getUrl = () => {
-    axios.get("https://sleeplady.com/feed").then(response => console.log(response));
-    // parser.parseURL("https://www.reddit.com/.rss", function(err, parsed) {
-    //   console.log(parsed.feed.title);
-    //   parsed.feed.entries.forEach(function(entry) {
-    //     console.log(entry.title + ":" + entry.link);
-    //   });
-    // });
+  state = {
+    blogUrls: [
+      "https://sleeplady.com/feed/",
+      "http://www.sleepreviewmag.com/feed/",
+      "https://babysleepsite.com/feed/",
+      "http://feeds.feedburner.com/doctorpark",
+      "https://drcraigcanapari.com/feed/",
+      "https://sleepjunkies.com/feed/",
+      "https://thesleepdoctor.com/feed/",
+      "http://feeds.feedburner.com/nsfalert"
+    ],
+    blogPosts: [
+      {
+        title: "",
+        author: "",
+        body: "",
+        pubDate: "",
+        thumbnailUrl: ""
+      }
+    ]
+  };
+
+  getRss = () => {
+    this.state.blogUrls.forEach(url =>
+      axios
+        .get(`https://api.rss2json.com/v1/api.json?rss_url=${url}`)
+        .then(response => this.setState({ ...this.state }))
+    );
   };
 
   render() {
     return (
       <div className="BlogAggregator">
-        <button onClick={this.getUrl}>test me</button>
+        <button onClick={this.geRss}>test me</button>
       </div>
     );
   }
