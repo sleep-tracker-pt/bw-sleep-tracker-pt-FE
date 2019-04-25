@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import stripHtml from "string-strip-html";
 
+import BlogDisplay from "./BlogDisplay";
+
 class BlogAggregator extends Component {
   state = {
     blogUrls: [
@@ -15,28 +17,45 @@ class BlogAggregator extends Component {
       "http://feeds.feedburner.com/nsfalert"
     ],
     blogPosts: [
-      {
-        title: "",
-        author: "",
-        body: "",
-        pubDate: "",
-        thumbnailUrl: ""
-      }
     ]
   };
 
-  getRss = () => {
+  componentDidMount() {
     this.state.blogUrls.forEach(url =>
       axios
         .get(`https://api.rss2json.com/v1/api.json?rss_url=${url}`)
-        .then(response => this.setState({ ...this.state }))
+        .then(response => {
+          console.log(response.data.items[0].thumbnail)
+          let strippedBody = stripHtml(response.data.items[0].content);
+          let newPost = {
+            title: response.data.items[0].title,
+            author: response.data.items[0].author,
+            body: strippedBody.substring(0,150),
+            pubDate: response.data.items[0].pubDate,
+            thumbnailUrl: response.data.items[0].thumbnail,
+            linkUrl: response.data.items[0].link
+          };
+          this.setState({ blogPosts: [...this.state.blogPosts, newPost] });
+        })
+        .catch(error => console.log(error))
     );
-  };
+  }
 
   render() {
     return (
       <div className="BlogAggregator">
-        <button onClick={this.geRss}>test me</button>
+        {this.state.blogPosts.map(post => {
+          return (
+            <BlogDisplay
+              title={post.title}
+              author={post.author}
+              body={post.body}
+              pubDate={post.pubDate}
+              thumbnailUrl={post.thumbnailUrl}
+              linkUrl={post.linkUrl}
+            />
+          );
+        })}
       </div>
     );
   }
