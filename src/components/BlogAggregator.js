@@ -13,11 +13,9 @@ class BlogAggregator extends Component {
       "http://feeds.feedburner.com/doctorpark",
       "https://drcraigcanapari.com/feed/",
       "https://sleepjunkies.com/feed/",
-      "https://thesleepdoctor.com/feed/",
-      "http://feeds.feedburner.com/nsfalert"
+      "https://thesleepdoctor.com/feed/"
     ],
-    blogPosts: [
-    ]
+    blogPosts: []
   };
 
   componentDidMount() {
@@ -25,12 +23,11 @@ class BlogAggregator extends Component {
       axios
         .get(`https://api.rss2json.com/v1/api.json?rss_url=${url}`)
         .then(response => {
-          console.log(response.data.items[0].thumbnail)
           let strippedBody = stripHtml(response.data.items[0].content);
           let newPost = {
             title: response.data.items[0].title,
             author: response.data.items[0].author,
-            body: strippedBody.substring(0,150),
+            body: strippedBody.substring(0, 150),
             pubDate: response.data.items[0].pubDate,
             thumbnailUrl: response.data.items[0].thumbnail,
             linkUrl: response.data.items[0].link
