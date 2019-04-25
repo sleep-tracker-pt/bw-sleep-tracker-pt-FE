@@ -14,7 +14,6 @@ class BlogAggregator extends Component {
       "https://drcraigcanapari.com/feed/",
       "https://sleepjunkies.com/feed/",
       "https://thesleepdoctor.com/feed/",
-      "http://feeds.feedburner.com/nsfalert"
     ],
     blogPosts: [
     ]
