@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import stripHtml from "string-strip-html";
 
+import BlogDisplay from "./BlogDisplay";
+
 class BlogAggregator extends Component {
   state = {
     blogUrls: [
@@ -34,7 +36,7 @@ class BlogAggregator extends Component {
           let newPost = {
             title: response.data.items[0].title,
             author: response.data.items[0].author,
-            body: response.data.items[0].content,
+            body: response => stripHtml(response.data.items[0].content),
             pubDate: response.data.items[0].pubDate,
             thumbnailUrl: response.data.items[0].thumbnail
           };
@@ -42,12 +44,22 @@ class BlogAggregator extends Component {
         })
         .catch(error => console.log(error))
     );
-  };
+  }
 
   render() {
     return (
       <div className="BlogAggregator">
-        <button onClick={this.getRss}>test me</button>
+        {this.props.blogPosts.map(post => {
+          return (
+            <BlogDisplay
+              title={post.title}
+              author={post.author}
+              body={post.body}
+              pubDate={post.pubDate}
+              thumnbnailUrl={post.thumbnailUrl}
+            />
+          );
+        })}
       </div>
     );
   }
