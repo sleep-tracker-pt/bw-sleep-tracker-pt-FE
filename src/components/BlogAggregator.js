@@ -17,14 +17,6 @@ class BlogAggregator extends Component {
       "http://feeds.feedburner.com/nsfalert"
     ],
     blogPosts: [
-      {
-        title: "",
-        author: "",
-        body: "",
-        pubDate: "",
-        thumbnailUrl: "",
-        linkUrl: ""
-      }
     ]
   };
 
@@ -59,7 +51,7 @@ class BlogAggregator extends Component {
               author={post.author}
               body={post.body}
               pubDate={post.pubDate}
-              thumnbnailUrl={post.thumbnailUrl}
+              thumbnailUrl={post.thumbnailUrl}
               linkUrl={post.linkUrl}
             />
           );
