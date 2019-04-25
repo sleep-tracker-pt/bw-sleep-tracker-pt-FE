@@ -22,7 +22,8 @@ class BlogAggregator extends Component {
         author: "",
         body: "",
         pubDate: "",
-        thumbnailUrl: ""
+        thumbnailUrl: "",
+        linkUrl: ""
       }
     ]
   };
@@ -32,13 +33,15 @@ class BlogAggregator extends Component {
       axios
         .get(`https://api.rss2json.com/v1/api.json?rss_url=${url}`)
         .then(response => {
-          console.log(response.data);
+          console.log(response.data.items[0].thumbnail)
+          let strippedBody = stripHtml(response.data.items[0].content);
           let newPost = {
             title: response.data.items[0].title,
             author: response.data.items[0].author,
-            body: response => stripHtml(response.data.items[0].content),
+            body: strippedBody.substring(0,150),
             pubDate: response.data.items[0].pubDate,
-            thumbnailUrl: response.data.items[0].thumbnail
+            thumbnailUrl: response.data.items[0].thumbnail,
+            linkUrl: response.data.items[0].link
           };
           this.setState({ blogPosts: [...this.state.blogPosts, newPost] });
         })
@@ -49,7 +52,7 @@ class BlogAggregator extends Component {
   render() {
     return (
       <div className="BlogAggregator">
-        {this.props.blogPosts.map(post => {
+        {this.state.blogPosts.map(post => {
           return (
             <BlogDisplay
               title={post.title}
@@ -57,6 +60,7 @@ class BlogAggregator extends Component {
               body={post.body}
               pubDate={post.pubDate}
               thumnbnailUrl={post.thumbnailUrl}
+              linkUrl={post.linkUrl}
             />
           );
         })}
