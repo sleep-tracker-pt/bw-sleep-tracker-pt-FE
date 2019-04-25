@@ -25,18 +25,29 @@ class BlogAggregator extends Component {
     ]
   };
 
-  getRss = () => {
+  componentDidMount() {
     this.state.blogUrls.forEach(url =>
       axios
         .get(`https://api.rss2json.com/v1/api.json?rss_url=${url}`)
-        .then(response => this.setState({ ...this.state }))
+        .then(response => {
+          console.log(response.data);
+          let newPost = {
+            title: response.data.items[0].title,
+            author: response.data.items[0].author,
+            body: response.data.items[0].content,
+            pubDate: response.data.items[0].pubDate,
+            thumbnailUrl: response.data.items[0].thumbnail
+          };
+          this.setState({ blogPosts: [...this.state.blogPosts, newPost] });
+        })
+        .catch(error => console.log(error))
     );
   };
 
   render() {
     return (
       <div className="BlogAggregator">
-        <button onClick={this.geRss}>test me</button>
+        <button onClick={this.getRss}>test me</button>
       </div>
     );
   }
