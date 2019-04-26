@@ -1,0 +1,11 @@
+.outer {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-wrap: nowrap;
+}
+.inner {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+}
