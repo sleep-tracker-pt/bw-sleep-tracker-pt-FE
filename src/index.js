@@ -22,4 +22,4 @@ ReactDOM.render(
   <App />
   </Router>
   </Provider>
-  </Router>   , document.getElementById('root'));
+  </Router>, document.getElementById('root'));
