@@ -1,10 +1,22 @@
-import { LOGIN_SUCCESS, LOGIN_FETCHING, LOGIN_FAILURE } from "../actions";
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FETCHING,
+  LOGIN_FAILURE,
+  GET_USERS_SUCCESS,
+  GET_USERS_FETCHING,
+  GET_USERS_FAILURE,
+  GET_SLEEPDATA_SUCCESS,
+  GET_SLEEPDATA_FETCHING,
+  GET_SLEEPDATA_FAILURE,
+  
+} from "../actions";
 
 const initialState = {
   state: [],
   loggingIn: false,
   isFetching: false,
-  error: null
+  error: null,
+  sleepData: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +38,40 @@ const reducer = (state = initialState, action) => {
         ...state,
         loggingIn: false,
         isFetching: false,
-        err: "Please try again"
+        error: action.payload
+      };
+    case GET_USERS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case GET_USERS_FETCHING:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case GET_USERS_FAILURE:
+      return {
+        ...state,
+        gettingUsers: false,
+        error: action.payload
+      };
+      case GET_SLEEPDATA_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        sleepData: action.payload
+      };
+    case GET_SLEEPDATA_FETCHING:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case GET_SLEEPDATA_FAILURE:
+      return {
+        ...state,
+        gettingUsers: false,
+        error: action.payload
       };
     default:
       return state;
