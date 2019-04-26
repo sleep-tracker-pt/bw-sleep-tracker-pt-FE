@@ -28,6 +28,8 @@ const reducer = (state = initialState, action) => {
         isFetching: false,
         err: "Please try again"
       };
+    default:
+      return state;
   }
 };
 
