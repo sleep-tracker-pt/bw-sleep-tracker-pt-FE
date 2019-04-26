@@ -1,7 +1,9 @@
 import React from "react";
 import "./App.css";
+
 import HomeContainer from "./components/HomeContainer";
-import NavBar from './components/navbar';
+
+import NavBar from './components/Navbar';
 import LoginPage from './components/LoginPage';
 import SignUp from './components/SignUp';
 import {Route, } from 'react-router-dom';
@@ -16,9 +18,17 @@ function App() {
       <Route path = "/signup" component = {SignUp} />
     </div>
     <div>
-      <PrivateRoute exact path ="/home" component = {HomeContainer}/>
+      <div>
+        <NavBar />
+        <Route path="/login" component={LoginPage} />
+      </div>
+      <div>
+        <PrivateRoute exact path="/home" component={HomeContainer} />
+      </div>
+      <div>
+        <PrivateRoute path="/stats" component={StatsContainer} />
+      </div>
     </div>
-  </div>
   );
 }
 
