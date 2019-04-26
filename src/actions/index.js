@@ -11,7 +11,8 @@ export const loginSuccess = index => dispatch => {
     .post("https://sleeptrack.herokuapp.com/api/login", index)
     .then(res => {
       console.log(res);
-      localStorage.setItem("token", res.data);
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userId",res.data.id)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data

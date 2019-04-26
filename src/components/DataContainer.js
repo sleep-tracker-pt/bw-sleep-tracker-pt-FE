@@ -9,8 +9,8 @@ import HomeMoodChart from "./HomeMoodChart";
 class DataContainer extends Component {
   state = {};
 
-  componentDidMount() { 
-    this.props.getUsers()
+  componentDidMount() {
+    this.props.getUsers();
   }
 
   render() {
