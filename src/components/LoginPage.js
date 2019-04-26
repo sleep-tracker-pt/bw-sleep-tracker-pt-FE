@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 import { loginSuccess } from "../actions/";
 
 class LoginPage extends Component {
+    constructor() {
+        super();
+        this.routeChange = this.routeChange.bind(this);
+    }
   state = {
     creds: {
-      username: "user",
-      password: "password"
+      username: "",
+      password: ""
     }
   };
   handleChange = e => {
@@ -22,6 +26,11 @@ class LoginPage extends Component {
     e.preventDefault();
     this.props.loginSuccess(this.state.creds);
   };
+
+  routeChange() {
+      let path = `/signup`;
+      this.props.history.push(path);
+  }
 
   render() {
     if (this.props.isloggedIn) {
@@ -47,7 +56,8 @@ class LoginPage extends Component {
             value={this.state.password}
           />
 
-          <button value="submit">submit</button>
+          <button value="submit">Submit</button>
+          <button onClick={this.routeChange}>Sign Up</button>
         </form>
       </div>
     );
