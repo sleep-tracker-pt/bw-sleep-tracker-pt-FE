@@ -11,12 +11,15 @@ import {
   GET_SLEEPDATA_SUCCESS,
   GET_SLEEPDATA_FETCHING,
   GET_SLEEPDATA_FAILURE,
+  SEND_SLEEPSESSION_SUCCESS,
+  SLEEPSESSION_SENDING,
+  SEND_SLEEPSESSION_FAILURE
   
 } from "../actions";
 
 const initialState = {
   state: [],
-  addUser: false,
+  isSending: true,
   loggingIn: false,
   isFetching: false,
   error: null,
@@ -57,28 +60,28 @@ const reducer = (state = initialState, action) => {
     case GET_USERS_FAILURE:
       return {
         ...state,
-        gettingUsers: false,
+        isFetching: false,
         error: action.payload
       };
 
       case ADD_USER_START:
       return {
         ...state,
-        addUser: true,
+        isSending: true,
         err: ""
       };
 
     case ADD_USER_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        isSending: false,
         state: action.payload
       };
 
       case ADD_USER_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          isSending: false,
           err: "Please try Again"
         };
       case GET_SLEEPDATA_SUCCESS:
@@ -96,6 +99,22 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         gettingUsers: false,
+        error: action.payload
+      };
+      case SEND_SLEEPSESSION_SUCCESS:
+      return {
+        ...state,
+        isSending: false,
+      };
+    case SLEEPSESSION_SENDING :
+      return {
+        ...state,
+        isSending: true,
+      };
+    case SEND_SLEEPSESSION_FAILURE:
+      return {
+        ...state,
+        isSending: false,
         error: action.payload
       };
     default:

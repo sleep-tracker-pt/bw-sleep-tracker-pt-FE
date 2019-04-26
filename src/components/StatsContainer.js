@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
+import { addNewSession } from "../actions";
+import { connect } from "react-redux";
 
 class StatsContainer extends Component {
   state = {
@@ -21,8 +23,14 @@ class StatsContainer extends Component {
   };
 
   handleSubmit = e => {
-    e.peventDefault();
-    this.props.addNewSession();
+    e.preventDefault();
+    this.props.addNewSession({
+      startDate: this.state.startDate,
+      end: this.state.endDate,
+      hours: moment(this.state.endDate).diff(this.state.startDate, "hours"),
+      scale: this.state.selectedMood
+    });
+    this.setState({ showModal: false });
   };
 
   handleChange = date => {
@@ -109,20 +117,28 @@ class StatsContainer extends Component {
                   inline
                 />
               </Form.Group>
-            </Form>
+              </Form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModal}>
               Back
             </Button>
-            <Button variant="primary" onClick={this.handleCloseModal}>
+            <Button variant="primary" onClick={this.handleSubmit}>
               Save
             </Button>
           </Modal.Footer>
+          
         </Modal>
       </div>
     );
   }
 }
 
-export default StatsContainer;
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  { addNewSession }
+)(StatsContainer);
