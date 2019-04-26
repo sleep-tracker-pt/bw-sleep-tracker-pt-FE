@@ -7,6 +7,7 @@ import "./HomeMoodChart.css";
 const HomeContainer = () => {
   return (
     <div className="HomeContainer">
+      <h1>Sleep Tracker Front End 😂👌💯</h1>
       <BlogAggregator />
       <DataContainer />
     </div>
