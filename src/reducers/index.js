@@ -1,35 +1,34 @@
-import { LOGIN_SUCCESS,
-  LOGIN_FETCHING,
-  LOGIN_FAILURE,} from "../actions";
+import { LOGIN_SUCCESS, LOGIN_FETCHING, LOGIN_FAILURE } from "../actions";
 
 const initialState = {
   state: [],
   loggingIn: false,
-  isFetching:false,
+  isFetching: false,
   error: null
 };
 
-export default (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_FETCHING:
-    return{
+      return {
         ...state,
         loggingIn: false,
-        isFetching: true,
-    }
+        isFetching: true
+      };
     case LOGIN_SUCCESS:
-    return{
+      return {
         ...state,
         loggingIn: true,
-        isFetching: false,
-    }
+        isFetching: false
+      };
     case LOGIN_FAILURE:
-    return{
+      return {
         ...state,
-        loggingIn:false,
+        loggingIn: false,
         isFetching: false,
         err: "Please try again"
-    }
-   
+      };
   }
 };
+
+export default reducer;

@@ -26,7 +26,7 @@ import {loginSuccess} from '../actions/';
 
   render() {
       if(this.props.isloggedIn){
-        this.props.history.push("/Home")
+        this.props.history.push("/home")
       }
     
     console.log(this.props.loggedIn, this.props.isFetching)
