@@ -1,10 +1,18 @@
-import { LOGIN_SUCCESS, LOGIN_FETCHING, LOGIN_FAILURE } from "../actions";
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FETCHING,
+  LOGIN_FAILURE,
+  GET_USERS_SUCCESS,
+  GET_USERS_FETCHING,
+  GET_USERS_FAILURE
+} from "../actions";
 
 const initialState = {
   state: [],
   loggingIn: false,
   isFetching: false,
-  error: null
+  error: null,
+  gettingUsers: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +34,23 @@ const reducer = (state = initialState, action) => {
         ...state,
         loggingIn: false,
         isFetching: false,
-        err: "Please try again"
+        error: action.payload
+      };
+    case GET_USERS_SUCCESS:
+      return {
+        ...state,
+        gettingUsers: false
+      };
+    case GET_USERS_FETCHING:
+      return {
+        ...state,
+        gettingUsers: true
+      };
+    case GET_USERS_FAILURE:
+      return {
+        ...state,
+        gettingUsers: false,
+        error: action.payload
       };
     default:
       return state;

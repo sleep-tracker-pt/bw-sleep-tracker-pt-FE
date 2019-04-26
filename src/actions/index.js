@@ -24,3 +24,28 @@ export const loginSuccess = index => dispatch => {
       });
     });
 };
+
+export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
+export const GET_USERS_FETCHING = "GET_USERS_FETCHING";
+export const GET_USERS_FAILURE = "GET_USERS_FAILURE";
+
+export const getUsers = () => dispatch => {
+  dispatch({ type: GET_USERS_FETCHING });
+  return axios
+    .get("https://sleeptrack.herokuapp.com/api/users/", {
+      headers: { authorize: localStorage.getItem("token") }
+    })
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: GET_USERS_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      if (err.response.status === 403) {
+        localStorage.removeItem("token");
+      }
+      dispatch({ type: GET_USERS_FAILURE, payload: err.data });
+    });
+};
