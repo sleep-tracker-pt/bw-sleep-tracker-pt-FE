@@ -1,12 +1,27 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
 import HomeMoodChart from "./HomeMoodChart";
 
-const DataContainer = () => {
-  return (
-    <div className="DataContainer">
-      <HomeMoodChart />
-    </div>
-  );
+class DataContainer extends Component {
+  state = {};
+  render() {
+    return (
+      <div className="DataContainer">
+        <HomeMoodChart />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {};
 };
 
-export default DataContainer;
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {}
+  )(DataContainer)
+);
