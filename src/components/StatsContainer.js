@@ -3,15 +3,15 @@ import { Modal, Button } from "react-bootstrap";
 
 class StatsContainer extends Component {
   state = {
-    show: false
+    showModal: false
   };
 
   handleCloseModal = () => {
-    this.setState({ show: false });
+    this.setState({ showModal: false });
   };
 
   handleShowModal = () => {
-    this.setState({ show: true });
+    this.setState({ showModal: true });
   };
 
   render() {
@@ -21,7 +21,7 @@ class StatsContainer extends Component {
         <Button variant="primary" onClick={this.handleShowModal}>
           Press this to show the modal
         </Button>
-        <Modal show={this.state.show} onHide={this.handleCloseModal}>
+        <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
