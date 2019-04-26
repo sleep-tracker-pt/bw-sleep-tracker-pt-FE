@@ -1,24 +1,28 @@
 import React from "react";
 import "./App.css";
-import HomeContainer from "./components/HomeContainer";
-import NavBar from './components/navbar';
-import LoginPage from './components/LoginPage';
 
-import {Route, } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
+import HomeContainer from "./components/HomeContainer";
+import NavBar from "./components/NavBar.js";
+import LoginPage from "./components/LoginPage";
+import StatsContainer from "./components/StatsContainer";
+
+import { Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
-   <div> 
     <div>
-      <NavBar />
-      <Route path = "/login" component = {LoginPage} />
-
+      <div>
+        <NavBar />
+        <Route path="/login" component={LoginPage} />
+      </div>
+      <div>
+        <PrivateRoute exact path="/home" component={HomeContainer} />
+      </div>
+      <div>
+        <PrivateRoute path="/stats" component={StatsContainer} />
+      </div>
     </div>
-    <div>
-      <PrivateRoute exact path ="/home" component = {HomeContainer}/>
-    </div>
-  </div>
   );
 }
 
