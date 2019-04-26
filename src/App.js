@@ -16,7 +16,7 @@ function App() {
 
     </div>
     <div>
-      <PrivateRoute path ="/Home" component = {HomeContainer}/>
+      <PrivateRoute exact path ="/home" component = {HomeContainer}/>
     </div>
   </div>
   );
