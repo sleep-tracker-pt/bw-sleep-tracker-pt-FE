@@ -1,9 +1,10 @@
-import { LOGIN_SUCCESS, LOGIN_FETCHING, LOGIN_FAILURE } from "../actions";
+import { LOGIN_SUCCESS, LOGIN_FETCHING, LOGIN_FAILURE, ADD_USER_START, ADD_USER_SUCCESS, ADD_USER_FAILURE } from "../actions";
 
 const initialState = {
-  state: [],
+  users: [],
   loggingIn: false,
   isFetching: false,
+  addUser: false,
   error: null
 };
 
@@ -28,6 +29,27 @@ const reducer = (state = initialState, action) => {
         isFetching: false,
         err: "Please try again"
       };
+
+      case ADD_USER_START:
+        return {
+          ...state,
+          addUser: true,
+          err: ""
+        };
+
+      case ADD_USER_SUCCESS:
+        return {
+          ...state,
+          isFetching: false,
+          state: action.payload
+        };
+
+        case ADD_USER_FAILURE:
+          return {
+            ...state,
+            isFetching: false,
+            err: "Please try Again"
+          };
     default:
       return state;
   }
