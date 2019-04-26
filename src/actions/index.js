@@ -26,6 +26,26 @@ export const loginSuccess = index => dispatch => {
     });
 };
 
+export const ADD_USER_START = 'ADD_USER_START';
+export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
+export const ADD_USER_FAILURE = 'ADD_USER_FAILURE';
+export const addUser = newUser => dispatch => {
+    dispatch({type: ADD_USER_START}) ;
+    axios
+    .post("https://sleeptrack.herokuapp.com/api/register", newUser)
+    .then(res => {
+        console.log(res);
+        dispatch({
+            type: ADD_USER_SUCCESS,
+            payload: res.data
+        });
+    })
+    .catch(err => dispatch({
+        type: ADD_USER_FAILURE,
+        payload: err
+    }))
+}
+
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_FETCHING = "GET_USERS_FETCHING";
 export const GET_USERS_FAILURE = "GET_USERS_FAILURE";
