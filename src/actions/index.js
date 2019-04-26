@@ -12,7 +12,7 @@ export const loginSuccess = index => dispatch => {
     .then(res => {
       console.log(res);
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userId",res.data.id)
+      localStorage.setItem("userId", res.data.id);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
@@ -46,7 +46,39 @@ export const getUsers = () => dispatch => {
     .catch(err => {
       if (err.response.status === 403) {
         localStorage.removeItem("token");
+        localStorage.removeItem("userId");
       }
       dispatch({ type: GET_USERS_FAILURE, payload: err.data });
+    });
+};
+
+export const GET_SLEEPDATA_SUCCESS = "GET_SLEEPDATA_SUCCESS";
+export const GET_SLEEPDATA_FETCHING = "GET_SLEEPDATA_FETCHING";
+export const GET_SLEEPDATA_FAILURE = "GET_SLEEPDATA_FAILURE";
+
+export const getSleepData = () => dispatch => {
+  dispatch({ type: GET_SLEEPDATA_FETCHING });
+  return axios
+    .get(
+      `https://sleeptrack.herokuapp.com/api/user/${localStorage.getItem(
+        "userId"
+      )}`,
+      {
+        headers: { authorize: localStorage.getItem("token") }
+      }
+    )
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: GET_SLEEPDATA_SUCCESS,
+        payload: res.data.sleepData
+      });
+    })
+    .catch(err => {
+      if (err.response.status === 403) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+      }
+      dispatch({ type: GET_SLEEPDATA_FAILURE, payload: err.data });
     });
 };

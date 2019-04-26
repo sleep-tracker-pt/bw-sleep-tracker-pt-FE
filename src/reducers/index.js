@@ -4,7 +4,11 @@ import {
   LOGIN_FAILURE,
   GET_USERS_SUCCESS,
   GET_USERS_FETCHING,
-  GET_USERS_FAILURE
+  GET_USERS_FAILURE,
+  GET_SLEEPDATA_SUCCESS,
+  GET_SLEEPDATA_FETCHING,
+  GET_SLEEPDATA_FAILURE,
+  
 } from "../actions";
 
 const initialState = {
@@ -12,7 +16,7 @@ const initialState = {
   loggingIn: false,
   isFetching: false,
   error: null,
-  gettingUsers: false
+  sleepData: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -39,14 +43,31 @@ const reducer = (state = initialState, action) => {
     case GET_USERS_SUCCESS:
       return {
         ...state,
-        gettingUsers: false
+        isFetching: false
       };
     case GET_USERS_FETCHING:
       return {
         ...state,
-        gettingUsers: true
+        isFetching: true,
       };
     case GET_USERS_FAILURE:
+      return {
+        ...state,
+        gettingUsers: false,
+        error: action.payload
+      };
+      case GET_SLEEPDATA_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        sleepData: action.payload
+      };
+    case GET_SLEEPDATA_FETCHING:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case GET_SLEEPDATA_FAILURE:
       return {
         ...state,
         gettingUsers: false,
