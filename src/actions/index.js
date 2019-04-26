@@ -8,7 +8,7 @@ export const loginSuccess = (index) => dispatch =>{
     dispatch({type: LOGIN_FETCHING})
 
     return axios.post(
-        "url for server", index
+        "https://sleeptrack.herokuapp.com/api/login", index
     )
     .then(res =>{
          console.log(res
