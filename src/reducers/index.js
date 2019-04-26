@@ -2,6 +2,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FETCHING,
   LOGIN_FAILURE,
+  ADD_USER_START, 
+  ADD_USER_SUCCESS, 
+  ADD_USER_FAILURE,
   GET_USERS_SUCCESS,
   GET_USERS_FETCHING,
   GET_USERS_FAILURE,
@@ -13,6 +16,7 @@ import {
 
 const initialState = {
   state: [],
+  addUser: false,
   loggingIn: false,
   isFetching: false,
   error: null,
@@ -56,6 +60,27 @@ const reducer = (state = initialState, action) => {
         gettingUsers: false,
         error: action.payload
       };
+
+      case ADD_USER_START:
+      return {
+        ...state,
+        addUser: true,
+        err: ""
+      };
+
+    case ADD_USER_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        state: action.payload
+      };
+
+      case ADD_USER_FAILURE:
+        return {
+          ...state,
+          isFetching: false,
+          err: "Please try Again"
+        };
       case GET_SLEEPDATA_SUCCESS:
       return {
         ...state,
