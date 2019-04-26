@@ -1,14 +1,35 @@
-import { SOME_ACTION } from "../actions";
+import { LOGIN_SUCCESS,
+  LOGIN_FETCHING,
+  LOGIN_FAILURE,} from "../actions";
 
 const initialState = {
-  state: []
+  state: [],
+  loggingIn: false,
+  isFetching:false,
+  error: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SOME_ACTION:
-      return state;
-    default:
-      return state;
+    case LOGIN_FETCHING:
+    return{
+        ...state,
+        loggingIn: false,
+        isFetching: true,
+    }
+    case LOGIN_SUCCESS:
+    return{
+        ...state,
+        loggingIn: true,
+        isFetching: false,
+    }
+    case LOGIN_FAILURE:
+    return{
+        ...state,
+        loggingIn:false,
+        isFetching: false,
+        err: "Please try again"
+    }
+   
   }
 };
