@@ -9,14 +9,17 @@ import logger from "redux-logger";
 import "./index.css";
 import App from "./App";
 import reducer from "./reducers";
+import {BrowserRouter as Router} from 'react-router-dom'
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
-);
+  <Router>
+  <Provider store ={store}>
+  <Router>
+  <App />
+  </Router>
+  </Provider>
+  </Router>, document.getElementById('root'));
