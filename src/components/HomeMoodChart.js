@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import {ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from "recharts";
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  LabelList
+} from "recharts";
 import { Jumbotron } from "react-bootstrap";
 
 import { getSleepData } from "../actions";
@@ -15,14 +24,24 @@ class HomeMoodChart extends Component {
   render() {
     return (
       <Jumbotron fluid>
-      <ScatterChart width={400} height={400}>
-      <CartesianGrid />
-      <XAxis dataKey={'scale'} type="number" name='Mood' unit='happiness'/>
-      <YAxis dataKey={'hours'} type="number" name='Hours of sleep' unit='hours'/>
-      <Scatter name='Sleep Quality' data={this.props.sleepData} fill='#8884d8'/>
-
-      </ScatterChart>
-    
+        <ScatterChart width={400} height={400}>
+          <CartesianGrid />
+          <XAxis dataKey={"scale"} type="number" name="Mood" />
+          <YAxis
+            dataKey={"hours"}
+            type="number"
+            name="Hours of sleep"
+            unit="hours"
+          />
+          <Scatter
+            name="Sleep Quality"
+            data={this.props.sleepData}
+            fill="#8884d8"
+          >
+            <LabelList dataKey="start" />
+          </Scatter>
+          <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+        </ScatterChart>
       </Jumbotron>
     );
   }
