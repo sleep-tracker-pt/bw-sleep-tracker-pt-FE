@@ -14,19 +14,19 @@ import moment from "moment";
 import { getSleepData } from "../actions";
 
 class WeekInReview extends Component {
-  componentWillMount() {
+  componentDidMount() {
+    this.props.getSleepData();
   }
-
-
 
   render() {
     return (
       <div>
-        <h4>A demo of synchronized AreaCharts</h4>
+        <h2>This is week in review </h2>
+        <h4>Hours of sleep this week</h4>
         <AreaChart
           width={500}
           height={200}
-          data={this.props.sleepData}
+          data={this.props.transformedSleepData}
           syncId="anyId"
           margin={{
             top: 10,
@@ -36,16 +36,21 @@ class WeekInReview extends Component {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis dataKey="start" />
+          <YAxis dataKey="hours" />
           <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+          <Area
+            type="monotone"
+            dataKey="hours"
+            stroke="#8884d8"
+            fill="#8884d8"
+          />
         </AreaChart>
-        <p>Maybe some other content</p>
+        <p>Mood this week</p>
         <AreaChart
           width={500}
           height={200}
-          data={this.props.sleepData}
+          data={this.props.transformedSleepData}
           syncId="anyId"
           margin={{
             top: 10,
@@ -55,10 +60,15 @@ class WeekInReview extends Component {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis dataKey="start" />
+          <YAxis dataKey="scale" />
           <Tooltip />
-          <Area type="monotone" dataKey="pv" stroke="#82ca9d" fill="#82ca9d" />
+          <Area
+            type="monotone"
+            dataKey="scale"
+            stroke="#82ca9d"
+            fill="#82ca9d"
+          />
         </AreaChart>
       </div>
     );
@@ -67,7 +77,7 @@ class WeekInReview extends Component {
 
 const mapStateToProps = state => {
   return {
-    sleepData: state.sleepData
+    transformedSleepData: state.transformedSleepData
   };
 };
 

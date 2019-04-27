@@ -115,8 +115,8 @@ export const getSleepData = () => dispatch => {
         );
         const result = res.data.sleepData.map(item => ({
           ...item,
-          scale: emojify(item.scale),
-          start: dateTransform(item.start)
+          emoji: emojify(item.scale),
+          startDate: dateTransform(item.start),
         }));
       dispatch({
         type: TRANSFORM_SLEEPDATA_TO_GRAPH,
