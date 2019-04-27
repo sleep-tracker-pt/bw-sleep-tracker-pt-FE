@@ -36,7 +36,7 @@ class WeekInReview extends Component {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="start" />
+          <XAxis dataKey="startDate" />
           <YAxis dataKey="hours" />
           <Tooltip />
           <Area
@@ -60,7 +60,7 @@ class WeekInReview extends Component {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="start" />
+          <XAxis dataKey="startDate" />
           <YAxis dataKey="scale" />
           <Tooltip />
           <Area
