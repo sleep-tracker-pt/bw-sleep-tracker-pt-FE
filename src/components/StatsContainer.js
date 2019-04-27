@@ -26,8 +26,12 @@ class StatsContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.addNewSession({
-      startDate: JSON.stringify(moment(this.state.startDate).format()),
-      endDate: JSON.stringify(moment(this.state.endDate).format()),
+      startDate: moment(this.state.startDate, "YYYY-MM-DD HH:mm").format(
+        "YYYY-MM-DD HH:mm"
+      ),
+      endDate: moment(this.state.endDate, "YYYY-MM-DD HH:mm").format(
+        "YYYY-MM-DD HH:mm"
+      ),
       hours: JSON.stringify(
         moment(this.state.endDate).diff(this.state.startDate, "hours")
       ),
@@ -48,7 +52,7 @@ class StatsContainer extends Component {
     return (
       <div>
         <h1>This is the stats container 🤔</h1>
-        <WeekInReview></WeekInReview>
+        <WeekInReview />
         <Button variant="primary" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
