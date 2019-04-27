@@ -13,7 +13,8 @@ import {
   GET_SLEEPDATA_FAILURE,
   SEND_SLEEPSESSION_SUCCESS,
   SLEEPSESSION_SENDING,
-  SEND_SLEEPSESSION_FAILURE
+  SEND_SLEEPSESSION_FAILURE,
+  TRANSFORM_SLEEPDATA_TO_GRAPH,
   
 } from "../actions";
 
@@ -24,6 +25,7 @@ const initialState = {
   isFetching: false,
   error: null,
   sleepData: [],
+  transformedSleepData: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -116,6 +118,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         isSending: false,
         error: action.payload
+      };
+      case TRANSFORM_SLEEPDATA_TO_GRAPH:
+      return {
+        ...state,
+        transformedSleepData: action.payload
       };
     default:
       return state;

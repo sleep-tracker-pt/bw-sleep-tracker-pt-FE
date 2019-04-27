@@ -17,7 +17,7 @@ import { Jumbotron } from "react-bootstrap";
 import { getSleepData } from "../actions";
 
 class HomeMoodChart extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getSleepData();
   }
 

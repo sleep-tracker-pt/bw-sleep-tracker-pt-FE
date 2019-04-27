@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FETCHING = "LOGIN_FETCHING";
@@ -77,6 +78,7 @@ export const getUsers = () => dispatch => {
 export const GET_SLEEPDATA_SUCCESS = "GET_SLEEPDATA_SUCCESS";
 export const GET_SLEEPDATA_FETCHING = "GET_SLEEPDATA_FETCHING";
 export const GET_SLEEPDATA_FAILURE = "GET_SLEEPDATA_FAILURE";
+export const TRANSFORM_SLEEPDATA_TO_GRAPH = "TRANSFORM_SLEEPDATA_TO_GRAPH"
 
 export const getSleepData = () => dispatch => {
   dispatch({ type: GET_SLEEPDATA_FETCHING });
@@ -95,7 +97,35 @@ export const getSleepData = () => dispatch => {
         type: GET_SLEEPDATA_SUCCESS,
         payload: res.data.sleepData
       });
+      const emojify = value => {
+        switch (value) {
+          case 1:
+            return "🙁";
+          case 2:
+            return "😕";
+          case 3:
+            return "🙂";
+          case 4:
+            return "😁";
+          default:
+            return value;
+        }}
+        const dateTransform = date => moment(date, "YYYY-MM-DD HH:mm").format(
+          "YYYY-MM-DD"
+        );
+        const result = res.data.sleepData.map(item => ({
+          ...item,
+          emoji: emojify(item.scale),
+          startDate: dateTransform(item.start),
+        }));
+      dispatch({
+        type: TRANSFORM_SLEEPDATA_TO_GRAPH,
+        payload: result
+      })
     })
+
+
+
     .catch(err => {
       if (err.response.status === 403) {
         localStorage.removeItem("token");
@@ -140,3 +170,4 @@ export const addNewSession = sleepSession => dispatch => {
       dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err.response });
     });
 };
+
