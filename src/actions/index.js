@@ -110,7 +110,6 @@ export const SLEEPSESSION_SENDING = "SLEEPSESSION_SENDING";
 export const SEND_SLEEPSESSION_FAILURE = "SEND_SLEEPSESSION_FAILURE";
 
 export const addNewSession = sleepSession => dispatch => {
-  console.log(sleepSession);
   dispatch({ type: SLEEPSESSION_SENDING });
   return axios
     .post(
@@ -123,7 +122,7 @@ export const addNewSession = sleepSession => dispatch => {
         scale: sleepSession.selectedMood
       },
       {
-        headers: { authorize: localStorage.getItem("token") }
+        headers: { authorize: localStorage.getItem("token"), }
       }
     )
     .then(res => {
@@ -138,6 +137,6 @@ export const addNewSession = sleepSession => dispatch => {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
-      dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err });
+      dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err.response });
     });
 };
