@@ -110,7 +110,9 @@ export const getSleepData = () => dispatch => {
           default:
             return value;
         }}
-        const dateTransform = date => moment(date).toDate();
+        const dateTransform = date => moment(date, "YYYY-MM-DD HH:mm").format(
+          "YYYY-MM-DD"
+        );
         const result = res.data.sleepData.map(item => ({
           ...item,
           scale: emojify(item.scale),
