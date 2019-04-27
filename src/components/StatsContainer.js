@@ -25,9 +25,19 @@ class StatsContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.addNewSession({
-      startDate: this.state.startDate,
-      end: this.state.endDate,
-      hours: moment(this.state.endDate).diff(this.state.startDate, "hours"),
+      startDate: JSON.stringify(moment(this.state.startDate).format()),
+      endDate: JSON.stringify(moment(this.state.endDate).format()),
+      hours: JSON.stringify(
+        moment(this.state.endDate).diff(this.state.startDate, "hours")
+      ),
+      selectedMood: this.state.selectedMood
+    });
+    console.log({
+      start: moment(this.state.startDate).format(),
+      end: moment(this.state.endDate).format(),
+      hours: JSON.stringify(
+        moment(this.state.endDate).diff(this.state.startDate, "hours")
+      ),
       scale: this.state.selectedMood
     });
     this.setState({ showModal: false });
@@ -117,7 +127,7 @@ class StatsContainer extends Component {
                   inline
                 />
               </Form.Group>
-              </Form>
+            </Form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModal}>
@@ -127,7 +137,6 @@ class StatsContainer extends Component {
               Save
             </Button>
           </Modal.Footer>
-          
         </Modal>
       </div>
     );
