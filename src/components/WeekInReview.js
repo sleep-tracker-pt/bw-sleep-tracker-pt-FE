@@ -9,36 +9,15 @@ import {
   CartesianGrid,
   Tooltip
 } from "recharts";
+import moment from "moment";
 
 import { getSleepData } from "../actions";
 
 class WeekInReview extends Component {
-  componentDidMount() {
-    this.props.getSleepData()
-    this.changeData();
+  componentWillMount() {
   }
 
-  changeData = () => {
-    const emojify = value => {
-      switch (value) {
-        case 1:
-          return "🙁";
-        case 2:
-          return "😕";
-        case 3:
-          return "🙂";
-        case 4:
-          return "😁";
-        default:
-          return value;
-      }
-    };
-    const result = this.props.sleepData.map(item => ({
-      ...item,
-      scale: emojify(item.scale)
-    }));
-    console.log(result);
-  };
+
 
   render() {
     return (
@@ -89,13 +68,12 @@ class WeekInReview extends Component {
 const mapStateToProps = state => {
   return {
     sleepData: state.sleepData
-
   };
 };
 
 export default withRouter(
-    connect(
-      mapStateToProps,
-      { getSleepData }
-    )(WeekInReview)
-  );
+  connect(
+    mapStateToProps,
+    { getSleepData }
+  )(WeekInReview)
+);
