@@ -26,25 +26,27 @@ export const loginSuccess = index => dispatch => {
     });
 };
 
-export const ADD_USER_START = 'ADD_USER_START';
-export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
-export const ADD_USER_FAILURE = 'ADD_USER_FAILURE';
+export const ADD_USER_START = "ADD_USER_START";
+export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
+export const ADD_USER_FAILURE = "ADD_USER_FAILURE";
 export const addUser = newUser => dispatch => {
-    dispatch({type: ADD_USER_START}) ;
-    axios
+  dispatch({ type: ADD_USER_START });
+  axios
     .post("https://sleeptrack.herokuapp.com/api/register", newUser)
     .then(res => {
-        console.log(res);
-        dispatch({
-            type: ADD_USER_SUCCESS,
-            payload: res.data
-        });
+      console.log(res);
+      dispatch({
+        type: ADD_USER_SUCCESS,
+        payload: res.data
+      });
     })
-    .catch(err => dispatch({
+    .catch(err =>
+      dispatch({
         type: ADD_USER_FAILURE,
         payload: err
-    }))
-}
+      })
+    );
+};
 
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_FETCHING = "GET_USERS_FETCHING";
@@ -100,5 +102,42 @@ export const getSleepData = () => dispatch => {
         localStorage.removeItem("userId");
       }
       dispatch({ type: GET_SLEEPDATA_FAILURE, payload: err.data });
+    });
+};
+
+export const SEND_SLEEPSESSION_SUCCESS = "SEND_SLEEPSESSION_SUCCESS";
+export const SLEEPSESSION_SENDING = "SLEEPSESSION_SENDING";
+export const SEND_SLEEPSESSION_FAILURE = "SEND_SLEEPSESSION_FAILURE";
+
+export const addNewSession = sleepSession => dispatch => {
+  console.log(sleepSession);
+  dispatch({ type: SLEEPSESSION_SENDING });
+  return axios
+    .post(
+      "https://sleeptrack.herokuapp.com/api/sleepData",
+      {
+        userID: localStorage.getItem("userId"),
+        start: sleepSession.startDate,
+        end: sleepSession.endDate,
+        hours: sleepSession.hours,
+        scale: sleepSession.selectedMood
+      },
+      {
+        headers: { authorize: localStorage.getItem("token") }
+      }
+    )
+    .then(res => {
+      console.log(res.data);
+      dispatch({
+        type: SEND_SLEEPSESSION_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      if (err.response.status === 403) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+      }
+      dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err });
     });
 };
