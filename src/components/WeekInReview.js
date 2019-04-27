@@ -14,7 +14,7 @@ import moment from "moment";
 import { getSleepData } from "../actions";
 
 class WeekInReview extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getSleepData();
   }
 
