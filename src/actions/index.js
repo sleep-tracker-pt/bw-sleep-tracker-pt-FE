@@ -122,7 +122,7 @@ export const addNewSession = sleepSession => dispatch => {
         scale: sleepSession.selectedMood
       },
       {
-        headers: { authorize: localStorage.getItem("token"), }
+        headers: { authorize: localStorage.getItem("token") }
       }
     )
     .then(res => {

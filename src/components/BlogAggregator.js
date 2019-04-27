@@ -41,7 +41,7 @@ class BlogAggregator extends Component {
   render() {
     return (
       <div className="BlogAggregator">
-        {this.state.blogPosts.map(post => {
+        {this.state.blogPosts.map(post, index => {
           return (
             <BlogDisplay
               title={post.title}
@@ -50,6 +50,7 @@ class BlogAggregator extends Component {
               pubDate={post.pubDate}
               thumbnailUrl={post.thumbnailUrl}
               linkUrl={post.linkUrl}
+              key={index}
             />
           );
         })}
