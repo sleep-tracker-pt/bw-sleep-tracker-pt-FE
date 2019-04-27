@@ -4,6 +4,7 @@ import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 import { addNewSession } from "../actions";
 import { connect } from "react-redux";
+import WeekInReview from "./WeekInReview";
 
 class StatsContainer extends Component {
   state = {
@@ -32,14 +33,6 @@ class StatsContainer extends Component {
       ),
       selectedMood: this.state.selectedMood
     });
-    console.log({
-      start: moment(this.state.startDate).format(),
-      end: moment(this.state.endDate).format(),
-      hours: JSON.stringify(
-        moment(this.state.endDate).diff(this.state.startDate, "hours")
-      ),
-      scale: this.state.selectedMood
-    });
     this.setState({ showModal: false });
   };
 
@@ -55,6 +48,7 @@ class StatsContainer extends Component {
     return (
       <div>
         <h1>This is the stats container 🤔</h1>
+        <WeekInReview></WeekInReview>
         <Button variant="primary" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
