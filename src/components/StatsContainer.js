@@ -4,6 +4,7 @@ import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 import { addNewSession } from "../actions";
 import { connect } from "react-redux";
+import WeekInReview from "./WeekInReview";
 
 class StatsContainer extends Component {
   state = {
@@ -47,6 +48,7 @@ class StatsContainer extends Component {
     return (
       <div>
         <h1>This is the stats container 🤔</h1>
+        <WeekInReview></WeekInReview>
         <Button variant="primary" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
