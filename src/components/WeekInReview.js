@@ -16,6 +16,7 @@ import { getSleepData } from "../actions";
 class WeekInReview extends Component {
   componentWillMount() {
     this.props.getSleepData();
+    console.log(moment().format("YYYY-MM-DD HH:mm"));
   }
 
   render() {
@@ -26,7 +27,7 @@ class WeekInReview extends Component {
         <AreaChart
           width={500}
           height={200}
-          data={this.props.transformedSleepData}
+          data={this.props.filteredSleepData}
           syncId="anyId"
           margin={{
             top: 10,
@@ -50,7 +51,7 @@ class WeekInReview extends Component {
         <AreaChart
           width={500}
           height={200}
-          data={this.props.transformedSleepData}
+          data={this.props.filteredSleepData}
           syncId="anyId"
           margin={{
             top: 10,
@@ -77,7 +78,8 @@ class WeekInReview extends Component {
 
 const mapStateToProps = state => {
   return {
-    transformedSleepData: state.transformedSleepData
+    transformedSleepData: state.transformedSleepData,
+    filteredSleepData: state.filteredSleepData,
   };
 };
 

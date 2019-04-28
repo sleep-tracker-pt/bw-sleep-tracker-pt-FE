@@ -15,6 +15,7 @@ import {
   SLEEPSESSION_SENDING,
   SEND_SLEEPSESSION_FAILURE,
   TRANSFORM_SLEEPDATA_TO_GRAPH,
+  APPLY_RECENT_FILTER,
   
 } from "../actions";
 
@@ -25,7 +26,8 @@ const initialState = {
   isFetching: false,
   error: null,
   sleepData: [],
-  transformedSleepData: []
+  transformedSleepData: [],
+  filteredSleepData: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -124,6 +126,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         transformedSleepData: action.payload
       };
+      case APPLY_RECENT_FILTER: 
+      return { 
+        ...state,
+        filteredSleepData: action.payload
+      }
     default:
       return state;
   }
