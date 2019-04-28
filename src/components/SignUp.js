@@ -14,8 +14,8 @@ class SignUp extends Component {
       username: "",
       password: "",
       birthDate: moment()
-      .subtract(13, "years")
-      .toDate(),
+        .subtract(13, "years")
+        .toDate()
     };
   }
 
@@ -27,18 +27,20 @@ class SignUp extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    let userData = { 
-        username: this.state.username, 
-        password: this.state.password,
-        birthDate: this.state.birthDAte
-    }
+    let userData = {
+      username: this.state.username,
+      password: this.state.password,
+      birthDate: this.state.birthDAte
+    };
     this.props.addUser(userData);
     this.setState({
       username: "",
-      password: ""
+      password: "",
+      birthDate: moment()
+        .subtract(13, "years")
+        .toDate()
     });
   };
-
 
   handleChange = date => {
     this.setState({ birthDate: date });
@@ -58,12 +60,13 @@ class SignUp extends Component {
           placeholder="password"
           onChange={this.inputHandler}
           value={this.state.password}
-        /><h4>Birthday:</h4>
+        />
+        <h4>Birthday:</h4>
         <DatePicker
-                  onChange={this.onChange}
-                  value={this.state.birthDate}
-                  clearIcon={null}
-                />
+          onChange={this.onChange}
+          value={this.state.birthDate}
+          clearIcon={null}
+        />
         <button type="submit">Register</button>
       </form>
     );
