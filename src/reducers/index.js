@@ -84,7 +84,7 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           isSending: false,
-          err: "Please try Again"
+          err: action.payload,
         };
       case GET_SLEEPDATA_SUCCESS:
       return {
