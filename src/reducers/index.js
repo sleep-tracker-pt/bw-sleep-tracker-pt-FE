@@ -20,7 +20,6 @@ import {
 } from "../actions";
 
 const initialState = {
-  state: [],
   isSending: true,
   loggingIn: false,
   isFetching: false,
