@@ -79,7 +79,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isSending: false,
-        state: action.payload
       };
 
       case ADD_USER_FAILURE:
