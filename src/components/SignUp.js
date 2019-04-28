@@ -27,7 +27,12 @@ class SignUp extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    this.props.addUser(this.state);
+    let userData = { 
+        username: this.state.username, 
+        password: this.state.password,
+        birthDate: this.state.birthDAte
+    }
+    this.props.addUser(userData);
     this.setState({
       username: "",
       password: ""
