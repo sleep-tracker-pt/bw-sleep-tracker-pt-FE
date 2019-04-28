@@ -64,7 +64,7 @@ export const getUsers = () => dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 403) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
@@ -130,7 +130,7 @@ export const getSleepData = () => dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 403) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
@@ -165,7 +165,7 @@ export const addNewSession = sleepSession => dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 403) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
