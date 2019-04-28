@@ -67,7 +67,7 @@ class StatsContainer extends Component {
               <Form.Group>
                 <Form.Label>Went to bed</Form.Label>
                 <DateTimePicker
-                  onChange={this.onChange}
+                  onChange={this.handleChange}
                   value={this.state.startDate}
                   disableClock
                   clearIcon={null}
