@@ -21,7 +21,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "rss-parser-browser": "^2.2.2",
-    "string-strip-html": "^4.0.12"
+    "string-strip-html": "^4.0.12",
+    "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

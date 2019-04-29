@@ -13,20 +13,24 @@ import SignUp from "./components/SignUp";
 function App() {
   return (
     <div>
-      <div>
-        <Route path="/signup" component={SignUp} />
-      </div>
+      
       <div>
         <div>
           <NavBar />
+        </div>
+        <div>
           <Route path="/login" component={LoginPage} />
+        </div>
+          <div>
+        <Route path="/signup" component={SignUp} />
+      
         </div>
         <div>
           <PrivateRoute exact path="/home" component={HomeContainer} />
         </div>
-        <div>
+        {/* <div>
           <PrivateRoute path="/stats" component={StatsContainer} />
-        </div>
+        </div> */}
       </div>
     </div>
   );

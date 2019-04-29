@@ -1,6 +1,7 @@
 import React from "react";
 import BlogAggregator from "./BlogAggregator";
-import HomeMoodChart from "./HomeMoodChart"
+import HomeMoodChart from "./HomeMoodChart";
+import StatsContainer from "./StatsContainer";
 
 
 const HomeContainer = () => {
@@ -9,6 +10,7 @@ const HomeContainer = () => {
       <h1>Sleep Tracker Front End 😂👌💯</h1>
       <BlogAggregator />
       <HomeMoodChart/>
+      <StatsContainer/>
     </div>
   );
 };
