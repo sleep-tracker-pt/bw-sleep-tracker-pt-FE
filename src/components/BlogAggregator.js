@@ -18,26 +18,16 @@ class BlogAggregator extends Component {
     blogPosts: []
   };
 
-  componentDidMount() {
-    this.state.blogUrls.forEach(url =>
-      axios
-        .get(`https://api.rss2json.com/v1/api.json?rss_url=${url}`)
-        .then(response => {
-          let strippedBody = stripHtml(response.data.items[0].content);
-          let newPost = {
-            title: response.data.items[0].title,
-            author: response.data.items[0].author,
-            body: strippedBody.substring(0, 150),
-            pubDate: response.data.items[0].pubDate,
-            thumbnailUrl: response.data.items[0].thumbnail,
-            linkUrl: response.data.items[0].link
-          };
-          this.setState({ blogPosts: [...this.state.blogPosts, newPost] });
-        })
-        .catch(error => console.log(error))
-    );
+  async componentDidMount() {
+    try {
+      const posts = await axios.get(
+        "https://sleeptrack.herokuapp.com/api/blogPosts"
+      );
+      this.setState({ blogPosts: posts.data });
+    } catch (err) {
+      console.log(err);
+    }
   }
-
   render() {
     return (
       <div className="BlogAggregator">
@@ -53,7 +43,7 @@ class BlogAggregator extends Component {
               key={index}
             />
           );
-        },)}
+        })}
       </div>
     );
   }

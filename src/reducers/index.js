@@ -15,17 +15,18 @@ import {
   SLEEPSESSION_SENDING,
   SEND_SLEEPSESSION_FAILURE,
   TRANSFORM_SLEEPDATA_TO_GRAPH,
+  APPLY_RECENT_FILTER,
   
 } from "../actions";
 
 const initialState = {
-  state: [],
   isSending: true,
   loggingIn: false,
   isFetching: false,
   error: null,
   sleepData: [],
-  transformedSleepData: []
+  transformedSleepData: [],
+  filteredSleepData: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -77,14 +78,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isSending: false,
-        state: action.payload
       };
 
       case ADD_USER_FAILURE:
         return {
           ...state,
           isSending: false,
-          err: "Please try Again"
+          err: action.payload,
         };
       case GET_SLEEPDATA_SUCCESS:
       return {
@@ -124,6 +124,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         transformedSleepData: action.payload
       };
+      case APPLY_RECENT_FILTER: 
+      return { 
+        ...state,
+        filteredSleepData: action.payload
+      }
     default:
       return state;
   }

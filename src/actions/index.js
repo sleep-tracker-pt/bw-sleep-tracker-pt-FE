@@ -11,7 +11,6 @@ export const loginSuccess = index => dispatch => {
   return axios
     .post("https://sleeptrack.herokuapp.com/api/login", index)
     .then(res => {
-      console.log(res);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.id);
       dispatch({
@@ -35,7 +34,6 @@ export const addUser = newUser => dispatch => {
   axios
     .post("https://sleeptrack.herokuapp.com/api/register", newUser)
     .then(res => {
-      console.log(res);
       dispatch({
         type: ADD_USER_SUCCESS,
         payload: res.data
@@ -60,14 +58,13 @@ export const getUsers = () => dispatch => {
       headers: { authorize: localStorage.getItem("token") }
     })
     .then(res => {
-      console.log(res);
       dispatch({
         type: GET_USERS_SUCCESS,
         payload: res.data
       });
     })
     .catch(err => {
-      if (err.response.status === 403) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
@@ -78,7 +75,8 @@ export const getUsers = () => dispatch => {
 export const GET_SLEEPDATA_SUCCESS = "GET_SLEEPDATA_SUCCESS";
 export const GET_SLEEPDATA_FETCHING = "GET_SLEEPDATA_FETCHING";
 export const GET_SLEEPDATA_FAILURE = "GET_SLEEPDATA_FAILURE";
-export const TRANSFORM_SLEEPDATA_TO_GRAPH = "TRANSFORM_SLEEPDATA_TO_GRAPH"
+export const TRANSFORM_SLEEPDATA_TO_GRAPH = "TRANSFORM_SLEEPDATA_TO_GRAPH";
+export const APPLY_RECENT_FILTER = "APPLY_RECENT_FILTER";
 
 export const getSleepData = () => dispatch => {
   dispatch({ type: GET_SLEEPDATA_FETCHING });
@@ -92,7 +90,6 @@ export const getSleepData = () => dispatch => {
       }
     )
     .then(res => {
-      console.log(res);
       dispatch({
         type: GET_SLEEPDATA_SUCCESS,
         payload: res.data.sleepData
@@ -109,25 +106,31 @@ export const getSleepData = () => dispatch => {
             return "😁";
           default:
             return value;
-        }}
-        const dateTransform = date => moment(date, "YYYY-MM-DD HH:mm").format(
-          "YYYY-MM-DD"
-        );
-        const result = res.data.sleepData.map(item => ({
-          ...item,
-          emoji: emojify(item.scale),
-          startDate: dateTransform(item.start),
-        }));
+        }
+      };
+      const dateTransform = date =>
+        moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
+      const result = res.data.sleepData.map(item => ({
+        ...item,
+        emoji: emojify(item.scale),
+        startDate: dateTransform(item.start)
+      }));
       dispatch({
         type: TRANSFORM_SLEEPDATA_TO_GRAPH,
         payload: result
-      })
+      });
+      const pastWeek = result.filter(item => {
+        return moment(item.startDate, "YYYY-MM-DD").isBefore(
+          moment().subtract(7, "days")
+        ) || moment(item.startDate, "YYYY-MM-DD").isBefore(moment());
+      });
+      dispatch({
+        type: APPLY_RECENT_FILTER,
+        payload: pastWeek
+      });
     })
-
-
-
     .catch(err => {
-      if (err.response.status === 403) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
@@ -156,18 +159,16 @@ export const addNewSession = sleepSession => dispatch => {
       }
     )
     .then(res => {
-      console.log(res.data);
       dispatch({
         type: SEND_SLEEPSESSION_SUCCESS,
         payload: res.data
       });
     })
     .catch(err => {
-      if (err.response.status === 403) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
       dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err.response });
     });
 };
-
