@@ -8,6 +8,7 @@ import moment from "moment";
 class SignUp extends Component {
   constructor(props) {
     super(props);
+    this.routeChange = this.routeChange.bind(this);
     this.state = {
       isFetching: false,
       addUser: null,
@@ -46,6 +47,10 @@ class SignUp extends Component {
     this.setState({ birthDate: date });
   };
 
+  routeChange() {
+    let path = `/login`;
+    this.props.history.push(path);
+}
   render() {
     return (
       <form onSubmit={this.submitHandler}>
@@ -63,11 +68,11 @@ class SignUp extends Component {
         />
         <h4>Birthday:</h4>
         <DatePicker
-          onChange={this.onChange}
+          onChange={this.handleChange}
           value={this.state.birthDate}
           clearIcon={null}
         />
-        <button type="submit">Register</button>
+        <button type="submit" onClick={this.routeChange}>Register</button>
       </form>
     );
   }

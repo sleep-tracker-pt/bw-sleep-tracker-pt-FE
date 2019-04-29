@@ -57,7 +57,9 @@ class LoginPage extends Component {
           />
 
           <button value="submit">Submit</button>
+          <div>
           <button onClick={this.routeChange}>Sign Up</button>
+          </div>
         </form>
       </div>
     );

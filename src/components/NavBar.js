@@ -1,32 +1,79 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import LogoMain from '../img/Logo-main.png';
+import  '../index.css';
 
-import logo from '../img/logo.png';
+
+const Nav = styled.nav `
+  width: 80%;
+  height: 60px;
+  background: rgba(211, 220, 227, .5);
+  backdrop-filter: blur(20px);
+  margin: 10px auto;
+  padding: 10px;
+`;
+
+const NavContainer = styled.div `
+ display: flex;
+ justify-content: space-between;
+`;
+
+const NavLogo = styled.img `
+  margin: 10px; 
+`;
+
+const NavRight = styled.div  `
+  text-align: center;
+  margin-top: 7px;
+`;
+
+
+const NavItem = styled.a `
+ text-decoration: none;
+ color: black;
+ margin-right: 15px;
+ font-weight: 600;
+
+
+ a:visited {
+   color: black;
+ }
+ a:hover {
+   color: white;
+   background: #0F2F5A;
+   text-decoration: none;
+ }
+
+ 
+`;
+
+
+
+
 
 export default class NavBar extends React.Component {
     render () {
         return (
-            <nav className="Nav">
-            <div className="Nav__container">
-              <Link to="/" className="Nav__brand">
-                <img src={logo} className="Nav__logo" width="30px" height="30px" />
+            <Nav>
+            <NavContainer>
+              <Link to="/" >
+                <img src={LogoMain}  width="40px" height="40px" />
               </Link>
   
-              <div className="Nav__right">
-                <ul className="Nav__item-wrapper">
-                  <li className="Nav__item">
-                    <Link className="Nav__link" to="/login">Login</Link>
-                  </li>
-                  <li className="Nav__item">
-                    <Link className="Nav__link" to="/home">Home</Link>
-                  </li>
-                  <li className="Nav__item">
-                    <Link className="Nav__link" to="/stats">Stats</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>  
+              <NavRight>
+                  <NavItem>
+                  <Link  to="/Home">Home</Link>
+                  </NavItem>
+                  
+                  <NavItem>
+                  <Link  to="/login">Login</Link>
+                  </NavItem>
+                 
+                
+              </NavRight>
+            </NavContainer>
+          </Nav>  
         );
     }
 }
