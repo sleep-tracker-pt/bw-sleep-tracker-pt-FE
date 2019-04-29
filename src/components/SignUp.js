@@ -30,7 +30,7 @@ class SignUp extends Component {
     let userData = {
       username: this.state.username,
       password: this.state.password,
-      birthDate: this.state.birthDAte
+      birthDate: this.state.birthDate
     };
     this.props.addUser(userData);
     this.setState({
