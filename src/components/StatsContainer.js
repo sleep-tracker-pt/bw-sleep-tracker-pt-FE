@@ -13,7 +13,9 @@ class StatsContainer extends Component {
     endDate: moment()
       .add(8, "hours")
       .toDate(),
-    selectedMood: 0
+    bed_t_rating: 2,
+    work_t_rating: 2,
+    average_rating: 2
   };
 
   handleCloseModal = () => {
@@ -36,17 +38,23 @@ class StatsContainer extends Component {
       hours: JSON.stringify(
         moment(this.state.endDate).diff(this.state.startDate, "hours")
       ),
-      selectedMood: this.state.selectedMood
+      bed_t_rating: this.state.bed_t_rating,
+      work_t_rating: this.state.work_t_rating,
+      average_rating: this.state.average_rating
     });
     this.setState({ showModal: false });
   };
 
-  handleChange = date => {
-    this.setState({ date });
+  handleChangeStart = date => {
+    this.setState({ startDate: date });
+  };
+
+  handleChangeEnd = date => {
+    this.setState({ endDate: date });
   };
 
   handleCheck = e => {
-    this.setState({ selectedMood: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
@@ -67,7 +75,8 @@ class StatsContainer extends Component {
               <Form.Group>
                 <Form.Label>Went to bed</Form.Label>
                 <DateTimePicker
-                  onChange={this.handleChange}
+                  name="startDate"
+                  onChange={this.handleChangeStart}
                   value={this.state.startDate}
                   disableClock
                   clearIcon={null}
@@ -77,7 +86,8 @@ class StatsContainer extends Component {
               <Form.Group>
                 <Form.Label>Woke up</Form.Label>
                 <DateTimePicker
-                  onChange={this.onChange}
+                  name="endDate"
+                  onChange={this.handleChangeEnd}
                   value={this.state.endDate}
                   disableClock
                   clearIcon={null}
@@ -85,44 +95,130 @@ class StatsContainer extends Component {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Mood</Form.Label>
+                <Form.Label>Bedtime Mood</Form.Label>
                 <Form.Check
                   type="radio"
                   label="😁"
-                  name="mood4"
+                  name="bed_t_rating"
                   id="mood4"
                   value="4"
-                  checked={this.state.selectedMood === "4"}
+                  checked={this.state.bed_t_rating === "4"}
                   onChange={this.handleCheck}
                   inline
                 />
                 <Form.Check
                   type="radio"
                   label="🙂"
-                  name="mood3"
+                  name="bed_t_rating"
                   id="mood3"
                   value="3"
-                  checked={this.state.selectedMood === "3"}
+                  checked={this.state.bed_t_rating === "3"}
                   onChange={this.handleCheck}
                   inline
                 />
                 <Form.Check
                   type="radio"
                   label="😕"
-                  name="mood2"
+                  name="bed_t_rating"
                   id="mood2"
                   value="2"
-                  checked={this.state.selectedMood === "2"}
+                  checked={this.state.bed_t_rating === "2"}
                   onChange={this.handleCheck}
                   inline
                 />
                 <Form.Check
                   type="radio"
                   label="🙁"
-                  name="mood1"
+                  name="bed_t_rating"
                   id="mood1"
                   value="1"
-                  checked={this.state.selectedMood === "1"}
+                  checked={this.state.bed_t_rating === "1"}
+                  onChange={this.handleCheck}
+                  inline
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Work Mood</Form.Label>
+                <Form.Check
+                  type="radio"
+                  label="😁"
+                  name="work_t_rating"
+                  id="mood4"
+                  value="4"
+                  checked={this.state.work_t_rating === "4"}
+                  onChange={this.handleCheck}
+                  inline
+                />
+                <Form.Check
+                  type="radio"
+                  label="🙂"
+                  name="work_t_rating"
+                  id="mood3"
+                  value="3"
+                  checked={this.state.work_t_rating === "3"}
+                  onChange={this.handleCheck}
+                  inline
+                />
+                <Form.Check
+                  type="radio"
+                  label="😕"
+                  name="work_t_rating"
+                  id="mood2"
+                  value="2"
+                  checked={this.state.work_t_rating === "2"}
+                  onChange={this.handleCheck}
+                  inline
+                />
+                <Form.Check
+                  type="radio"
+                  label="🙁"
+                  name="work_t_rating"
+                  id="mood1"
+                  value="1"
+                  checked={this.state.work_t_rating === "1"}
+                  onChange={this.handleCheck}
+                  inline
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Avarage Mood</Form.Label>
+                <Form.Check
+                  type="radio"
+                  label="😁"
+                  name="average_rating"
+                  id="mood4"
+                  value="4"
+                  checked={this.state.average_rating === "4"}
+                  onChange={this.handleCheck}
+                  inline
+                />
+                <Form.Check
+                  type="radio"
+                  label="🙂"
+                  name="average_rating"
+                  id="mood3"
+                  value="3"
+                  checked={this.state.average_rating === "3"}
+                  onChange={this.handleCheck}
+                  inline
+                />
+                <Form.Check
+                  type="radio"
+                  label="😕"
+                  name="average_rating"
+                  id="mood2"
+                  value="2"
+                  checked={this.state.average_rating === "2"}
+                  onChange={this.handleCheck}
+                  inline
+                />
+                <Form.Check
+                  type="radio"
+                  label="🙁"
+                  name="average_rating"
+                  id="mood1"
+                  value="1"
+                  checked={this.state.average_rating === "1"}
                   onChange={this.handleCheck}
                   inline
                 />
