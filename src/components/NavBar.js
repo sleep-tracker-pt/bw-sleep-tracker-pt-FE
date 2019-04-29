@@ -6,7 +6,7 @@ import  '../index.css';
 
 
 const Nav = styled.nav `
-  width: 800px;
+  width: 80%;
   height: 60px;
   background: rgba(211, 220, 227, .5);
   backdrop-filter: blur(20px);
@@ -33,7 +33,7 @@ const NavItem = styled.a `
  text-decoration: none;
  color: black;
  margin-right: 15px;
- font-weight: 800;
+ font-weight: 600;
 
 
  a:visited {
@@ -41,7 +41,7 @@ const NavItem = styled.a `
  }
  a:hover {
    color: white;
-   background: 0F2F5A;
+   background: #0F2F5A;
    text-decoration: none;
  }
 
@@ -53,8 +53,6 @@ const NavItem = styled.a `
 
 
 export default class NavBar extends React.Component {
-
-  
     render () {
         return (
             <Nav>
