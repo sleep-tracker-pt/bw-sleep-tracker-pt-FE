@@ -64,7 +64,7 @@ export const getUsers = () => dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 401) {
+      if (err.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
@@ -94,6 +94,7 @@ export const getSleepData = () => dispatch => {
         type: GET_SLEEPDATA_SUCCESS,
         payload: res.data.sleepData
       });
+      console.log(res.data.sleepData)
       const emojify = value => {
         switch (value) {
           case 1:
@@ -130,7 +131,7 @@ export const getSleepData = () => dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 401) {
+      if (err.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
@@ -152,7 +153,9 @@ export const addNewSession = sleepSession => dispatch => {
         start: sleepSession.startDate,
         end: sleepSession.endDate,
         hours: sleepSession.hours,
-        scale: sleepSession.selectedMood
+        bed_t_rating: sleepSession.bed_t_rating,
+        work_t_rating: sleepSession.work_t_rating,
+        average_rating: sleepSession.average_rating
       },
       {
         headers: { authorize: localStorage.getItem("token") }
@@ -165,10 +168,10 @@ export const addNewSession = sleepSession => dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 401) {
+      if (err.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
-      dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err.response });
+      dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err });
     });
 };

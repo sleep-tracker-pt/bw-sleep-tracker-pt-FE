@@ -26,7 +26,7 @@ class HomeMoodChart extends Component {
       <Jumbotron fluid>
         <ScatterChart width={400} height={400}>
           <CartesianGrid />
-          <XAxis dataKey={"scale"} type="number" name="Mood" />
+          <XAxis dataKey={"bed_t_rating"} type="number" name="Mood" />
           <YAxis
             dataKey={"hours"}
             type="number"
