@@ -94,16 +94,15 @@ export const getSleepData = () => dispatch => {
         type: GET_SLEEPDATA_SUCCESS,
         payload: res.data.sleepData
       });
-      console.log(res.data.sleepData)
       const emojify = value => {
         switch (value) {
-          case 1:
+          case "1":
             return "🙁";
-          case 2:
+          case "2":
             return "😕";
-          case 3:
+          case "3":
             return "🙂";
-          case 4:
+          case "4":
             return "😁";
           default:
             return value;
@@ -113,17 +112,21 @@ export const getSleepData = () => dispatch => {
         moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
       const result = res.data.sleepData.map(item => ({
         ...item,
-        emoji: emojify(item.scale),
+        emojiBed: emojify(item.bed_t_rating),
+        emojiWork: emojify(item.work_t_rating),
+        emojiAverage: emojify(item.average_rating),
         startDate: dateTransform(item.start)
-      }));
+      })).reverse();
       dispatch({
         type: TRANSFORM_SLEEPDATA_TO_GRAPH,
         payload: result
       });
       const pastWeek = result.filter(item => {
-        return moment(item.startDate, "YYYY-MM-DD").isBefore(
-          moment().subtract(7, "days")
-        ) || moment(item.startDate, "YYYY-MM-DD").isBefore(moment());
+        return (
+          moment(item.startDate, "YYYY-MM-DD").isAfter(
+            moment().subtract(7, "days")
+          ) && moment(item.startDate, "YYYY-MM-DD").isBefore(moment())
+        );
       });
       dispatch({
         type: APPLY_RECENT_FILTER,
