@@ -61,12 +61,13 @@ class SignUp extends Component {
           value={this.state.username}
         />
         <input
-          name="password"
+          type="password"
           placeholder="password"
+          name="password"
           onChange={this.inputHandler}
           value={this.state.password}
         />
-        <h4>Birthday:</h4>
+        <p>Please enter your Birthdate:</p>
         <DatePicker
           onChange={this.handleChange}
           value={this.state.birthDate}

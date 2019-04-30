@@ -6,22 +6,22 @@ import  '../index.css';
 
 
 const Nav = styled.nav `
-  width: 80%;
-  height: 60px;
+  width: 100%;
+  height: 50px;
   background: rgba(211, 220, 227, .5);
-  backdrop-filter: blur(20px);
-  margin: 10px auto;
-  padding: 10px;
+  backdrop-filter: blur(80px);
+  margin: 0 auto;
+  padding: 5px;
 `;
 
 const NavContainer = styled.div `
  display: flex;
  justify-content: space-between;
+ margin-left: 10px;
+
 `;
 
-const NavLogo = styled.img `
-  margin: 10px; 
-`;
+
 
 const NavRight = styled.div  `
   text-align: center;

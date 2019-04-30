@@ -12,7 +12,7 @@ import reducer from "./reducers";
 import {BrowserRouter as Router} from 'react-router-dom'
 
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import './index.css';
 const store = createStore(reducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
