@@ -1,2 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+body {
+    background: url(./img/background.png) no-repeat center center fixed;
+    backdrop-filter: blur(5px);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+};
