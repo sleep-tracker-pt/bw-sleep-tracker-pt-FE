@@ -40,14 +40,12 @@ const Label = styled.p `
 `;
 
 const Button = styled.button `
-    ${'' /* display: flex; */}
     width: 100%;
     margin: 10px auto;
     border-radius: 5px;
     border: 0;
     color: #d3dce3;
     font-weight: 600;
-    ${'' /* letter-spacing: -1px; */}
     text-align: center;
     text-decoration: none ;
     font-size: 14px;
@@ -79,7 +77,8 @@ class LoginPage extends Component {
     creds: {
       username: "",
       password: ""
-    }
+    },
+    err: null
   };
   handleChange = e => {
     e.preventDefault();
@@ -111,9 +110,10 @@ class LoginPage extends Component {
      <Container>  
      <ImgDiv>
           <img src={dreamer} width="40%" />
-          </ImgDiv> 
+        </ImgDiv> 
 
       <FormDiv>
+     
         <Form onSubmit={this.handleSubmit}>
           <Label>What is your username</Label>
           <Input
