@@ -123,9 +123,9 @@ export const getSleepData = () => dispatch => {
       });
       const pastWeek = result.filter(item => {
         return (
-          moment(item.startDate, "YYYY-MM-DD").isBefore(
+          moment(item.startDate, "YYYY-MM-DD").isAfter(
             moment().subtract(7, "days")
-          ) || moment(item.startDate, "YYYY-MM-DD").isBefore(moment())
+          ) && moment(item.startDate, "YYYY-MM-DD").isBefore(moment())
         );
       });
       dispatch({

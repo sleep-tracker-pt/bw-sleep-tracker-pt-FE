@@ -240,7 +240,9 @@ class StatsContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    transformedSleepData: state.transformedSleepData
+  };
 };
 
 export default connect(

@@ -14,9 +14,8 @@ import moment from "moment";
 import { getSleepData } from "../actions";
 
 class WeekInReview extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.getSleepData();
-    console.log(moment().format("YYYY-MM-DD HH:mm"));
   }
 
   render() {
