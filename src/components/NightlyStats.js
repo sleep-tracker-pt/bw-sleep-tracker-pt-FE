@@ -6,6 +6,7 @@ class NightlyStats extends Component {
   render() {
     return (
       <div className="nightly-stats">
+      <h4>last 7 days</h4>
         {this.props.transformedSleepData.map(stat => {
           return <NightlyStat transformedSleepData={stat} />;
         })}

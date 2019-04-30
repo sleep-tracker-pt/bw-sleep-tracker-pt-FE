@@ -61,8 +61,8 @@ class StatsContainer extends Component {
     return (
       <div>
         <h1>This is the stats container 🤔</h1>
-        <WeekInReview />
-        <NightlyStats />
+        <WeekInReview props={this.state}/>
+        <NightlyStats props ={this.state}/>
         <Button variant="primary" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
