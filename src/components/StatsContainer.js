@@ -4,6 +4,7 @@ import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 import { addNewSession } from "../actions";
 import { connect } from "react-redux";
+import { getSleepData } from "../actions";
 
 import WeekInReview from "./WeekInReview";
 import NightlyStats from "./NightlyStats";
@@ -15,8 +16,13 @@ class StatsContainer extends Component {
       .toDate(),
     bed_t_rating: 2,
     work_t_rating: 2,
-    average_rating: 2
+    average_rating: 2,
+    showModal: false
   };
+
+  componentDidMount() { 
+    this.props.getSleepData()
+  }
 
   handleCloseModal = () => {
     this.setState({ showModal: false });
@@ -43,6 +49,7 @@ class StatsContainer extends Component {
       average_rating: this.state.average_rating
     });
     this.setState({ showModal: false });
+    this.props.getSleepData();
   };
 
   handleChangeStart = date => {
@@ -61,8 +68,8 @@ class StatsContainer extends Component {
     return (
       <div>
         <h1>This is the stats container 🤔</h1>
-        <WeekInReview props={this.state}/>
-        <NightlyStats props ={this.state}/>
+        <WeekInReview props={this.state} />
+        <NightlyStats props={this.state} />
         <Button variant="primary" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
@@ -241,11 +248,12 @@ class StatsContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    transformedSleepData: state.transformedSleepData
+    transformedSleepData: state.transformedSleepData,
+    filteredSleepData: state.filteredSleepData
   };
 };
 
 export default connect(
   mapStateToProps,
-  { addNewSession }
+  { addNewSession, getSleepData }
 )(StatsContainer);
