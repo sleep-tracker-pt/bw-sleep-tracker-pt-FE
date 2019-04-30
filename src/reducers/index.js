@@ -26,7 +26,8 @@ const initialState = {
   error: null,
   sleepData: [],
   transformedSleepData: [],
-  filteredSleepData: []
+  filteredSleepData: [],
+  postResponse: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -107,8 +108,9 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isSending: false,
+        postResponse: action.payload
       };
-    case SLEEPSESSION_SENDING :
+    case SLEEPSESSION_SENDING:
       return {
         ...state,
         isSending: true,
