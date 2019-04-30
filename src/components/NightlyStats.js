@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import NightlyStat from "./NightlyStat";
-import { directive } from "@babel/types";
 
 class NightlyStats extends Component {
   render() {

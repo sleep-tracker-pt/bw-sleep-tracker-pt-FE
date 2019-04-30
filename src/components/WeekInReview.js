@@ -62,11 +62,11 @@ class WeekInReview extends Component {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="startDate" />
-          <YAxis dataKey="scale" />
+          <YAxis dataKey="average_rating" />
           <Tooltip />
           <Area
             type="monotone"
-            dataKey="scale"
+            dataKey="average_rating"
             stroke="#82ca9d"
             fill="#82ca9d"
           />
