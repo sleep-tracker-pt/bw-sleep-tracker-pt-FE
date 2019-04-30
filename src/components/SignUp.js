@@ -6,19 +6,15 @@ import DatePicker from "react-date-picker";
 import moment from "moment";
 
 class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.routeChange = this.routeChange.bind(this);
-    this.state = {
-      isFetching: false,
-      addUser: null,
-      username: "",
-      password: "",
-      birthDate: moment()
-        .subtract(13, "years")
-        .toDate()
-    };
-  }
+  state = {
+    isFetching: false,
+    addUser: null,
+    username: "",
+    password: "",
+    birthDate: moment()
+      .subtract(13, "years")
+      .toDate()
+  };
 
   inputHandler = e => {
     this.setState({
@@ -41,16 +37,13 @@ class SignUp extends Component {
         .subtract(13, "years")
         .toDate()
     });
+    this.props.history.push("/login");
   };
 
   handleChange = date => {
     this.setState({ birthDate: date });
   };
 
-  routeChange() {
-    let path = `/login`;
-    this.props.history.push(path);
-}
   render() {
     return (
       <form onSubmit={this.submitHandler}>
@@ -73,7 +66,7 @@ class SignUp extends Component {
           value={this.state.birthDate}
           clearIcon={null}
         />
-        <button type="submit" onClick={this.routeChange}>Register</button>
+        <button type="submit">Register</button>
       </form>
     );
   }
