@@ -17,6 +17,12 @@ const Container = styled.div `
 const ImgDiv = styled.div `
 margin: 0;
 padding: 0;
+
+@media (max-width: 600px) {
+    img {
+        display: none;
+    }
+}
 `;
 
 const FormDiv = styled.div `

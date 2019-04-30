@@ -21,7 +21,7 @@ export const loginSuccess = index => dispatch => {
     .catch(err => {
       dispatch({
         type: LOGIN_FAILURE,
-        payload: err
+        payload: err.response.message
       });
     });
 };
