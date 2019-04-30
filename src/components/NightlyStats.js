@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import NightlyStat from "./NightlyStat";
 
 class NightlyStats extends Component {
   render() {
-    return <div />;
+    return (
+      <div className="nightly-stats">
+        <h4>last 7 days</h4>
+        {this.props.filteredSleepData.map(stat => {
+          return <NightlyStat filteredSleepData={stat} />;
+        })}
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    transformedSleepData: state.transformedSleepData
+    filteredSleepData: state.filteredSleepData
   };
 };
 

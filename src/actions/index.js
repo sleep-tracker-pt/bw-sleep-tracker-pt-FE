@@ -64,7 +64,7 @@ export const getUsers = () => dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 401) {
+      if (err.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
@@ -96,13 +96,13 @@ export const getSleepData = () => dispatch => {
       });
       const emojify = value => {
         switch (value) {
-          case 1:
+          case "1":
             return "🙁";
-          case 2:
+          case "2":
             return "😕";
-          case 3:
+          case "3":
             return "🙂";
-          case 4:
+          case "4":
             return "😁";
           default:
             return value;
@@ -112,17 +112,21 @@ export const getSleepData = () => dispatch => {
         moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
       const result = res.data.sleepData.map(item => ({
         ...item,
-        emoji: emojify(item.scale),
+        emojiBed: emojify(item.bed_t_rating),
+        emojiWork: emojify(item.work_t_rating),
+        emojiAverage: emojify(item.average_rating),
         startDate: dateTransform(item.start)
-      }));
+      })).reverse();
       dispatch({
         type: TRANSFORM_SLEEPDATA_TO_GRAPH,
         payload: result
       });
       const pastWeek = result.filter(item => {
-        return moment(item.startDate, "YYYY-MM-DD").isBefore(
-          moment().subtract(7, "days")
-        ) || moment(item.startDate, "YYYY-MM-DD").isBefore(moment());
+        return (
+          moment(item.startDate, "YYYY-MM-DD").isAfter(
+            moment().subtract(7, "days")
+          ) && moment(item.startDate, "YYYY-MM-DD").isBefore(moment())
+        );
       });
       dispatch({
         type: APPLY_RECENT_FILTER,
@@ -130,7 +134,7 @@ export const getSleepData = () => dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 401) {
+      if (err.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
@@ -152,7 +156,9 @@ export const addNewSession = sleepSession => dispatch => {
         start: sleepSession.startDate,
         end: sleepSession.endDate,
         hours: sleepSession.hours,
-        scale: sleepSession.selectedMood
+        bed_t_rating: sleepSession.bed_t_rating,
+        work_t_rating: sleepSession.work_t_rating,
+        average_rating: sleepSession.average_rating
       },
       {
         headers: { authorize: localStorage.getItem("token") }
@@ -165,10 +171,10 @@ export const addNewSession = sleepSession => dispatch => {
       });
     })
     .catch(err => {
-      if (err.response.status === 401) {
+      if (err.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
       }
-      dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err.response });
+      dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err });
     });
 };
