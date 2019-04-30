@@ -97,10 +97,7 @@ const Label = styled.p `
 
 
 class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.routeChange = this.routeChange.bind(this);
-    this.state = {
+  state = {
       isFetching: false,
       addUser: null,
       username: "",
@@ -109,7 +106,7 @@ class SignUp extends Component {
         .subtract(13, "years")
         .toDate()
     };
-  }
+  
 
   inputHandler = e => {
     this.setState({
@@ -132,16 +129,15 @@ class SignUp extends Component {
         .subtract(13, "years")
         .toDate()
     });
+    this.props.history.push("/login");
   };
 
   handleChange = date => {
     this.setState({ birthDate: date });
   };
 
-  routeChange() {
-    let path = `/login`;
-    this.props.history.push(path);
-}
+
+
   render() {
     return (
         <Container>
@@ -176,7 +172,7 @@ class SignUp extends Component {
           clearIcon={null}
         />
         </DateDiv>
-        <RegButton type="submit" onClick={this.routeChange}>Register</RegButton>
+        <RegButton type="submit" >Register</RegButton>
       </RegForm>
       <img src={sheep}  />
       </FormDiv>
