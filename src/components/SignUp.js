@@ -171,7 +171,6 @@ class SignUp extends Component {
         <button type="submit">Register</button>
       </form>
         </DateDiv>
-        <RegButton type="submit">Register</RegButton>
       </RegForm>
       <img src={sheep}  />
       </FormDiv>
