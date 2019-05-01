@@ -147,6 +147,7 @@ class StatsContainer extends Component {
                   checked={this.state.bed_t_rating === "4"}
                   onChange={this.handleCheck}
                   inline
+                  
                 />
                 <Form.Check
                   type="radio"

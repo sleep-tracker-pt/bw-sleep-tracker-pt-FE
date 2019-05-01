@@ -31,7 +31,7 @@ text-align: center;
 
 const Title= styled.h3 `
 font-family: 'Open Sans', sans-serif; 
-font-weight: 800;
+${'' /* font-weight: 200; */}
 color: #fff;
 font-size: 30px;
 margin: 10px;
