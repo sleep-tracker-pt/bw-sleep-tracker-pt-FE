@@ -24,7 +24,7 @@ class HomeMoodChart extends Component {
   render() {
     return (
       <Jumbotron fluid>
-        <ScatterChart width={400} height={600}margin={{top: 20, right: 20, bottom: 20, left: 20}}>
+        <ScatterChart width={450} height={400}margin={{top: 20, right: 20, bottom: 20, left: 20}}>
           <CartesianGrid />
           <XAxis dataKey={"bed_t_rating"} type="number" name="Mood" />
           <YAxis
