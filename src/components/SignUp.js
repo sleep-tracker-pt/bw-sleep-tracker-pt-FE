@@ -1,112 +1,101 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addUser } from "../actions/index";
-import  '../index.css';
+import "../index.css";
 import DatePicker from "react-date-picker";
 import moment from "moment";
-import styled from 'styled-components';
-import sleepingman from '../img/sleepingman.png'
-import sheep from '../img/sheep.svg';
+import styled from "styled-components";
+import sleepingman from "../img/sleepingman.png";
+import sheep from "../img/sheep.svg";
 
-const Container = styled.div `
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 `;
-const ImgDiv = styled.div `
-margin: 0;
-padding: 0;
+const ImgDiv = styled.div`
+  margin: 0;
+  padding: 0;
 
-@media (max-width: 600px) {
+  @media (max-width: 600px) {
     img {
-        display: none;
+      display: none;
     }
-}
+  }
 `;
 
-const FormDiv = styled.div `
-    width: 300px;
-    background: rgba(211, 220, 227, .5);
+const FormDiv = styled.div`
+  width: 300px;
+  background: rgba(211, 220, 227, 0.5);
 
-    img {
-        margin: 0 auto;
-    }
-    
+  img {
+    margin: 0 auto;
+  }
 `;
 
-const RegForm = styled.form `
+const RegForm = styled.form``;
 
+const RegInputUser = styled.input`
+  width: 100%;
+  margin-top: 10px;
+  border: 0px solid #154e6e;
+  border-radius: 8px;
+  align-content: center;
+  text-align: center;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12);
 `;
 
-const RegInputUser = styled.input `
-    width: 100%;
-    margin-top: 10px;
-    border: 0px solid #154e6e;
-    border-radius: 8px;
-    align-content: center;
-    text-align: center;
-    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.12);
-    box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+const RegInputPass = styled.input`
+  width: 100%;
+  margin-top: 10px;
+  border: 0px solid #154e6e;
+  border-radius: 8px;
+  align-content: center;
+  text-align: center;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12);
 `;
 
-const RegInputPass = styled.input `
-    width: 100%;
-    margin-top: 10px;
-    border: 0px solid #154e6e;
-    border-radius: 8px;
-    align-content: center;
-    text-align: center;
-    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.12);
-    box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+const Birthdate = styled.p`
+  text-align: center;
+  margin-top: 20px;
 `;
 
-const Birthdate = styled.p `
-text-align: center;
-margin-top: 20px;
+const DateDiv = styled.div`
+  text-align: center;
 `;
 
-const DateDiv = styled.div `
-text-align: center;
-
+const RegButton = styled.button`
+  width: 100%;
+  margin: 10px auto;
+  border-radius: 5px;
+  border: 0;
+  color: #d3dce3;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  background: #0f2f5a;
 `;
 
-const RegButton = styled.button `
-    width: 100%;
-    margin: 10px auto;
-    border-radius: 5px;
-    border: 0;
-    color: #d3dce3;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none ;
-    font-size: 14px;
-    background: #0f2f5a;
+const Label = styled.p`
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  text-align: center;
 `;
-
-const Label = styled.p `
-    margin-top: 20px;
-    margin-bottom: 5px;
-    font-size: 14px;
-    text-align: center;
-
-`;
-
-
-
-
 
 class SignUp extends Component {
   state = {
-      isFetching: false,
-      addUser: null,
-      username: "",
-      password: "",
-      birthDate: moment()
-        .subtract(13, "years")
-        .toDate()
-    };
-  
+    isFetching: false,
+    addUser: null,
+    username: "",
+    password: "",
+    birthDate: moment()
+      .subtract(13, "years")
+      .toDate()
+  };
 
   inputHandler = e => {
     this.setState({
@@ -119,7 +108,7 @@ class SignUp extends Component {
     let userData = {
       username: this.state.username,
       password: this.state.password,
-      birthDate: this.state.birthDate
+      birthdate: this.state.birthDate
     };
     this.props.addUser(userData);
     this.setState({
@@ -136,47 +125,43 @@ class SignUp extends Component {
     this.setState({ birthDate: date });
   };
 
-
-
   render() {
     return (
-        <Container>
-    <ImgDiv>
-        <img src={sleepingman}  />
-      </ImgDiv> 
-      <FormDiv>
-      <RegForm onSubmit={this.submitHandler}>
+      <Container>
+        <ImgDiv>
+          <img src={sleepingman} />
+        </ImgDiv>
+        <FormDiv>
+          <RegForm onSubmit={this.submitHandler}>
+            <Label>Choose your username</Label>
+            <RegInputUser
+              name="username"
+              placeholder="username"
+              onChange={this.inputHandler}
+              value={this.state.username}
+            />
 
-      <Label>Choose your username</Label>
-        <RegInputUser
-          name="username"
-          placeholder="username"
-          onChange={this.inputHandler}
-          value={this.state.username}
-        />
+            <Label>Choose a password</Label>
+            <RegInputPass
+              type="password"
+              placeholder="password"
+              name="password"
+              onChange={this.inputHandler}
+              value={this.state.password}
+            />
+            <Birthdate>Please enter your Birthdate:</Birthdate>
 
-<Label>Choose a password</Label>
-        <RegInputPass
-          type="password"
-          placeholder="password"
-          name="password"
-          onChange={this.inputHandler}
-          value={this.state.password}
-        />
-        <Birthdate>Please enter your Birthdate:</Birthdate>
-
-        <DateDiv>
-        <DatePicker
-          onChange={this.handleChange}
-          value={this.state.birthDate}
-          clearIcon={null}
-        />
-        </DateDiv>
-        <RegButton type="submit" >Register</RegButton>
-      </RegForm>
-      <img src={sheep}  />
-      </FormDiv>
-      
+            <DateDiv>
+              <DatePicker
+                onChange={this.handleChange}
+                value={this.state.birthDate}
+                clearIcon={null}
+              />
+              <button type="submit">Register</button>
+            </DateDiv>
+          </RegForm>
+          <img src={sheep} />
+        </FormDiv>
       </Container>
     );
   }

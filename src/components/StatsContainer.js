@@ -8,6 +8,7 @@ import { getSleepData } from "../actions";
 
 import WeekInReview from "./WeekInReview";
 import NightlyStats from "./NightlyStats";
+import RecommendedHours from "./RecommendedHours";
 class StatsContainer extends Component {
   state = {
     startDate: moment().toDate(),
@@ -68,6 +69,7 @@ class StatsContainer extends Component {
     return (
       <div>
         <h1>This is the stats container 🤔</h1>
+        <RecommendedHours/>
         <WeekInReview props={this.state} />
         <NightlyStats props={this.state} />
         <Button variant="primary" onClick={this.handleShowModal}>
