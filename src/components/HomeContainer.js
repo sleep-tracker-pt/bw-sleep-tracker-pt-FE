@@ -2,15 +2,16 @@ import React from "react";
 import BlogAggregator from "./BlogAggregator";
 import HomeMoodChart from "./HomeMoodChart";
 import StatsContainer from "./StatsContainer";
-import styled from 'styled-components';
-import read from '../img/read.svg';
+import styled from "styled-components";
+import read from "../img/read.svg";
+import mood from "../img/mood.svg"
 
 const PageDiv= styled.div `
 display: grid;
-grid-gap: 35px;
+grid-gap: 20px;
 margin: 20px;
-grid-template-columns: repeat(8, [col] 150px );
-grid-template-rows: repeat(1, [row] auto );
+grid-template-columns: repeat(6, [col] 150px );
+grid-template-rows: repeat(4, [row] auto );
 ${'' /* background-color: rgba(21, 78, 110, 0.7); */}
 color: #d3dce3;
 
@@ -35,8 +36,8 @@ const Grid1Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col / span 4;
-grid-row: row /span 20;
+grid-column: col 1 / span 4;
+		grid-row: row 3/ span 2;
 }
 `;
 
@@ -50,8 +51,8 @@ const Grid2Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 5/ span 3;
-grid-row: row / span 20;
+grid-column: col 1/ span 3;
+grid-row: row ;
 `;
 
 
@@ -59,8 +60,8 @@ const Grid3Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 8/ span 2;
-grid-row: row  / span 20;
+grid-column: col 4 / span 4;
+grid-row: row ;
 `;
 
 
@@ -73,21 +74,23 @@ const HomeContainer = () => {
     </HeaderGroup>
     <PageDiv>
 
-     <Grid1Div >
-        <ImgDiv>
-         <img src={read} width="30%"/>
-        </ImgDiv>
-        <BlogAggregator />
-      </Grid1Div>
-
     <Grid2Div >
+      <ImgDiv>
+        <img src={mood} width="60%" />
+      </ImgDiv>
+      <h4>How does your mood relate to the number of hours you sleep?</h4>
       <HomeMoodChart/>
     </Grid2Div>
 
     <Grid3Div> 
       <StatsContainer/>
     </Grid3Div>
-
+    <Grid1Div >
+        <ImgDiv>
+         <img src={read} width="40%"/>
+        </ImgDiv>
+        <BlogAggregator />
+      </Grid1Div>
     
     </PageDiv>
 
