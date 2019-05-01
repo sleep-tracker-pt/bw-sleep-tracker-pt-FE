@@ -3,15 +3,15 @@ import BlogAggregator from "./BlogAggregator";
 import HomeMoodChart from "./HomeMoodChart";
 import StatsContainer from "./StatsContainer";
 import styled from 'styled-components';
-
+import read from '../img/read.svg';
 
 const PageDiv= styled.div `
 display: grid;
-grid-gap: 30px;
+grid-gap: 35px;
 margin: 20px;
 grid-template-columns: repeat(8, [col] 150px );
 grid-template-rows: repeat(1, [row] auto );
-background-color: rgba(21, 78, 110, 0.7);
+${'' /* background-color: rgba(21, 78, 110, 0.7); */}
 color: #d3dce3;
 
 
@@ -32,30 +32,33 @@ margin: 10px;
 
 
 const Grid1Div= styled.div `
-background-color: #0f2f5a
-border-radius: 5px;
+background-color: #0f2f5a;
+border-radius: 8px;
 padding: 20px;
-font-size: 16px;
 grid-column: col / span 4;
 grid-row: row /span 20;
+}
+`;
+
+const ImgDiv = styled.div `
+text-align: center;
+margin: 10px;
 `;
 
 
 const Grid2Div= styled.div `
-background-color: #0f2f5a
-border-radius: 5px;
+background-color: #0f2f5a;
+border-radius: 8px;
 padding: 20px;
-font-size: 16px;
 grid-column: col 5/ span 3;
 grid-row: row / span 20;
 `;
 
 
 const Grid3Div= styled.div `
-background-color: #0f2f5a
-border-radius: 5px;
+background-color: #0f2f5a;
+border-radius: 8px;
 padding: 20px;
-font-size: 16px;
 grid-column: col 8/ span 2;
 grid-row: row  / span 20;
 `;
@@ -69,9 +72,13 @@ const HomeContainer = () => {
       <Title>Welcome to your SleepTracker Dashboard</Title>
     </HeaderGroup>
     <PageDiv>
+
      <Grid1Div >
-      <BlogAggregator />
-    </Grid1Div>
+        <ImgDiv>
+         <img src={read} width="30%"/>
+        </ImgDiv>
+        <BlogAggregator />
+      </Grid1Div>
 
     <Grid2Div >
       <HomeMoodChart/>

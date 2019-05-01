@@ -1,5 +1,13 @@
 import React, { Component } from "react";
 import { Container, Media, Image } from "react-bootstrap";
+import styled from "styled-components";
+
+
+const StyledImage = styled(Image) `
+  margin: 10px;
+`;
+
+
 
 class BlogDisplay extends Component {
   addHolder = event =>
@@ -9,9 +17,10 @@ class BlogDisplay extends Component {
     return (
       <Container>
         <Media>
-          <Image
-            width={128}
-            height={128}
+          <StyledImage
+          
+            width={100}
+            height={100}
             src={this.props.thumbnailUrl}
             alt="blog image"
             herf={this.props.linkUrl}
