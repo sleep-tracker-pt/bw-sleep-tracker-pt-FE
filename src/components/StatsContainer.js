@@ -90,6 +90,7 @@ class StatsContainer extends Component {
                   disableClock
                   clearIcon={null}
                   isCalendarOpen={true}
+                  pickerPosition="bottom-left"
                 />
               </Form.Group>
               <Form.Group>
@@ -190,7 +191,7 @@ class StatsContainer extends Component {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Avarage Mood</Form.Label>
+                <Form.Label>Average Mood</Form.Label>
                 <Form.Check
                   type="radio"
                   label="😁"

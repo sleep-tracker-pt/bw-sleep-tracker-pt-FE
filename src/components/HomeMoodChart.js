@@ -15,7 +15,13 @@ import {
 import { Jumbotron } from "react-bootstrap";
 
 import { getSleepData } from "../actions";
+import styled from "styled-components";
 
+const StyledJumbotron = styled(Jumbotron) `
+${'' /* width: 350px;
+height: 300px; */}
+
+`;
 class HomeMoodChart extends Component {
   componentWillMount() {
     this.props.getSleepData();
@@ -23,8 +29,8 @@ class HomeMoodChart extends Component {
 
   render() {
     return (
-      <Jumbotron fluid>
-        <ScatterChart width={450} height={400}margin={{top: 20, right: 20, bottom: 20, left: 20}}>
+      <StyledJumbotron fluid>
+        <ScatterChart width={350} height={300} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
           <CartesianGrid />
           <XAxis dataKey={"bed_t_rating"} type="number" name="Mood" />
           <YAxis
@@ -43,8 +49,11 @@ class HomeMoodChart extends Component {
             <LabelList dataKey="start" />
          
           <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-        </ScatterChart>
-      </Jumbotron>
+        
+
+        <Legend verticalAlign="bottom" />
+       </ScatterChart>
+      </StyledJumbotron>
     );
   }
 }
