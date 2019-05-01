@@ -24,7 +24,7 @@ class HomeMoodChart extends Component {
   render() {
     return (
       <Jumbotron fluid>
-        <ScatterChart width={400} height={400}>
+        <ScatterChart width={400} height={600}margin={{top: 20, right: 20, bottom: 20, left: 20}}>
           <CartesianGrid />
           <XAxis dataKey={"bed_t_rating"} type="number" name="Mood" />
           <YAxis
@@ -33,13 +33,15 @@ class HomeMoodChart extends Component {
             name="Hours of sleep"
             unit="hours"
           />
+         
           <Scatter
             name="Sleep Quality"
             data={this.props.sleepData}
             fill="#8884d8"
-          >
+          />
+           <Tooltip cursor={{ strokeDasharray: '3 3' }} />
             <LabelList dataKey="start" />
-          </Scatter>
+         
           <Tooltip cursor={{ strokeDasharray: "3 3" }} />
         </ScatterChart>
       </Jumbotron>
