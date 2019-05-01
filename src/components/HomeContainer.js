@@ -10,7 +10,7 @@ const PageDiv= styled.div `
 display: grid;
 grid-gap: 20px;
 margin: 20px;
-grid-template-columns: repeat(8, [col] 150px );
+grid-template-columns: repeat(6, [col] 150px );
 grid-template-rows: repeat(4, [row] auto );
 ${'' /* background-color: rgba(21, 78, 110, 0.7); */}
 color: #d3dce3;
@@ -36,7 +36,7 @@ const Grid1Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 2 / span 4;
+grid-column: col 1 / span 4;
 		grid-row: row 3/ span 2;
 }
 `;
@@ -51,7 +51,7 @@ const Grid2Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 2/ span 3;
+grid-column: col 1/ span 3;
 grid-row: row ;
 `;
 
@@ -60,7 +60,7 @@ const Grid3Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 5 / span 4;
+grid-column: col 4 / span 4;
 grid-row: row ;
 `;
 
