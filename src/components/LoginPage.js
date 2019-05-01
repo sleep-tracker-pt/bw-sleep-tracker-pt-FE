@@ -42,6 +42,8 @@ const Label = styled.p `
 const Button = styled.button `
     width: 100%;
     margin: 10px auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 5px;
     border: 0;
     color: #d3dce3;
