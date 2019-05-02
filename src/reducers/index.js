@@ -16,8 +16,11 @@ import {
   SEND_SLEEPSESSION_FAILURE,
   TRANSFORM_SLEEPDATA_TO_GRAPH,
   APPLY_RECENT_FILTER,
+  LOGOUT,
   
 } from "../actions";
+
+// import {browserHistory} from 'react-router-dom';
 
 const initialState = {
   isSending: true,
@@ -32,6 +35,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOGOUT:
+      
+      return {
+        ...state,
+        loggingIn: false,
+        isFetching: false
+      };
     case LOGIN_FETCHING:
       return {
         ...state,

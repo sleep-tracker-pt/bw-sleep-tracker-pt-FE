@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {logout} from '../actions/';
 import styled from 'styled-components';
 import LogoMain from '../img/Logo-main.png';
 import  '../index.css';
@@ -52,28 +54,70 @@ const NavItem = styled.a `
 
 
 
-export default class NavBar extends React.Component {
+class NavBar extends React.Component {
+  constructor(props) {
+    super();
+    this.handleLogout = this.handleLogout.bind(this);
+    // this.routeChange = this.routeChange.bind(this);
+  }
+  handleLogout = e => {
+    e.preventDefault();
+    this.props.logout();
+    window.location.reload();
+  };
+  
+//   routeChange() {
+//     let path = `/login`;
+//     this.props.history.push(path);
+// }
+
     render () {
-        return (
+        if (this.props.isloggedIn) {
+          return (
+          <Nav>
+            <NavContainer>
+              <Link to="/Home" >
+                <img src={LogoMain}  width="40px" height="40px" />
+              </Link>
+              <NavRight>
+                  <NavItem>
+                  <Link  to="/Home">Home</Link>
+                  </NavItem>
+                  <NavItem>
+                  <a  href="/" onClick={this.handleLogout}>Logout</a>
+                  </NavItem>
+              </NavRight>
+            </NavContainer>
+          </Nav> 
+          );
+        } else {
+          return (
             <Nav>
             <NavContainer>
               <Link to="/Home" >
                 <img src={LogoMain}  width="40px" height="40px" />
               </Link>
-  
               <NavRight>
                   <NavItem>
                   <Link  to="/Home">Home</Link>
                   </NavItem>
-                  
                   <NavItem>
                   <Link  to="/login">Login</Link>
                   </NavItem>
-                 
-                
               </NavRight>
             </NavContainer>
           </Nav>  
         );
+        }
+        
     }
 }
+
+const mapStateToProps = state => {
+  return {
+    isloggedIn: state.loggingIn,
+    
+  };
+};
+
+export default connect(mapStateToProps, { logout })(NavBar);
