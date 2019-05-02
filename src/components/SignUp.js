@@ -121,7 +121,7 @@ class SignUp extends Component {
     this.props.history.push("/login");
   };
   validateForm() {
-    return this.state.username.length > 0 && this.state.password.length > 0 && this.state.birthDate.length > 0;
+    return this.state.username.length > 0 && this.state.password.length > 0;
   }
 
   handleChange = date => {
