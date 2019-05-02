@@ -1,6 +1,14 @@
 import axios from "axios";
 import moment from "moment";
 
+export const LOGOUT = "LOGOUT";
+
+export const logout = res => dispatch => {
+  localStorage.removeItem("token", res.data.token);
+  localStorage.removeItem("userId", res.data.id);
+  dispatch({ type: LOGIN_FETCHING });
+}
+
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FETCHING = "LOGIN_FETCHING";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";

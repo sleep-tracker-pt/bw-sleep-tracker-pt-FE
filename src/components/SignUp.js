@@ -120,6 +120,9 @@ class SignUp extends Component {
     });
     this.props.history.push("/login");
   };
+  validateForm() {
+    return this.state.username.length > 0 && this.state.password.length > 0 && this.state.birthDate.length > 0;
+  }
 
   handleChange = date => {
     this.setState({ birthDate: date });
@@ -157,7 +160,7 @@ class SignUp extends Component {
                 value={this.state.birthDate}
                 clearIcon={null}
               />
-              <button type="submit">Register</button>
+              <button type="submit" disabled={!this.validateForm()}>Register</button>
             </DateDiv>
           </RegForm>
           <img src={sheep} />
