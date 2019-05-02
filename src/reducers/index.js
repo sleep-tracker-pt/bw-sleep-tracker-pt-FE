@@ -36,7 +36,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGOUT:
-      // this.state.history.push('/login')
+      
       return {
         ...state,
         loggingIn: false,

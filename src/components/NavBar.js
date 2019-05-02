@@ -58,17 +58,18 @@ class NavBar extends React.Component {
   constructor(props) {
     super();
     this.handleLogout = this.handleLogout.bind(this);
-    this.routeChange = this.routeChange.bind(this);
+    // this.routeChange = this.routeChange.bind(this);
   }
   handleLogout = e => {
     e.preventDefault();
     this.props.logout();
+    window.location.reload();
   };
   
-  routeChange() {
-    let path = `/login`;
-    this.props.history.push(path);
-}
+//   routeChange() {
+//     let path = `/login`;
+//     this.props.history.push(path);
+// }
 
     render () {
         if (this.props.isloggedIn) {
