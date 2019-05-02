@@ -58,20 +58,17 @@ class NavBar extends React.Component {
   constructor(props) {
     super();
     this.handleLogout = this.handleLogout.bind(this);
+    this.routeChange = this.routeChange.bind(this);
   }
-  
-  
   handleLogout = e => {
-        e.preventDefault();
-        this.props.logout();
-       
-        this.history.push("/login");
-      };
-
-    //   routeChange() {
-    //     let path = `/login`;
-    //     this.props.history.push(path);
-    // }
+    e.preventDefault();
+    this.props.logout();
+  };
+  
+  routeChange() {
+    let path = `/login`;
+    this.props.history.push(path);
+}
 
     render () {
         if (this.props.isloggedIn) {
@@ -86,14 +83,13 @@ class NavBar extends React.Component {
                   <Link  to="/Home">Home</Link>
                   </NavItem>
                   <NavItem>
-                  <a  href="" onClick={this.handleLogout}
-                  >Logout</a>
+                  <a  href="/" onClick={this.handleLogout}>Logout</a>
                   </NavItem>
               </NavRight>
             </NavContainer>
           </Nav> 
           );
-        } else { 
+        } else {
           return (
             <Nav>
             <NavContainer>
