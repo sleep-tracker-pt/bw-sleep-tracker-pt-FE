@@ -4,7 +4,12 @@ import styled from "styled-components";
 
 
 const StyledImage = styled(Image) `
-  margin: 10px;
+  margin-top: 40px;
+  margin-right: 10px;
+`;
+
+const MediaDiv = styled(Media.Body) `
+  margin-top: 40px;
 `;
 
 
@@ -28,10 +33,12 @@ class BlogDisplay extends Component {
             thumbnail
             fluid
           />
+          <MediaDiv>
           <Media.Body>
             <h5>{this.props.title}</h5>
             <p>{this.props.body}</p>
           </Media.Body>
+        </MediaDiv>
         </Media>
       </Container>
     );

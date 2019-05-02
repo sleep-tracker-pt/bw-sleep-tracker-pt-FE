@@ -82,6 +82,10 @@ class LoginPage extends Component {
     },
     err: null
   };
+
+  validateForm() {
+    return this.state.creds.username.length > 0 && this.state.creds.password.length > 0;
+  }
   handleChange = e => {
     e.preventDefault();
     this.setState({
@@ -134,13 +138,14 @@ class LoginPage extends Component {
             value={this.state.password}
           />
 
-          <Button value="submit">Submit</Button>
+          <Button disabled={!this.validateForm()} value="submit">Submit</Button>
         
         
        
             <SignUp>Sign up today!</SignUp>
 
-                <Button onClick={this.routeChange}>Sign Up</Button>
+                <Button 
+                onClick={this.routeChange}>Sign Up</Button>
 
                 </Form>
       </FormDiv>

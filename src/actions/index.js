@@ -1,6 +1,14 @@
 import axios from "axios";
 import moment from "moment";
 
+export const LOGOUT = "LOGOUT";
+
+export const logout = res => dispatch => {
+  localStorage.removeItem("token", res.data.token);
+  localStorage.removeItem("userId", res.data.id);
+  dispatch({ type: LOGIN_FETCHING });
+}
+
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FETCHING = "LOGIN_FETCHING";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
@@ -13,12 +21,14 @@ export const loginSuccess = index => dispatch => {
     .then(res => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.id);
+      alert("Logged in")
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
       });
     })
     .catch(err => {
+      alert("invalid username or password")
       dispatch({
         type: LOGIN_FAILURE,
         payload: err.response.message
@@ -34,17 +44,19 @@ export const addUser = newUser => dispatch => {
   axios
     .post("https://sleeptrack.herokuapp.com/api/register", newUser)
     .then(res => {
+      alert("Yay Success!")
       dispatch({
         type: ADD_USER_SUCCESS,
         payload: res.data
       });
     })
-    .catch(err =>
+    .catch(err => {
+      alert("something went wrong please try again")
       dispatch({
         type: ADD_USER_FAILURE,
         payload: err
       })
-    );
+    });
 };
 
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";

@@ -44,8 +44,8 @@ const Grid1Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 10px;
-grid-column: col 1 / span 3;
-grid-row: row 3/ span 2;
+grid-column: col 1 / span 4;
+grid-row: row 3/ span ;
 
 @media (max-width: 800px) {
 grid-column: col 1 / span 1;
@@ -53,7 +53,7 @@ grid-row: row 8/ span 2;
 }
 
 @media (max-width: 1024px) {
-grid-column: col 1 / span 4;
+grid-column: col 2 / span 4;
 grid-row: row 8/ span 2;
 }
 
@@ -79,7 +79,7 @@ grid-row: row 4/ span 2;
 }
 
 @media (max-width: 1024px) {
-grid-column: col 1 / span 4;
+grid-column: col 2 / span 4;
 grid-row: row 4/ span 2;
 }
 `;
@@ -98,7 +98,7 @@ grid-row: row 1/ span 2;
 }
 
 @media (max-width: 1024px) {
-grid-column: col 1 / span 4;
+grid-column: col 2 / span 4;
 grid-row: row 1/ span 2;
 }
 `;

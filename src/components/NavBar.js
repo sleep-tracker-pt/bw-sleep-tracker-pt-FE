@@ -57,7 +57,7 @@ export default class NavBar extends React.Component {
         return (
             <Nav>
             <NavContainer>
-              <Link to="/" >
+              <Link to="/Home" >
                 <img src={LogoMain}  width="40px" height="40px" />
               </Link>
   
