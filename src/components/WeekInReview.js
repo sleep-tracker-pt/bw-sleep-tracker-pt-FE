@@ -13,6 +13,8 @@ import moment from "moment";
 
 import { getSleepData } from "../actions";
 
+import styled from "../index.css";
+
 class WeekInReview extends Component {
   componentDidMount() {
     this.props.getSleepData();
@@ -22,7 +24,7 @@ class WeekInReview extends Component {
     return (
       <div>
         <h2>This is week in review </h2>
-        <h4>Hours of sleep this week</h4>
+        <h5>Hours of sleep this week</h5>
         <AreaChart
           width={500}
           height={200}
@@ -46,7 +48,7 @@ class WeekInReview extends Component {
             fill="#8884d8"
           />
         </AreaChart>
-        <p>Mood this week</p>
+        <h5>Mood this week</h5>
         <AreaChart
           width={500}
           height={200}

@@ -9,6 +9,26 @@ import { getSleepData } from "../actions";
 import WeekInReview from "./WeekInReview";
 import NightlyStats from "./NightlyStats";
 import RecommendedHours from "./RecommendedHours";
+
+import styled from "styled-components";
+import "../index.css";
+
+const WrapperDiv = styled.div `
+margin: 10px;
+`;
+const RecommendedDiv = styled.div ``;
+const WeekDiv = styled.div `
+`;
+
+const NightDiv = styled.div `
+margin-bottom: 20px;
+
+@media (max-width: 800px) {
+  display: none;
+}
+`;
+
+
 class StatsContainer extends Component {
   state = {
     startDate: moment().toDate(),
@@ -68,10 +88,20 @@ class StatsContainer extends Component {
   render() {
     return (
       <div>
-        <h1>This is the stats container 🤔</h1>
+      <WrapperDiv>
+        <RecommendedDiv>
         <RecommendedHours/>
+        </RecommendedDiv>
+
+        <WeekDiv>
         <WeekInReview props={this.state} />
+        </WeekDiv>
+
+        <NightDiv>
         <NightlyStats props={this.state} />
+        </NightDiv>
+      </WrapperDiv>
+
         <Button variant="primary" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
@@ -91,6 +121,7 @@ class StatsContainer extends Component {
                   clearIcon={null}
                   isCalendarOpen={true}
                   pickerPosition="bottom-left"
+                  
                 />
               </Form.Group>
               <Form.Group>
@@ -102,6 +133,7 @@ class StatsContainer extends Component {
                   disableClock
                   clearIcon={null}
                   isCalendarOpen={true}
+                  Position="bottom-left"
                 />
               </Form.Group>
               <Form.Group>
@@ -115,6 +147,7 @@ class StatsContainer extends Component {
                   checked={this.state.bed_t_rating === "4"}
                   onChange={this.handleCheck}
                   inline
+                  
                 />
                 <Form.Check
                   type="radio"
