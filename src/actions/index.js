@@ -4,8 +4,8 @@ import moment from "moment";
 export const LOGOUT = "LOGOUT";
 
 export const logout = res => dispatch => {
-  localStorage.removeItem("token", res.data.token);
-  localStorage.removeItem("userId", res.data.id);
+  localStorage.removeItem("token");
+  // localStorage.removeItem("userId", res.data.id);
   dispatch({ type: LOGIN_FETCHING });
 }
 
