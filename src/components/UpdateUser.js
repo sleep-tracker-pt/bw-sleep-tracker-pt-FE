@@ -40,7 +40,7 @@ export class UpdateUser extends Component {
           <div>
             <div>
               <h3>Username:{this.props.username}</h3>
-              <h4>current password:{this.props.password}</h4>
+              <h4>current password:{this.state.password}</h4>
               <h5>Birthday: {this.props.birthDate}</h5>
             </div>
 
@@ -86,9 +86,9 @@ export class UpdateUser extends Component {
       } else {
         return (
           <div>
-             <h3>Username:{this.props.username}</h3>
-              <h4>current password:{this.props.password}</h4>
-              <h5>Birthday: {this.props.birthDate}</h5>
+             <h3>Username:{this.state.username}</h3>
+              <h4>current password:{this.state.password}</h4>
+              <h5>Birthday: {this.state.birthDate}</h5>
           <button onClick={this.updateOpener}>Update {this.props.username}</button>
           </div>
         );
