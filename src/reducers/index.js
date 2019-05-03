@@ -17,6 +17,7 @@ import {
   TRANSFORM_SLEEPDATA_TO_GRAPH,
   APPLY_RECENT_FILTER,
   LOGOUT,
+  GET_BIRTHDATE
   
 } from "../actions";
 
@@ -30,7 +31,8 @@ const initialState = {
   sleepData: [],
   transformedSleepData: [],
   filteredSleepData: [],
-  postResponse: []
+  postResponse: [],
+  birthDate: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -140,6 +142,11 @@ const reducer = (state = initialState, action) => {
       return { 
         ...state,
         filteredSleepData: action.payload
+      }
+      case GET_BIRTHDATE:
+      return { 
+        ...state,
+        birthDate: action.payload
       }
     default:
       return state;

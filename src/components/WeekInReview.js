@@ -23,7 +23,7 @@ class WeekInReview extends Component {
   render() {
     return (
       <div>
-        <h2>This is week in review </h2>
+        <h2>Week in review </h2>
         <h5>Hours of sleep this week</h5>
         <AreaChart
           width={500}
