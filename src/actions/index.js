@@ -7,7 +7,7 @@ export const logout = res => dispatch => {
   localStorage.removeItem("token");
   // localStorage.removeItem("userId", res.data.id);
   dispatch({ type: LOGOUT });
-}
+};
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FETCHING = "LOGIN_FETCHING";
@@ -21,14 +21,14 @@ export const loginSuccess = index => dispatch => {
     .then(res => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.id);
-      alert("Logged in")
+      alert("Logged in");
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
       });
     })
     .catch(err => {
-      alert("invalid username or password")
+      alert("invalid username or password");
       dispatch({
         type: LOGIN_FAILURE,
         payload: err.response.message
@@ -44,18 +44,18 @@ export const addUser = newUser => dispatch => {
   axios
     .post("https://sleeptrack.herokuapp.com/api/register", newUser)
     .then(res => {
-      alert("Yay Success!")
+      alert("Yay Success!");
       dispatch({
         type: ADD_USER_SUCCESS,
         payload: res.data
       });
     })
     .catch(err => {
-      alert("something went wrong please try again")
+      alert("something went wrong please try again");
       dispatch({
         type: ADD_USER_FAILURE,
         payload: err
-      })
+      });
     });
 };
 
@@ -89,7 +89,7 @@ export const GET_SLEEPDATA_FETCHING = "GET_SLEEPDATA_FETCHING";
 export const GET_SLEEPDATA_FAILURE = "GET_SLEEPDATA_FAILURE";
 export const TRANSFORM_SLEEPDATA_TO_GRAPH = "TRANSFORM_SLEEPDATA_TO_GRAPH";
 export const APPLY_RECENT_FILTER = "APPLY_RECENT_FILTER";
-export const GET_BIRTHDATE = "GET_BIRTHDATE"
+export const GET_USERDATA = "GET_USERDATA";
 
 export const getSleepData = () => dispatch => {
   dispatch({ type: GET_SLEEPDATA_FETCHING });
@@ -105,7 +105,7 @@ export const getSleepData = () => dispatch => {
     .then(res => {
       dispatch({
         type: GET_SLEEPDATA_SUCCESS,
-        payload: res.data
+        payload: res.data.sleepData
       });
       const emojify = value => {
         switch (value) {
@@ -123,21 +123,27 @@ export const getSleepData = () => dispatch => {
       };
       const dateTransform = date =>
         moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
-      const result = res.data.sleepData.map(item => ({
-        ...item,
-        emojiBed: emojify(item.bed_t_rating),
-        emojiWork: emojify(item.work_t_rating),
-        emojiAverage: emojify(item.average_rating),
-        startDate: dateTransform(item.start)
-      })).reverse();
+      const result = res.data.sleepData
+        .map(item => ({
+          ...item,
+          emojiBed: emojify(item.bed_t_rating),
+          emojiWork: emojify(item.work_t_rating),
+          emojiAverage: emojify(item.average_rating),
+          startDate: dateTransform(item.start)
+        }))
+        .reverse();
       dispatch({
         type: TRANSFORM_SLEEPDATA_TO_GRAPH,
         payload: result
       });
       dispatch({
-        type: GET_BIRTHDATE,
-        payload: res.data.birthdate,
-      })
+        type: GET_USERDATA,
+        payload: {
+          username: res.data.username,
+          password: res.data.password,
+          birthdate: res.data.birthdate
+        }
+      });
       const pastWeek = result.filter(item => {
         return (
           moment(item.startDate, "YYYY-MM-DD").isAfter(
