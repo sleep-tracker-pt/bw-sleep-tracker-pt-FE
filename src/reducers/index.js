@@ -17,7 +17,9 @@ import {
   TRANSFORM_SLEEPDATA_TO_GRAPH,
   APPLY_RECENT_FILTER,
   LOGOUT,
-  GET_USERDATA
+  GET_USERDATA,
+  UPDATE_USER,
+  UPDATE_USER_FAILURE
   
 } from "../actions";
 
@@ -27,12 +29,14 @@ const initialState = {
   isSending: true,
   loggingIn: false,
   isFetching: false,
+  isUpdating: false,
   error: null,
   sleepData: [],
   transformedSleepData: [],
   filteredSleepData: [],
   postResponse: [],
-  userData: []
+  userData: [],
+  updateUser: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -146,7 +150,21 @@ const reducer = (state = initialState, action) => {
       case GET_USERDATA:
       return { 
         ...state,
-        userData: action.payload
+        userData: action.payload,
+        isUpdating: false
+      }
+      case UPDATE_USER:
+      return {
+        ...state,
+        updateUser: action.payload,
+        isUpdating: true
+      }
+      case UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        isSending: false,
+        err: action.payload,
+
       }
     default:
       return state;
