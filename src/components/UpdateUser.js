@@ -1,13 +1,13 @@
-import React from "react";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import DatePicker from "react-date-picker";
 
-import {updateUser} from "../actions";
+import {updateUser} from "../actions/";
 
-export class UpdateUser extends React.Component {
-    constructor() {
-    super();
+export class UpdateUser extends Component {
+    constructor(props) {
+    super(props);
     
     this.state = {
         isFetching: false,
@@ -34,12 +34,12 @@ export class UpdateUser extends React.Component {
     }
 
     render() {
-      const user=this.props;
+      
       if (this.state.clicked) {
         return (
           <div>
             <div>
-              <h2>Username:{this.props.username}</h2>
+              <h3>Username:{this.props.username}</h3>
               <h4>current password:{this.props.password}</h4>
               <h5>Birthday: {this.props.birthDate}</h5>
             </div>
@@ -61,18 +61,41 @@ export class UpdateUser extends React.Component {
               onChange={this.inputHandler}
               placeholder="new password"
               />
+            <div>Please enter your Birthdate:</div>
 
+            <div>
+              <DatePicker
+                onChange={this.handleChange}
+                value={this.state.birthDate}
+                clearIcon={null}
+              />
+              </div>
 
-
+              <input 
+                type="password"
+                name="current password"
+                value={this.state.checkpassword}
+                onChange={this.inputHandler}
+                placeholder="current password"
+              />
+              <button type="submit">Update Changes</button>
 
             </form>
           </div>
-          )
+          );
+      } else {
+        return (
+          <div>
+             <h3>Username:{this.props.username}</h3>
+              <h4>current password:{this.props.password}</h4>
+              <h5>Birthday: {this.props.birthDate}</h5>
+          <button onClick={this.updateOpener}>Update {this.props.username}</button>
+          </div>
+        );
       }
-      
     }
+  }
 
-    // mapStateToProps = () => ({});
+  const mapStateToProps = () => ({});
 
- export default UpdateUser
-//  connect(mapStateToProps, {updateUser})(UpdateUser);
+  export default connect(mapStateToProps, {updateUser})(UpdateUser)
