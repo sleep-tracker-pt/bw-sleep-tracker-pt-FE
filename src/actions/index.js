@@ -89,6 +89,7 @@ export const GET_SLEEPDATA_FETCHING = "GET_SLEEPDATA_FETCHING";
 export const GET_SLEEPDATA_FAILURE = "GET_SLEEPDATA_FAILURE";
 export const TRANSFORM_SLEEPDATA_TO_GRAPH = "TRANSFORM_SLEEPDATA_TO_GRAPH";
 export const APPLY_RECENT_FILTER = "APPLY_RECENT_FILTER";
+export const GET_BIRTHDATE = "GET_BIRTHDATE"
 
 export const getSleepData = () => dispatch => {
   dispatch({ type: GET_SLEEPDATA_FETCHING });
@@ -104,7 +105,7 @@ export const getSleepData = () => dispatch => {
     .then(res => {
       dispatch({
         type: GET_SLEEPDATA_SUCCESS,
-        payload: res.data.sleepData
+        payload: res.data
       });
       const emojify = value => {
         switch (value) {
@@ -133,6 +134,10 @@ export const getSleepData = () => dispatch => {
         type: TRANSFORM_SLEEPDATA_TO_GRAPH,
         payload: result
       });
+      dispatch({
+        type: GET_BIRTHDATE,
+        payload: res.data.birthdate,
+      })
       const pastWeek = result.filter(item => {
         return (
           moment(item.startDate, "YYYY-MM-DD").isAfter(
