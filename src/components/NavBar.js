@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {logout} from '../actions/';
 import styled from 'styled-components';
-import LogoMain from '../img/Logo-main.png';
+import logo from '../img/logo.png';
 import  '../index.css';
 
 
@@ -77,7 +77,7 @@ class NavBar extends React.Component {
           <Nav>
             <NavContainer>
               <Link to="/home" >
-                <img src={LogoMain}  width="40px" height="40px" />
+                <img src={logo}  width="40px" height="40px" />
               </Link>
               <NavRight>
                   <NavItem>
@@ -98,7 +98,7 @@ class NavBar extends React.Component {
             <Nav>
             <NavContainer>
               <Link to="/home" >
-                <img src={LogoMain}  width="40px" height="40px" />
+                <img src={logo}  width="40px" height="40px" />
               </Link>
               <NavRight>
                   <NavItem>

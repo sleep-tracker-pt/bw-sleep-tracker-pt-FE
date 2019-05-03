@@ -3,9 +3,13 @@ import BlogAggregator from "./BlogAggregator";
 import HomeMoodChart from "./HomeMoodChart";
 import StatsContainer from "./StatsContainer";
 import styled from "styled-components";
-import "../index";
+import "../index.css";
 import read from "../img/read.svg";
+import tips from "../img/tips.png"
 import mood from "../img/mood.svg"
+import RecommendedHours from "./RecommendedHours";
+import NightlyStats from "./NightlyStats";
+
 
 const PageDiv= styled.div `
 display: grid;
@@ -18,7 +22,7 @@ color: #d3dce3;
 @media (max-width: 800px) {
 display: grid;
 grid-template-columns: repeat(1, auto );
-grid-template-rows: repeat(3,  auto );
+${'' /* grid-template-rows: repeat(8,  ); */}
 grid-gap: 5px;
 margin: 0;
 }
@@ -44,8 +48,8 @@ const Grid1Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 10px;
-grid-column: col 1 / span 4;
-grid-row: row 3/ span ;
+grid-column: col 1 / span 3;
+grid-row: row 2 ;
 
 @media (max-width: 800px) {
 grid-column: col 1 / span 1;
@@ -53,8 +57,8 @@ grid-row: row 8/ span 2;
 }
 
 @media (max-width: 1024px) {
-grid-column: col 2 / span 4;
-grid-row: row 8/ span 2;
+grid-column: col 1 / span 5;
+grid-row: row 10/ span 2;
 }
 
 `;
@@ -64,6 +68,10 @@ text-align: center;
 margin: 10px;
 `;
 
+// const ImgTipsDiv = styled.div `
+// text-align: center;
+// margin-top: 40px;
+// `;
 
 const Grid2Div= styled.div `
 background-color: #0f2f5a;
@@ -75,12 +83,12 @@ text-align: center;
 
 @media (max-width: 800px) {
 grid-column: col 1 / span 1;
-grid-row: row 4/ span 2;
+grid-row: row 5/ span 2;
 }
 
 @media (max-width: 1024px) {
-grid-column: col 2 / span 4;
-grid-row: row 4/ span 2;
+grid-column: col 1 / span 5;
+grid-row: row 5/ span 2;
 }
 `;
 
@@ -89,8 +97,26 @@ const Grid3Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 4 / span 4;
-grid-row: row ;
+grid-column: col 4 / span 3;
+grid-row: row 1 ;
+
+@media (max-width: 800px) {
+grid-column: col 1 / span 1;
+grid-row: row 3/ span 2;
+}
+
+@media (max-width: 1024px) {
+grid-column: col 1 / span 5;
+grid-row: row 3/ span 2;
+}
+`;
+
+const Grid4Div = styled.div `
+background-color: #0f2f5a;
+border-radius: 8px;
+padding: 20px;
+grid-column: col 7 / span 3;
+grid-row: row 1;
 
 @media (max-width: 800px) {
 grid-column: col 1 / span 1;
@@ -98,12 +124,28 @@ grid-row: row 1/ span 2;
 }
 
 @media (max-width: 1024px) {
-grid-column: col 2 / span 4;
+grid-column: col 1 / span 5;
 grid-row: row 1/ span 2;
 }
 `;
 
+const Grid5Div = styled.div `
+background-color: #0f2f5a;
+border-radius: 8px;
+padding: 20px;
+grid-column: col 4 / span 7 ;
+grid-row: row 2;
 
+@media (max-width: 800px) {
+grid-column: col 1 / span 1;
+grid-row: row 1/ span 2;
+}
+
+@media (max-width: 1024px) {
+grid-column: col 1 / span 5;
+grid-row: row 8/ span 2;
+}
+`;
 const HomeContainer = () => {
   return (
 
@@ -123,7 +165,15 @@ const HomeContainer = () => {
 
     <Grid3Div> 
       <StatsContainer/>
+      {/* <ImgTipsDiv>
+      <img src={tips} width="89%"/>
+      </ImgTipsDiv> */}
     </Grid3Div>
+
+    <Grid4Div>
+      <RecommendedHours/>
+      
+    </Grid4Div>
 
     <Grid1Div >
         <ImgDiv>
@@ -131,8 +181,13 @@ const HomeContainer = () => {
         </ImgDiv>
         <BlogAggregator />
       </Grid1Div>
-    
+
+      <Grid5Div>
+        <NightlyStats  />
+    </Grid5Div>
     </PageDiv>
+
+  
 
     </>
   );

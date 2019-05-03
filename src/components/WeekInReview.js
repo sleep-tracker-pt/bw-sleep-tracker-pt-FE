@@ -13,7 +13,7 @@ import moment from "moment";
 
 import { getSleepData } from "../actions";
 
-import styled from "../index.css";
+import "../index.css"
 
 class WeekInReview extends Component {
   componentDidMount() {
@@ -26,7 +26,7 @@ class WeekInReview extends Component {
         <h2>Week in review </h2>
         <h5>Hours of sleep this week</h5>
         <AreaChart
-          width={500}
+          width={400}
           height={200}
           data={this.props.filteredSleepData}
           syncId="anyId"
@@ -50,7 +50,7 @@ class WeekInReview extends Component {
         </AreaChart>
         <h5>Mood this week</h5>
         <AreaChart
-          width={500}
+          width={400}
           height={200}
           data={this.props.filteredSleepData}
           syncId="anyId"
