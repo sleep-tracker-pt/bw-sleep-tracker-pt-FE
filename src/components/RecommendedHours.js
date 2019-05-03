@@ -64,7 +64,9 @@ class RecommendedHours extends Component {
   };
 
   behindOrAhead = () => {
-    let averageHours = this.getAverageHours(this.props.filteredSleepData);
+    let averageHours = this.getAverageHours(
+      this.props.filteredSleepData
+    ).toFixed();
     let range1 = this.calculateHours(
       moment().diff(this.props.userData.birthdate, "years")
     )["range1"];
