@@ -31,7 +31,7 @@ export const loginSuccess = index => dispatch => {
       alert("invalid username or password");
       dispatch({
         type: LOGIN_FAILURE,
-        payload: err.response.message
+        payload: err.response
       });
     });
 };
