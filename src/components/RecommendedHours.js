@@ -1,6 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
+import "../index";
+import stats from "../img/stats.svg";
+import styled from "styled-components";
+
+const HoursDiv = styled.div `
+
+`;
+
+const HeadHours = styled.h1 `
+text-align: center;
+font-weight: 200;
+${'' /* margin-bottom: 40px; */}
+font-size: 50px;
+`;
+
+const YearsDiv = styled.div `
+text-align: center;
+margin-bottom: 40px;
+font-size: 28px;
+font-weight: 200;
+`;
+
+const ImgDiv = styled.div `
+text-align: center;
+margin-bottom: 40px;
+`;
+
+const RecP = styled.p `
+${'' /* text-align: center; */}
+
+font-size: 24px;
+font-weight: 200;
+`;
+
+const BorADiv = styled.div `
+${'' /* text-align: center; */}
+
+font-size: 24px;
+font-weight: 200;
+`;
 
 class RecommendedHours extends Component {
   calculateHours = date => {
@@ -88,23 +128,27 @@ class RecommendedHours extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Hello {this.props.userData.username}!</h1>
-        <div>
+      <HoursDiv>
+        <HeadHours>Hello {this.props.userData.username}!</HeadHours>
+        <YearsDiv>
           You are {moment().diff(this.props.userData.birthdate, "years")} years
           young.
-        </div>
-        <div>
-          According to the National Sleep Foundation,{" "}
+        </YearsDiv>
+
+        <ImgDiv>
+        <img src={stats} width="60%"/>
+        </ImgDiv>
+        <RecP>
+          According to the National Sleep Foundation,{" "}<strong>
           {
             this.calculateHours(
               moment().diff(this.props.userData.birthdate, "years")
             )["response"]
-          }{" "}
+          }{" "}</strong>
           per night.
-        </div>
-        <div>{this.behindOrAhead()}</div>
-      </div>
+        </RecP>
+        <BorADiv>{this.behindOrAhead()}</BorADiv>
+      </HoursDiv>
     );
   }
 }
