@@ -5,7 +5,7 @@ import StatsContainer from "./StatsContainer";
 import styled from "styled-components";
 import "../index.css";
 import read from "../img/read.svg";
-import tips from "../img/tips.png"
+import sleeproutine from "../img/sleeproutine.png";
 import mood from "../img/mood.svg"
 import RecommendedHours from "./RecommendedHours";
 import NightlyStats from "./NightlyStats";
@@ -144,6 +144,10 @@ grid-row: row 1/ span 2;
 @media (max-width: 1024px) {
 grid-column: col 1 / span 5;
 grid-row: row 8/ span 2;
+
+img {
+  display:none;
+}
 }
 `;
 const HomeContainer = () => {
@@ -184,6 +188,9 @@ const HomeContainer = () => {
 
       <Grid5Div>
         <NightlyStats  />
+        <ImgDiv>
+          <img src={sleeproutine} width="100%" />
+        </ImgDiv>
     </Grid5Div>
     </PageDiv>
 
