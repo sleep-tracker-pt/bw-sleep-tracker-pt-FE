@@ -26,7 +26,7 @@ function App() {
       
         </div>
         <div>
-          <PrivateRoute exact path="/home" component={HomeContainer} />
+          <PrivateRoute exact path="/Home" component={HomeContainer} />
         </div>
         {/* <div>
           <PrivateRoute path="/stats" component={StatsContainer} />
