@@ -68,7 +68,7 @@ export const updateUser = () => dispatch => {
   
   });
   return axios
-  .get(
+  .post(
     `https://sleeptrack.herokuapp.com/api/user/${localStorage.getItem("userId")}`,
     {headers: { authorize: localStorage.getItem("token") }}
     )

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import moment from "moment";
 import DatePicker from "react-date-picker";
 
 import {updateUser} from "../actions/";
@@ -10,12 +10,14 @@ export class UpdateUser extends Component {
     super(props);
     
     this.state = {
+        clicked: false,
         isFetching: false,
         isUpdating: null,
-        username: this.props.username,
-        password: "",
-        checkpassword: this.props.password,
-        birthDate: this.props.birthDate
+        userData: [],
+        // username: userData.username,
+        // password: this.props.userData.password,
+        // checkpassword: this.props.userData.checkpassword,
+        // birthDate: this.props.userData.birthDate
       };
     }
 
@@ -23,28 +25,43 @@ export class UpdateUser extends Component {
       this.setState({ [e.target.name]: e.target.value });
     };
 
-    updateUserHandler = e => {
+    updateHandler = e => {
       e.preventDefault();
-      this.props.updateUser(this.state);
-      this.setState({...this.state, clicked: false})
+      let userData = {
+        username: this.state.username,
+        password: this.state.password,
+        birthdate: this.state.birthDate
+      };
+      this.props.updateUser(userData);
+      this.setState({
+        username: "",
+        password: "",
+        birthDate: moment()
+          .subtract(13, "years")
+          .toDate(),
+          checkpassword: ""
+      });
+      this.props.history.push("/login");
     };
 
     updateOpener = () => {
       this.setState({...this.state, clicked: true});
     }
-
+    handleChange = date => {
+      this.setState({ birthDate: date });
+    };
     render() {
       
       if (this.state.clicked) {
         return (
           <div>
             <div>
-              <h3>Username:{this.props.username}</h3>
-              <h4>current password:{this.state.password}</h4>
-              <h5>Birthday: {this.props.birthDate}</h5>
+              <h3>Username:{this.props.userData.username}</h3>
+              <h4>current password:{this.props.userData.password}</h4>
+              <h5>Birthday: {this.props.userData.birthDate}</h5>
             </div>
 
-            <form onSubmit={this.updateUserHandler}>
+            <form onSubmit={this.updateHandler}>
 
               <input 
                 type="text"
@@ -86,16 +103,20 @@ export class UpdateUser extends Component {
       } else {
         return (
           <div>
-             <h3>Username:{this.state.username}</h3>
-              <h4>current password:{this.state.password}</h4>
-              <h5>Birthday: {this.state.birthDate}</h5>
-          <button onClick={this.updateOpener}>Update {this.props.username}</button>
+             <h3>Username:{this.props.userData.username}</h3>
+              <h4>current password:{this.props.userData.password}</h4>
+              <h5>Birthday: {this.props.userData.birthDate}</h5>
+          <button onClick={this.updateOpener}>Update {this.props.userData.username}</button>
           </div>
         );
       }
     }
   }
 
-  const mapStateToProps = () => ({});
+  const mapStateToProps = state => {
+    return {
+      userData: state.userData
+    }
+  };
 
   export default connect(mapStateToProps, {updateUser})(UpdateUser)
