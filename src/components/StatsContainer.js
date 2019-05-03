@@ -68,7 +68,7 @@ class StatsContainer extends Component {
   render() {
     return (
       <div>
-        <h1>This is the stats container 🤔</h1>
+        {/* <h1>This is the stats container 🤔</h1> */}
         <RecommendedHours/>
         <WeekInReview props={this.state} />
         <NightlyStats props={this.state} />

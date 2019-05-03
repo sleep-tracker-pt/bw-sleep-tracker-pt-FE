@@ -89,7 +89,7 @@ class RecommendedHours extends Component {
   render() {
     return (
       <div>
-        <div>Hello {this.props.userData.username}.</div>
+        <h1>Hello {this.props.userData.username}!</h1>
         <div>
           You are {moment().diff(this.props.userData.birthdate, "years")} years
           young.

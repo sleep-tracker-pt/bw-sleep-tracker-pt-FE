@@ -76,12 +76,15 @@ class NavBar extends React.Component {
           return (
           <Nav>
             <NavContainer>
-              <Link to="/Home" >
+              <Link to="/home" >
                 <img src={LogoMain}  width="40px" height="40px" />
               </Link>
               <NavRight>
                   <NavItem>
-                  <Link  to="/Home">Home</Link>
+                  <Link  to="/home">Home</Link>
+                  </NavItem>
+                  <NavItem>
+                  <Link  to="/account">Account</Link>
                   </NavItem>
                   <NavItem>
                   <a  href="/" onClick={this.handleLogout}>Logout</a>
@@ -94,12 +97,12 @@ class NavBar extends React.Component {
           return (
             <Nav>
             <NavContainer>
-              <Link to="/Home" >
+              <Link to="/home" >
                 <img src={LogoMain}  width="40px" height="40px" />
               </Link>
               <NavRight>
                   <NavItem>
-                  <Link  to="/Home">Home</Link>
+                  <Link  to="/home">Home</Link>
                   </NavItem>
                   <NavItem>
                   <Link  to="/login">Login</Link>
