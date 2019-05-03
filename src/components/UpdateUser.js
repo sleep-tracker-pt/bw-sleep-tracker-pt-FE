@@ -36,10 +36,8 @@ export class UpdateUser extends Component {
       this.setState({
         username: "",
         password: "",
-        birthDate: moment()
-          .subtract(13, "years")
-          .toDate(),
-          checkpassword: ""
+        checkpassword: "",
+        birthdate: ""
       });
       this.props.history.push("/login");
     };
@@ -57,8 +55,7 @@ export class UpdateUser extends Component {
           <div>
             <div>
               <h3>Username:{this.props.userData.username}</h3>
-              <h4>current password:{this.props.userData.password}</h4>
-              <h5>Birthday: {this.props.userData.birthDate}</h5>
+              <h4>Birthday: {this.props.userData.birthDate}</h4>
             </div>
 
             <form onSubmit={this.updateHandler}>
@@ -104,8 +101,8 @@ export class UpdateUser extends Component {
         return (
           <div>
              <h3>Username:{this.props.userData.username}</h3>
-              <h4>current password:{this.props.userData.password}</h4>
-              <h5>Birthday: {this.props.userData.birthDate}</h5>
+              {/* <h4>current password:{this.props.userData.password}</h4> */}
+              <h5>Birthday: {this.props.userData.birthdate}</h5>
           <button onClick={this.updateOpener}>Update {this.props.userData.username}</button>
           </div>
         );

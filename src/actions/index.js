@@ -70,7 +70,7 @@ export const updateUser = () => dispatch => {
   return axios
   .post(
     `https://sleeptrack.herokuapp.com/api/user/${localStorage.getItem("userId")}`,
-    {headers: { authorize: localStorage.getItem("token") }}
+    {headers: { authorize: localStorage.getItem("") }}
     )
     .then(res => {
       dispatch({
