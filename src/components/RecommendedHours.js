@@ -6,7 +6,7 @@ class RecommendedHours extends Component {
     console.log(this.props.sleepData);
     console.log(this.props.transformedSleepData);
     console.log(this.props.filteredSleepData);
-    console.log(this.props.birthDate);
+    console.log(this.props.userData);
   };
   render() {
     return <div>{this.coolFunction()}</div>;
@@ -17,7 +17,7 @@ const mapStateToProps = state => {
     sleepData: state.sleepData,
     transformedSleepData: state.transformedSleepData,
     filteredSleepData: state.filteredSleepData,
-    birthDate: state.birthDate
+    userData: state.userData
   };
 };
 
