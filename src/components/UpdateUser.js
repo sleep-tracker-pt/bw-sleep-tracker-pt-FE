@@ -8,42 +8,74 @@ import account from "../img/account.svg";
 
 const AccountPage = styled.div `
 margin: 50px auto;
-width: 60%;
+width: 70%;
 ${'' /* height: 500px; */}
 text-align: center;
-background: rgba(211, 220, 227, 0.5);
+background: rgba(211, 220, 227, 0.7);
 `;
 
 const UserDiv = styled.div `
 margin: 50px auto;
 `;
 
-const UserName = styled.h3 ``;
+const UserName = styled.h3 `
+margin: 20px;
+font-weight: 200;
+text-transform: uppercase;
 
-const Bday = styled.h4 ``;
+`;
 
-const BdayP = styled.p `
+const Bday = styled.h4 `
+margin: 10px;
+font-weight: 200;
+text-transform: uppercase;
+margin-bottom: 20px;
+`;
 
+const LabelP = styled.p `
+margin-top: 20px;
+margin-bottom: 0;
+font-size: 16px;
+font-weight: 400;
 `;
 
 const UpdateForm = styled.form ``;
 
-const NameInput = styled.input ``;
-
-const NewPasswordInput = styled.input ``;
 
 const DateDiv = styled.div ``;
 
-const CurrentPassword = styled.input ``;
+const Input = styled.input `
+  width: 90%;
+    border: 0px solid #154e6e;
+    border-radius: 8px;
+    align-content: center;
+    text-align: center;
+    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+    padding: 10px 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    ${'' /* margin: 3px auto; */}
+`;
 
-const ChangeButton = styled.button ``;
-const UpdateButton = styled.button ``;
+
+
+
+const Button = styled.button `
+border-radius: 5px;
+padding: 10px;
+margin-bottom: 20px;
+${'' /* width: 100px; */}
+font-weight: 200;
+`;
 
 const UserDisplay = styled.div `
 margin: 50px auto;
-width: 60%;
-${'' /* height: 300px; */}
-background: rgba(211, 220, 227, 0.8);
+width: 70%;
+text-align: center;
+
+${'' /* height: 200px; */}
+background: rgba(211, 220, 227, 0.7);
 `;
 
 const ImgDiv = styled.div ``;
@@ -105,12 +137,12 @@ export class UpdateUser extends Component {
         </ImgDiv>
             <UserDiv>
               <UserName>Username:{this.props.userData.username}</UserName>
-              <Bday>Birthday: {this.props.userData.birthDate}</Bday>
+              <Bday>Birthday: {this.props.userData.birthdate}</Bday>
             </UserDiv>
 
             <UpdateForm onSubmit={this.updateHandler}>
-
-              <NameInput 
+            <LabelP>New UserName</LabelP>
+              <Input 
                 type="text"
                 name="username"
                 value={this.state.username}
@@ -118,14 +150,15 @@ export class UpdateUser extends Component {
                 placeholder="new username"
               />
 
-              <NewPasswordInput 
+              <LabelP>New Password</LabelP>
+              <Input 
               type="password"
               name="password"
               value={this.state.password}
               onChange={this.inputHandler}
               placeholder="new password"
               />
-            <BdayP>Please enter your Birthdate:</BdayP>
+            <LabelP>Please enter your Birthdate:</LabelP>
 
             <DateDiv>
               <DatePicker
@@ -135,14 +168,15 @@ export class UpdateUser extends Component {
               />
               </DateDiv>
 
-              <CurrentPassword 
+              <LabelP>Current Password</LabelP>
+              <Input 
                 type="password"
                 name="current password"
                 value={this.state.checkpassword}
                 onChange={this.inputHandler}
                 placeholder="current password"
               />
-              <ChangeButton type="submit">Update Changes</ChangeButton>
+              <Button type="submit">Update Changes</Button>
 
             </UpdateForm>
           </AccountPage>
@@ -150,9 +184,12 @@ export class UpdateUser extends Component {
       } else {
         return (
           <UserDisplay>
-             <UserName>Username:{this.props.userData.username}</UserName>
+           <ImgDiv>
+          <img src={account} width="50%"/>
+        </ImgDiv>
+             <UserName>Username:<br/>{this.props.userData.username}</UserName>
               <Bday>Birthday: {this.props.userData.birthdate}</Bday>
-          <UpdateButton onClick={this.updateOpener}>Update {this.props.userData.username}</UpdateButton>
+          <Button onClick={this.updateOpener}>Update {this.props.userData.username}</Button>
           </UserDisplay>
         );
       }
