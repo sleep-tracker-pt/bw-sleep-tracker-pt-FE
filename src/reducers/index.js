@@ -36,7 +36,6 @@ const initialState = {
   filteredSleepData: [],
   postResponse: [],
   userData: [],
-  updateUser: []
 };
 
 const reducer = (state = initialState, action) => {

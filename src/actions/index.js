@@ -62,9 +62,6 @@ export const addUser = newUser => dispatch => {
 export const UPDATE_USER = "UPDATE_USER";
 export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
 export const updateUser = updatedUserData => dispatch => {
-  dispatch({
-    type: GET_USERDATA
-  });
   return axios
     .put(
       `https://sleeptrack.herokuapp.com/api/user/${localStorage.getItem(
@@ -170,7 +167,7 @@ export const getSleepData = () => dispatch => {
         payload: result
       });
       dispatch({
-        type: GET_USERDATA,
+        type: UPDATE_USER,
         payload: {
           username: res.data.username,
           password: res.data.password,
