@@ -123,7 +123,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isSending: false,
-        postResponse: action.payload
+        sleepData: action.payload
       };
     case SLEEPSESSION_SENDING:
       return {

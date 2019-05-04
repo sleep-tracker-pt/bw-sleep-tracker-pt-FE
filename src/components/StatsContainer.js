@@ -39,10 +39,6 @@ class StatsContainer extends Component {
     showModal: false
   };
 
-  componentDidMount() {
-    this.props.getSleepData();
-  }
-
   handleCloseModal = () => {
     this.setState({ showModal: false });
   };
