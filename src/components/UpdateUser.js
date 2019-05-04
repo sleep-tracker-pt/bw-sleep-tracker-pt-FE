@@ -136,7 +136,7 @@ export class UpdateUser extends Component {
           <img src={account} width="50%"/>
         </ImgDiv>
             <UserDiv>
-              <UserName>Username:{this.props.userData.username}</UserName>
+              <UserName>Username:<br/>{this.props.userData.username}</UserName>
               <Bday>Birthday: {this.props.userData.birthdate}</Bday>
             </UserDiv>
 
