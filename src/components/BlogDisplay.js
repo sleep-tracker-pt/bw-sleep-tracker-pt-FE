@@ -9,12 +9,16 @@ const StyledImage = styled(Image)`
 
 const MediaDiv = styled(Media.Body)`
   margin-top: 40px;
+`;
+
+const StyledH5 = styled.h5`
+  color: white;
   text-decoration: none;
 `;
 
-const styledH5 = `
-color: white; 
-text-decoration: none;
+const StyledA = styled.a`
+  color: white;
+  text-decoration: none;
 `;
 
 class BlogDisplay extends Component {
@@ -36,9 +40,9 @@ class BlogDisplay extends Component {
           />
           <MediaDiv>
             <Media.Body>
-              <styledH5>
-                <a href={this.props.linkUrl}>{this.props.title}</a>
-              </styledH5>
+              <StyledH5>
+                <StyledA href={this.props.linkUrl}>{this.props.title}</StyledA>
+              </StyledH5>
               <p>{this.props.body}...</p>
             </Media.Body>
           </MediaDiv>
