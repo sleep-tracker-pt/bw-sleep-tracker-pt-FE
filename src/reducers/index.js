@@ -156,7 +156,8 @@ const reducer = (state = initialState, action) => {
       case UPDATE_USER:
       return {
         ...state,
-        updateUser: action.payload
+        userData: action.payload,
+        isUpdating: false,
       }
       case UPDATE_USER_FAILURE:
       return {
