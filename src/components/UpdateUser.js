@@ -45,41 +45,38 @@ margin: 50px auto;
 
 
 export class UpdateUser extends Component {
-    constructor(props) {
-    super(props);
-    
-    this.state = {
-        clicked: false,
-        isFetching: false,
-        isUpdating: null,
-        userData: [],
-        // username: userData.username,
-        // password: this.props.userData.password,
-        // checkpassword: this.props.userData.checkpassword,
-        // birthDate: this.props.userData.birthDate
-      };
-    }
+  state = {
+    clicked: false,
+    isFetching: false,
+    isUpdating: null,
+    userData: [],
+    username: "",
+    password: "",
+    checkpassword: "",
+    birthDate: ""
+  };
 
-    inputHandler = e => {
-      this.setState({ [e.target.name]: e.target.value });
-    };
+  inputHandler = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
-    updateHandler = e => {
-      e.preventDefault();
-      let userData = {
-        username: this.state.username,
-        password: this.state.password,
-        birthdate: this.state.birthDate
-      };
-      this.props.updateUser(userData);
-      this.setState({
-        username: "",
-        password: "",
-        checkpassword: "",
-        birthdate: ""
-      });
-      this.props.history.push("/login");
+  updateHandler = e => {
+    e.preventDefault();
+    let updatedUserData = {
+      username: this.state.username,
+      password: this.state.password,
+      birthdate: this.state.birthDate,
+      checkpassword: this.state.checkpassword
     };
+    this.props.updateUser(updatedUserData);
+    this.setState({
+      username: "",
+      password: "",
+      checkpassword: "",
+      birthdate: ""
+    });
+    this.props.history.push("/login");
+  };
 
     updateOpener = () => {
       this.setState({...this.state, clicked: true});
@@ -109,7 +106,7 @@ export class UpdateUser extends Component {
 
               <NewPasswordInput 
               type="password"
-              name="new password"
+              name="password"
               value={this.state.password}
               onChange={this.inputHandler}
               placeholder="new password"
@@ -148,10 +145,14 @@ export class UpdateUser extends Component {
     }
   }
 
-  const mapStateToProps = state => {
-    return {
-      userData: state.userData
-    }
-  };
 
-  export default connect(mapStateToProps, {updateUser})(UpdateUser)
+const mapStateToProps = state => {
+  return {
+    userData: state.userData
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { updateUser }
+)(UpdateUser);

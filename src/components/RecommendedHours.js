@@ -4,45 +4,43 @@ import moment from "moment";
 import "../index";
 import stats from "../img/stats.svg";
 import styled from "styled-components";
+const HoursDiv = styled.div``;
 
-const HoursDiv = styled.div `
-
+const HeadHours = styled.h1`
+  text-align: center;
+  font-weight: 200;
+  ${"" /* margin-bottom: 40px; */}
+  font-size: 50px;
 `;
 
-const HeadHours = styled.h1 `
-text-align: center;
-font-weight: 200;
-${'' /* margin-bottom: 40px; */}
-font-size: 50px;
+const YearsDiv = styled.div`
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 200;
 `;
 
-const YearsDiv = styled.div `
-text-align: center;
-margin-bottom: 40px;
-font-size: 28px;
-font-weight: 200;
+const ImgDiv = styled.div`
+  text-align: center;
+  margin-bottom: 40px;
 `;
 
-const ImgDiv = styled.div `
-text-align: center;
-margin-bottom: 40px;
+const RecP = styled.p`
+  ${"" /* text-align: center; */}
+
+  font-size: 24px;
+  font-weight: 200;
 `;
 
-const RecP = styled.p `
-${'' /* text-align: center; */}
+const BorADiv = styled.div`
+  ${"" /* text-align: center; */}
 
-font-size: 24px;
-font-weight: 200;
-`;
-
-const BorADiv = styled.div `
-${'' /* text-align: center; */}
-
-font-size: 24px;
-font-weight: 200;
+  font-size: 24px;
+  font-weight: 200;
 `;
 
 class RecommendedHours extends Component {
+
   calculateHours = date => {
     switch (true) {
       case 0 <= date && date <= 2:
@@ -104,7 +102,9 @@ class RecommendedHours extends Component {
   };
 
   behindOrAhead = () => {
-    let averageHours = this.getAverageHours(this.props.filteredSleepData);
+    let averageHours = this.getAverageHours(
+      this.props.filteredSleepData
+    ).toFixed();
     let range1 = this.calculateHours(
       moment().diff(this.props.userData.birthdate, "years")
     )["range1"];
@@ -136,15 +136,17 @@ class RecommendedHours extends Component {
         </YearsDiv>
 
         <ImgDiv>
-        <img src={stats} width="60%"/>
+          <img src={stats} width="60%" />
         </ImgDiv>
         <RecP>
-          According to the National Sleep Foundation,{" "}<strong>
-          {
-            this.calculateHours(
-              moment().diff(this.props.userData.birthdate, "years")
-            )["response"]
-          }{" "}</strong>
+          According to the National Sleep Foundation,{" "}
+          <strong>
+            {
+              this.calculateHours(
+                moment().diff(this.props.userData.birthdate, "years")
+              )["response"]
+            }{" "}
+          </strong>
           per night.
         </RecP>
         <BorADiv>{this.behindOrAhead()}</BorADiv>
@@ -154,8 +156,6 @@ class RecommendedHours extends Component {
 }
 const mapStateToProps = state => {
   return {
-    sleepData: state.sleepData,
-    transformedSleepData: state.transformedSleepData,
     filteredSleepData: state.filteredSleepData,
     userData: state.userData
   };
