@@ -2,8 +2,47 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import DatePicker from "react-date-picker";
-
+import styled from "styled-components";
 import {updateUser} from "../actions/";
+
+const AccountPage = styled.div `
+margin: 50px auto;
+width: 500px;
+height: 500px;
+`;
+
+const UserDiv = styled.div `
+margin: 50px auto;
+`;
+
+const UserName = styled.h3 ``;
+
+const Bday = styled.h4 ``;
+
+const BdayP = styled.p ``;
+
+const UpdateForm = styled.form ``;
+
+const NameInput = styled.input ``;
+
+const NewPasswordInput = styled.input ``;
+
+const DateDiv = styled.div ``;
+
+const CurrentPassword = styled.input ``;
+
+const ChangeButton = styled.button ``;
+const UpdateButton = styled.button ``;
+
+const UserDisplay = styled.div `
+margin: 50px auto;
+`;
+
+
+
+
+
+
 
 export class UpdateUser extends Component {
     constructor(props) {
@@ -52,15 +91,15 @@ export class UpdateUser extends Component {
       
       if (this.state.clicked) {
         return (
-          <div>
-            <div>
-              <h3>Username:{this.props.userData.username}</h3>
-              <h4>Birthday: {this.props.userData.birthDate}</h4>
-            </div>
+          <AccountPage>
+            <UserDiv>
+              <UserName>Username:{this.props.userData.username}</UserName>
+              <Bday>Birthday: {this.props.userData.birthDate}</Bday>
+            </UserDiv>
 
-            <form onSubmit={this.updateHandler}>
+            <UpdateForm onSubmit={this.updateHandler}>
 
-              <input 
+              <NameInput 
                 type="text"
                 name="username"
                 value={this.state.username}
@@ -68,43 +107,42 @@ export class UpdateUser extends Component {
                 placeholder="new username"
               />
 
-              <input 
+              <NewPasswordInput 
               type="password"
               name="new password"
               value={this.state.password}
               onChange={this.inputHandler}
               placeholder="new password"
               />
-            <div>Please enter your Birthdate:</div>
+            <BdayP>Please enter your Birthdate:</BdayP>
 
-            <div>
+            <DateDiv>
               <DatePicker
                 onChange={this.handleChange}
                 value={this.state.birthDate}
                 clearIcon={null}
               />
-              </div>
+              </DateDiv>
 
-              <input 
+              <CurrentPassword 
                 type="password"
                 name="current password"
                 value={this.state.checkpassword}
                 onChange={this.inputHandler}
                 placeholder="current password"
               />
-              <button type="submit">Update Changes</button>
+              <ChangeButton type="submit">Update Changes</ChangeButton>
 
-            </form>
-          </div>
+            </UpdateForm>
+          </AccountPage>
           );
       } else {
         return (
-          <div>
-             <h3>Username:{this.props.userData.username}</h3>
-              {/* <h4>current password:{this.props.userData.password}</h4> */}
-              <h5>Birthday: {this.props.userData.birthdate}</h5>
-          <button onClick={this.updateOpener}>Update {this.props.userData.username}</button>
-          </div>
+          <UserDisplay>
+             <UserName>Username:{this.props.userData.username}</UserName>
+              <Bday>Birthday: {this.props.userData.birthdate}</Bday>
+          <UpdateButton onClick={this.updateOpener}>Update {this.props.userData.username}</UpdateButton>
+          </UserDisplay>
         );
       }
     }
