@@ -32,6 +32,10 @@ const NightDiv = styled.div`
 const SessionForm = styled.form `
 margin: 0 auto;
 text-align: center;
+
+ input {
+   display: hidden;
+ }
 `;
 const WakeP = styled.h5 `
 margin: 0 auto;
@@ -439,7 +443,7 @@ class StatsContainer extends Component {
               <WakeP>bedtime mood:</WakeP>
               <MoodLabel for="mood4">
                 {this.state.bed_t_rating === "4" ? (
-                  <i className="far fa-grin-beam fa-4x fa-pulse" />
+                  <i className="far fa-grin-beam fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-grin-beam fa-4x" />
                 )}
