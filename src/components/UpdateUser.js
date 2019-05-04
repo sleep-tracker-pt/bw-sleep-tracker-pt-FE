@@ -4,6 +4,7 @@ import moment from "moment";
 import DatePicker from "react-date-picker";
 import styled from "styled-components";
 import {updateUser} from "../actions/";
+import { logout } from "../actions/";
 import account from "../img/account.svg";
 
 const AccountPage = styled.div `
@@ -96,6 +97,7 @@ export class UpdateUser extends Component {
     password: "",
     checkpassword: "",
     birthDate: ""
+
   };
 
   inputHandler = e => {
@@ -117,7 +119,9 @@ export class UpdateUser extends Component {
       checkpassword: "",
       birthdate: ""
     });
+    this.props.logout();
     this.props.history.push("/login");
+    alert("user info has been updated, please login again to continue");
   };
 
     updateOpener = () => {
@@ -136,7 +140,7 @@ export class UpdateUser extends Component {
           <img src={account} width="50%"/>
         </ImgDiv>
             <UserDiv>
-              <UserName>Username:{this.props.userData.username}</UserName>
+              <UserName>Username:<br/>{this.props.userData.username}</UserName>
               <Bday>Birthday: {this.props.userData.birthdate}</Bday>
             </UserDiv>
 
@@ -171,7 +175,7 @@ export class UpdateUser extends Component {
               <LabelP>Current Password</LabelP>
               <Input 
                 type="password"
-                name="current password"
+                name="checkpassword"
                 value={this.state.checkpassword}
                 onChange={this.inputHandler}
                 placeholder="current password"
@@ -205,5 +209,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateUser }
+  { updateUser, logout }
 )(UpdateUser);

@@ -27,6 +27,37 @@ const NightDiv = styled.div`
     display: none;
   }
 `;
+
+
+const SessionForm = styled.form `
+margin: 0 auto;
+text-align: center;
+`;
+const WakeP = styled.h5 `
+margin: 0 auto;
+text-transform: uppercase;
+margin-top: 15px;
+
+`;
+
+
+const MoodLabel = styled.label `
+margin: 20px;
+
+  @media (max-width: 400px) {
+  margin: 10px;
+  }
+`;
+const StyledTitle = styled(Modal.Title) `
+text-transform: uppercase;
+margin: 0 auto;
+`;
+
+const StyledModal = styled(Modal) `
+color: ;
+background: background: rgba(211, 220, 227, 0.7);;
+
+`;
 class StatsContainer extends Component {
   state = {
     startDate: moment().toDate(),
@@ -103,13 +134,13 @@ class StatsContainer extends Component {
         <Button variant="primary" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
-        <Modal
+        <StyledModal
           size="lg"
           show={this.state.showModal}
           onHide={this.handleCloseModal}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Add sleep session</Modal.Title>
+            <StyledTitle>Add sleep session</StyledTitle>
           </Modal.Header>
           <Modal.Body>
             {/* <Form>
@@ -267,8 +298,8 @@ class StatsContainer extends Component {
                 />
               </Form.Group>
             </Form> */}
-            <form>
-              <p>Bedtime:</p>
+            <SessionForm>
+              <WakeP>Bedtime:</WakeP>
               <DateTimePicker
                 name="startDate"
                 onChange={this.handleChangeStart}
@@ -278,7 +309,7 @@ class StatsContainer extends Component {
                 isCalendarOpen={true}
                 pickerPosition="bottom-left"
               />
-              <p>Waketime:</p>
+              <WakeP>Waketime:</WakeP>
               <DateTimePicker
                 name="endDate"
                 onChange={this.handleChangeEnd}
@@ -396,96 +427,96 @@ class StatsContainer extends Component {
                 checked={this.state.average_rating === "1"}
                 onChange={this.handleCheck}
               />
-              <p>bedtime mood:</p>
-              <label for="mood4">
+              <WakeP>bedtime mood:</WakeP>
+              <MoodLabel for="mood4">
                 {this.state.bed_t_rating === "4" ? (
-                  <i className="far fa-grin-beam fa-4x fa-spin" />
+                  <i className="far fa-grin-beam fa-4x fa-pulse" />
                 ) : (
                   <i className="far fa-grin-beam fa-4x" />
                 )}
-              </label>
-              <label for="mood3">
+              </MoodLabel>
+              <MoodLabel for="mood3">
                 {this.state.bed_t_rating === "3" ? (
                   <i className="far fa-grin fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-grin fa-4x" />
                 )}
-              </label>
-              <label for="mood2">
+              </MoodLabel>
+              <MoodLabel for="mood2">
                 {this.state.bed_t_rating === "2" ? (
                   <i className="far fa-frown-open fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-frown-open fa-4x" />
                 )}
-              </label>
-              <label for="mood1">
+              </MoodLabel>
+              <MoodLabel for="mood1">
                 {this.state.bed_t_rating === "1" ? (
                   <i className="far fa-grimace fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-grimace fa-4x" />
                 )}
-              </label>
+              </MoodLabel>
 
-              <p>work mood:</p>
-              <label for="mood4work">
+              <WakeP>work mood:</WakeP>
+              <MoodLabel for="mood4work">
                 {this.state.work_t_rating === "4" ? (
                   <i className="far fa-grin-beam fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-grin-beam fa-4x" />
                 )}
-              </label>
-              <label for="mood3work">
+              </MoodLabel>
+              <MoodLabel for="mood3work">
                 {this.state.work_t_rating === "3" ? (
                   <i className="far fa-grin fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-grin fa-4x" />
                 )}
-              </label>
-              <label for="mood2work">
+              </MoodLabel>
+              <MoodLabel for="mood2work">
                 {this.state.work_t_rating === "2" ? (
                   <i className="far fa-frown-open fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-frown-open fa-4x" />
                 )}
-              </label>
-              <label for="mood1work">
+              </MoodLabel>
+              <MoodLabel for="mood1work">
                 {this.state.work_t_rating === "1" ? (
                   <i className="far fa-grimace fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-grimace fa-4x" />
                 )}
-              </label>
+              </MoodLabel>
 
-              <p>average mood:</p>
-              <label for="mood4avg">
+              <WakeP>average mood:</WakeP>
+              <MoodLabel for="mood4avg">
                 {this.state.average_rating === "4" ? (
                   <i className="far fa-grin-beam fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-grin-beam fa-4x" />
                 )}
-              </label>
-              <label for="mood3avg">
+              </MoodLabel>
+              <MoodLabel for="mood3avg">
                 {this.state.average_rating === "3" ? (
                   <i className="far fa-grin fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-grin fa-4x" />
                 )}
-              </label>
-              <label for="mood2avg">
+              </MoodLabel>
+              <MoodLabel for="mood2avg">
                 {this.state.average_rating === "2" ? (
                   <i className="far fa-frown-open fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-frown-open fa-4x" />
                 )}
-              </label>
-              <label for="mood1avg">
+              </MoodLabel>
+              <MoodLabel for="mood1avg">
                 {this.state.average_rating === "1" ? (
                   <i className="far fa-grimace fa-4x fa-spin" />
                 ) : (
                   <i className="far fa-grimace fa-4x" />
                 )}
-              </label>
-            </form>
+              </MoodLabel>
+            </SessionForm>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModal}>
@@ -495,7 +526,7 @@ class StatsContainer extends Component {
               Save
             </Button>
           </Modal.Footer>
-        </Modal>
+        </StyledModal>
       </div>
     );
   }
