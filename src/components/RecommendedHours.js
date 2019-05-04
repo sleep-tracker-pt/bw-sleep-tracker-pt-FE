@@ -40,7 +40,6 @@ const BorADiv = styled.div`
 `;
 
 class RecommendedHours extends Component {
-
   calculateHours = date => {
     switch (true) {
       case 0 <= date && date <= 2:
@@ -102,27 +101,32 @@ class RecommendedHours extends Component {
   };
 
   behindOrAhead = () => {
-    let averageHours = this.getAverageHours(
-      this.props.filteredSleepData
-    ).toFixed();
-    let range1 = this.calculateHours(
-      moment().diff(this.props.userData.birthdate, "years")
-    )["range1"];
-    let range2 = this.calculateHours(
-      moment().diff(this.props.userData.birthdate, "years")
-    )["range2"];
+    if (this.props.filteredSleepData.length > 0) {
+      let averageHours = this.getAverageHours(
+        this.props.filteredSleepData
+      ).toFixed();
+      let range1 = this.calculateHours(
+        moment().diff(this.props.userData.birthdate, "years")
+      )["range1"];
+      let range2 = this.calculateHours(
+        moment().diff(this.props.userData.birthdate, "years")
+      )["range2"];
 
-    switch (true) {
-      case averageHours > range2:
-        return `This week, you've averaged ${averageHours} hours of sleep per night. This means you are ahead by ${averageHours -
-          range2} to ${averageHours - range1} hours of sleep per night!`;
-      case averageHours < range1:
-        return `This week, you've averaged ${averageHours} hours of sleep per night. This means you are behind by ${averageHours -
-          range1} to ${averageHours - range2} hours of sleep per night!`;
-      case averageHours > range1 && averageHours < range2:
-        return `This week, you've averaged ${averageHours} hours of sleep per night. This means you are getting exactly the amount of sleep you're supposed to! Great job 😇`;
-      default:
-        return "error";
+      switch (true) {
+        case averageHours > range2:
+          return `This week, you've averaged ${averageHours} hours of sleep per night. This means you are ahead by ${averageHours -
+            range2} to ${averageHours - range1} hours of sleep per night!`;
+        case averageHours < range1:
+          return `This week, you've averaged ${averageHours} hours of sleep per night. This means you are behind by ${range1 -
+            averageHours} to ${range2 -
+            averageHours} hours of sleep per night!`;
+        case averageHours > range1 && averageHours < range2:
+          return `This week, you've averaged ${averageHours} hours of sleep per night. This means you are getting exactly the amount of sleep you're supposed to! Great job 😇`;
+        default:
+          return "error";
+      }
+    } else {
+      return "It looks like you don't have any sleep data entered yet 🤔";
     }
   };
 
