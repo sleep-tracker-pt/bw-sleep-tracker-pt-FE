@@ -12,23 +12,20 @@ import RecommendedHours from "./RecommendedHours";
 
 import styled from "styled-components";
 import "../index.css";
+import "./StatsComponent.css";
 
-
-const WrapperDiv = styled.div `
-margin: 10px;
+const WrapperDiv = styled.div`
+  margin: 10px;
 `;
-const RecommendedDiv = styled.div `
-
+const RecommendedDiv = styled.div``;
+const WeekDiv = styled.div`
+  margin-top: 30px;
 `;
-const WeekDiv = styled.div `
-margin-top: 30px;
-
-`;
-const NightDiv = styled.div `
-margin: 40px 0;
-@media (max-width: 800px) {
-  display: none;
-}
+const NightDiv = styled.div`
+  margin: 40px 0;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 class StatsContainer extends Component {
   state = {
@@ -42,8 +39,8 @@ class StatsContainer extends Component {
     showModal: false
   };
 
-  componentDidMount() { 
-    this.props.getSleepData()
+  componentDidMount() {
+    this.props.getSleepData();
   }
 
   handleCloseModal = () => {
@@ -89,31 +86,33 @@ class StatsContainer extends Component {
   render() {
     return (
       <div>
-      <WrapperDiv>
-
-        {/* <RecommendedDiv>
+        <WrapperDiv>
+          {/* <RecommendedDiv>
         <RecommendedHours/>
         </RecommendedDiv> */}
 
-        <WeekDiv>
-        <WeekInReview props={this.state} />
-        </WeekDiv>
+          <WeekDiv>
+            <WeekInReview props={this.state} />
+          </WeekDiv>
 
-        {/* <NightDiv>
+          {/* <NightDiv>
         <NightlyStats props={this.state} />
         </NightDiv> */}
-
-      </WrapperDiv>
+        </WrapperDiv>
 
         <Button variant="primary" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
-        <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
+        <Modal
+          size="lg"
+          show={this.state.showModal}
+          onHide={this.handleCloseModal}
+        >
           <Modal.Header closeButton>
             <Modal.Title>Add sleep session</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form>
+            {/* <Form>
               <Form.Group>
                 <Form.Label>Went to bed</Form.Label>
                 <DateTimePicker
@@ -267,7 +266,226 @@ class StatsContainer extends Component {
                   inline
                 />
               </Form.Group>
-            </Form>
+            </Form> */}
+            <form>
+              <p>Bedtime:</p>
+              <DateTimePicker
+                name="startDate"
+                onChange={this.handleChangeStart}
+                value={this.state.startDate}
+                disableClock
+                clearIcon={null}
+                isCalendarOpen={true}
+                pickerPosition="bottom-left"
+              />
+              <p>Waketime:</p>
+              <DateTimePicker
+                name="endDate"
+                onChange={this.handleChangeEnd}
+                value={this.state.endDate}
+                disableClock
+                clearIcon={null}
+                isCalendarOpen={true}
+                pickerPosition="bottom-left"
+              />
+              <input
+                type="radio"
+                name="bed_t_rating"
+                id="mood4"
+                value="4"
+                className="input-hidden"
+                checked={this.state.bed_t_rating === "4"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="bed_t_rating"
+                id="mood3"
+                value="3"
+                className="input-hidden"
+                checked={this.state.bed_t_rating === "3"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="bed_t_rating"
+                id="mood2"
+                value="2"
+                className="input-hidden"
+                checked={this.state.bed_t_rating === "2"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="bed_t_rating"
+                id="mood1"
+                value="1"
+                className="input-hidden"
+                checked={this.state.bed_t_rating === "1"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="work_t_rating"
+                id="mood4work"
+                value="4"
+                className="input-hidden"
+                checked={this.state.work_t_rating === "4"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="work_t_rating"
+                id="mood3work"
+                value="3"
+                className="input-hidden"
+                checked={this.state.work_t_rating === "3"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="work_t_rating"
+                id="mood2work"
+                value="2"
+                className="input-hidden"
+                checked={this.state.work_t_rating === "2"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="work_t_rating"
+                id="mood1work"
+                value="1"
+                className="input-hidden"
+                checked={this.state.work_t_rating === "1"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="average_rating"
+                id="mood4avg"
+                value="4"
+                className="input-hidden"
+                checked={this.state.average_rating === "4"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="average_rating"
+                id="mood3avg"
+                value="3"
+                className="input-hidden"
+                checked={this.state.average_rating === "3"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="average_rating"
+                id="mood2avg"
+                value="2"
+                className="input-hidden"
+                checked={this.state.average_rating === "2"}
+                onChange={this.handleCheck}
+              />
+              <input
+                type="radio"
+                name="average_rating"
+                id="mood1avg"
+                value="1"
+                className="input-hidden"
+                checked={this.state.average_rating === "1"}
+                onChange={this.handleCheck}
+              />
+              <p>bedtime mood:</p>
+              <label for="mood4">
+                {this.state.bed_t_rating === "4" ? (
+                  <i className="far fa-grin-beam fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin-beam fa-4x" />
+                )}
+              </label>
+              <label for="mood3">
+                {this.state.bed_t_rating === "3" ? (
+                  <i className="far fa-grin fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin fa-4x" />
+                )}
+              </label>
+              <label for="mood2">
+                {this.state.bed_t_rating === "2" ? (
+                  <i className="far fa-frown-open fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-frown-open fa-4x" />
+                )}
+              </label>
+              <label for="mood1">
+                {this.state.bed_t_rating === "1" ? (
+                  <i className="far fa-grimace fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grimace fa-4x" />
+                )}
+              </label>
+
+              <p>work mood:</p>
+              <label for="mood4work">
+                {this.state.work_t_rating === "4" ? (
+                  <i className="far fa-grin-beam fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin-beam fa-4x" />
+                )}
+              </label>
+              <label for="mood3work">
+                {this.state.work_t_rating === "3" ? (
+                  <i className="far fa-grin fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin fa-4x" />
+                )}
+              </label>
+              <label for="mood2work">
+                {this.state.work_t_rating === "2" ? (
+                  <i className="far fa-frown-open fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-frown-open fa-4x" />
+                )}
+              </label>
+              <label for="mood1work">
+                {this.state.work_t_rating === "1" ? (
+                  <i className="far fa-grimace fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grimace fa-4x" />
+                )}
+              </label>
+
+              <p>average mood:</p>
+              <label for="mood4avg">
+                {this.state.average_rating === "4" ? (
+                  <i className="far fa-grin-beam fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin-beam fa-4x" />
+                )}
+              </label>
+              <label for="mood3avg">
+                {this.state.average_rating === "3" ? (
+                  <i className="far fa-grin fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin fa-4x" />
+                )}
+              </label>
+              <label for="mood2avg">
+                {this.state.average_rating === "2" ? (
+                  <i className="far fa-frown-open fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-frown-open fa-4x" />
+                )}
+              </label>
+              <label for="mood1avg">
+                {this.state.average_rating === "1" ? (
+                  <i className="far fa-grimace fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grimace fa-4x" />
+                )}
+              </label>
+            </form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModal}>
