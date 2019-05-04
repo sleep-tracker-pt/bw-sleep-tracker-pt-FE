@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import moment from "moment";
 import DatePicker from "react-date-picker";
 
-import { updateUser } from "../actions/";
+import { updateUser } from "../actions/"
+import { logout } from "../actions/";
 
 export class UpdateUser extends Component {
   state = {
@@ -36,7 +37,9 @@ export class UpdateUser extends Component {
       checkpassword: "",
       birthdate: ""
     });
+    this.props.logout();
     this.props.history.push("/login");
+    alert("user info has been updated, please login again to continue");
   };
 
   updateOpener = () => {
@@ -114,5 +117,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateUser }
+  { updateUser, logout }
 )(UpdateUser);
