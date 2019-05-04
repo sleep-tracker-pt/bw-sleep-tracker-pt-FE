@@ -19,6 +19,7 @@ const StyledH5 = styled.h5`
 const StyledA = styled.a`
   color: white;
   text-decoration: none;
+  a:hover: 
 `;
 
 class BlogDisplay extends Component {

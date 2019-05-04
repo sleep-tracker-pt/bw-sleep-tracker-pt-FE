@@ -36,6 +36,7 @@ class StatsContainer extends Component {
     bed_t_rating: 2,
     work_t_rating: 2,
     average_rating: 2,
+    hours: 8,
     showModal: false
   };
 
@@ -47,9 +48,19 @@ class StatsContainer extends Component {
     this.setState({ showModal: true });
   };
 
+  validateData = () => {
+    return (
+      moment(this.state.startDate).isBefore(this.state.endDate) &&
+      this.state.hours > 0 &&
+      this.state.bed_t_rating &&
+      this.state.work_t_rating &&
+      this.state.average_rating
+    );
+  };
+
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addNewSession({
+    let newSession = {
       startDate: moment(this.state.startDate, "YYYY-MM-DD HH:mm").format(
         "YYYY-MM-DD HH:mm"
       ),
@@ -62,7 +73,9 @@ class StatsContainer extends Component {
       bed_t_rating: this.state.bed_t_rating,
       work_t_rating: this.state.work_t_rating,
       average_rating: this.state.average_rating
-    });
+    };
+
+    this.props.addNewSession(newSession);
     this.setState({ showModal: false });
     this.props.getSleepData();
   };
@@ -487,7 +500,11 @@ class StatsContainer extends Component {
             <Button variant="secondary" onClick={this.handleCloseModal}>
               Back
             </Button>
-            <Button variant="primary" onClick={this.handleSubmit}>
+            <Button
+              variant="primary"
+              onClick={this.handleSubmit}
+              disabled={!this.validateData()}
+            >
               Save
             </Button>
           </Modal.Footer>
