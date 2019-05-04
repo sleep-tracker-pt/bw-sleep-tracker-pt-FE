@@ -175,7 +175,7 @@ export class UpdateUser extends Component {
               <LabelP>Current Password</LabelP>
               <Input 
                 type="password"
-                name="current password"
+                name="checkpassword"
                 value={this.state.checkpassword}
                 onChange={this.inputHandler}
                 placeholder="current password"
