@@ -4,11 +4,14 @@ import moment from "moment";
 import DatePicker from "react-date-picker";
 import styled from "styled-components";
 import {updateUser} from "../actions/";
+import account from "../img/account.svg";
 
 const AccountPage = styled.div `
 margin: 50px auto;
-width: 500px;
-height: 500px;
+width: 60%;
+${'' /* height: 500px; */}
+text-align: center;
+background: rgba(211, 220, 227, 0.5);
 `;
 
 const UserDiv = styled.div `
@@ -19,7 +22,9 @@ const UserName = styled.h3 ``;
 
 const Bday = styled.h4 ``;
 
-const BdayP = styled.p ``;
+const BdayP = styled.p `
+
+`;
 
 const UpdateForm = styled.form ``;
 
@@ -36,7 +41,12 @@ const UpdateButton = styled.button ``;
 
 const UserDisplay = styled.div `
 margin: 50px auto;
+width: 60%;
+${'' /* height: 300px; */}
+background: rgba(211, 220, 227, 0.8);
 `;
+
+const ImgDiv = styled.div ``;
 
 
 
@@ -88,7 +98,11 @@ export class UpdateUser extends Component {
       
       if (this.state.clicked) {
         return (
+       
           <AccountPage>
+           <ImgDiv>
+          <img src={account} width="50%"/>
+        </ImgDiv>
             <UserDiv>
               <UserName>Username:{this.props.userData.username}</UserName>
               <Bday>Birthday: {this.props.userData.birthDate}</Bday>
