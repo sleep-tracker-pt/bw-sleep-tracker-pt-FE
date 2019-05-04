@@ -3,14 +3,10 @@ import { connect } from "react-redux";
 import moment from "moment";
 import DatePicker from "react-date-picker";
 import styled from "styled-components";
-
 import {updateUser} from "../actions/";
 import { logout } from "../actions/";
-
 import account from "../img/account.svg";
 
-
-import { logout, updateUser } from "../actions/";
 const AccountPage = styled.div `
 margin: 50px auto;
 width: 70%;
@@ -19,15 +15,9 @@ text-align: center;
 background: rgba(211, 220, 227, 0.7);
 `;
 
-
-const AccountPage = styled.div`
-  margin: 50px auto;
-  width: 60%;
-  ${"" /* height: 500px; */}
-  text-align: center;
-  background: rgba(211, 220, 227, 0.5);
+const UserDiv = styled.div `
+margin: 50px auto;
 `;
-
 
 const UserName = styled.h3 `
 margin: 20px;
@@ -53,9 +43,7 @@ font-weight: 400;
 const UpdateForm = styled.form ``;
 
 
-
-const BdayP = styled.p``;
-
+const DateDiv = styled.div ``;
 
 const Input = styled.input `
   width: 90%;
@@ -94,23 +82,10 @@ background: rgba(211, 220, 227, 0.7);
 const ImgDiv = styled.div ``;
 
 
-const NewPasswordInput = styled.input``;
 
-const DateDiv = styled.div``;
 
-const CurrentPassword = styled.input``;
 
-const ChangeButton = styled.button``;
-const UpdateButton = styled.button``;
 
-const UserDisplay = styled.div`
-  margin: 50px auto;
-  width: 60%;
-  ${"" /* height: 300px; */}
-  background: rgba(211, 220, 227, 0.8);
-`;
-
-const ImgDiv = styled.div``;
 
 export class UpdateUser extends Component {
   state = {
@@ -149,7 +124,6 @@ export class UpdateUser extends Component {
     alert("user info has been updated, please login again to continue");
   };
 
-
     updateOpener = () => {
       this.setState({...this.state, clicked: true});
     }
@@ -182,16 +156,13 @@ export class UpdateUser extends Component {
 
               <LabelP>New Password</LabelP>
               <Input 
-
               type="password"
               name="password"
               value={this.state.password}
               onChange={this.inputHandler}
               placeholder="new password"
-
               />
             <LabelP>Please enter your Birthdate:</LabelP>
-
 
             <DateDiv>
               <DatePicker
@@ -199,7 +170,6 @@ export class UpdateUser extends Component {
                 value={this.state.birthDate}
                 clearIcon={null}
               />
-
               </DateDiv>
 
               <LabelP>Current Password</LabelP>
@@ -229,7 +199,7 @@ export class UpdateUser extends Component {
       }
     }
   }
-}
+
 
 const mapStateToProps = state => {
   return {
