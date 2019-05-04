@@ -112,8 +112,6 @@ class RecommendedHours extends Component {
 }
 const mapStateToProps = state => {
   return {
-    sleepData: state.sleepData,
-    transformedSleepData: state.transformedSleepData,
     filteredSleepData: state.filteredSleepData,
     userData: state.userData
   };
