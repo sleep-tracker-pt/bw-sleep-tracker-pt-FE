@@ -2,8 +2,57 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import DatePicker from "react-date-picker";
+import styled from "styled-components";
+import {updateUser} from "../actions/";
+import account from "../img/account.svg";
 
-import { updateUser } from "../actions/";
+const AccountPage = styled.div `
+margin: 50px auto;
+width: 60%;
+${'' /* height: 500px; */}
+text-align: center;
+background: rgba(211, 220, 227, 0.5);
+`;
+
+const UserDiv = styled.div `
+margin: 50px auto;
+`;
+
+const UserName = styled.h3 ``;
+
+const Bday = styled.h4 ``;
+
+const BdayP = styled.p `
+
+`;
+
+const UpdateForm = styled.form ``;
+
+const NameInput = styled.input ``;
+
+const NewPasswordInput = styled.input ``;
+
+const DateDiv = styled.div ``;
+
+const CurrentPassword = styled.input ``;
+
+const ChangeButton = styled.button ``;
+const UpdateButton = styled.button ``;
+
+const UserDisplay = styled.div `
+margin: 50px auto;
+width: 60%;
+${'' /* height: 300px; */}
+background: rgba(211, 220, 227, 0.8);
+`;
+
+const ImgDiv = styled.div ``;
+
+
+
+
+
+
 
 export class UpdateUser extends Component {
   state = {
@@ -39,72 +88,77 @@ export class UpdateUser extends Component {
     this.props.history.push("/login");
   };
 
-  updateOpener = () => {
-    this.setState({ ...this.state, clicked: true });
-  };
-  handleChange = date => {
-    this.setState({ birthDate: date });
-  };
-  render() {
-    if (this.state.clicked) {
-      return (
-        <div>
-          <div>
-            <h3>Username:{this.props.userData.username}</h3>
-            <h4>Birthday: {this.props.userData.birthDate}</h4>
-          </div>
+    updateOpener = () => {
+      this.setState({...this.state, clicked: true});
+    }
+    handleChange = date => {
+      this.setState({ birthDate: date });
+    };
+    render() {
+      
+      if (this.state.clicked) {
+        return (
+       
+          <AccountPage>
+           <ImgDiv>
+          <img src={account} width="50%"/>
+        </ImgDiv>
+            <UserDiv>
+              <UserName>Username:{this.props.userData.username}</UserName>
+              <Bday>Birthday: {this.props.userData.birthDate}</Bday>
+            </UserDiv>
 
-          <form onSubmit={this.updateHandler}>
-            <input
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={this.inputHandler}
-              placeholder="new username"
-            />
+            <UpdateForm onSubmit={this.updateHandler}>
 
-            <input
+              <NameInput 
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.inputHandler}
+                placeholder="new username"
+              />
+
+              <NewPasswordInput 
               type="password"
               name="password"
               value={this.state.password}
               onChange={this.inputHandler}
               placeholder="new password"
-            />
-            <div>Please enter your Birthdate:</div>
+              />
+            <BdayP>Please enter your Birthdate:</BdayP>
 
-            <div>
+            <DateDiv>
               <DatePicker
                 onChange={this.handleChange}
                 value={this.state.birthDate}
                 clearIcon={null}
               />
-            </div>
+              </DateDiv>
 
-            <input
-              type="password"
-              name="checkpassword"
-              value={this.state.checkpassword}
-              onChange={this.inputHandler}
-              placeholder="current password"
-            />
-            <button type="submit">Update Changes</button>
-          </form>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h3>Username:{this.props.userData.username}</h3>
-          {/* <h4>current password:{this.props.userData.password}</h4> */}
-          <h5>Birthday: {this.props.userData.birthdate}</h5>
-          <button onClick={this.updateOpener}>
-            Update {this.props.userData.username}
-          </button>
-        </div>
-      );
+              <CurrentPassword 
+                type="password"
+                name="current password"
+                value={this.state.checkpassword}
+                onChange={this.inputHandler}
+                placeholder="current password"
+              />
+              <ChangeButton type="submit">Update Changes</ChangeButton>
+
+            </UpdateForm>
+          </AccountPage>
+          );
+      } else {
+        return (
+          <UserDisplay>
+             <UserName>Username:{this.props.userData.username}</UserName>
+              <Bday>Birthday: {this.props.userData.birthdate}</Bday>
+          <UpdateButton onClick={this.updateOpener}>Update {this.props.userData.username}</UpdateButton>
+          </UserDisplay>
+        );
+      }
     }
   }
-}
+
 
 const mapStateToProps = state => {
   return {
