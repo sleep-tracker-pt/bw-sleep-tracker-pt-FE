@@ -4,7 +4,7 @@ import "./App.css";
 import HomeContainer from "./components/HomeContainer";
 import NavBar from "./components/NavBar.js";
 import LoginPage from "./components/LoginPage";
-import StatsContainer from "./components/StatsContainer";
+import EditUser from "./components/UpdateUser";
 
 import { Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
@@ -28,9 +28,9 @@ function App() {
         <div>
           <PrivateRoute exact path="/home" component={HomeContainer} />
         </div>
-        {/* <div>
-          <PrivateRoute path="/stats" component={StatsContainer} />
-        </div> */}
+        <div>
+          <PrivateRoute path="/account" component={EditUser} />
+        </div>
       </div>
     </div>
   );

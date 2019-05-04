@@ -59,6 +59,42 @@ export const addUser = newUser => dispatch => {
     });
 };
 
+
+export const UPDATE_USER = "UPDATE_USER"
+export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
+export const updateUser = () => dispatch => {
+  dispatch({
+    type: GET_USERDATA,
+  
+  });
+  return axios
+  .post(
+    `https://sleeptrack.herokuapp.com/api/user/${localStorage.getItem("userId")}`,
+    {headers: { authorize: localStorage.getItem("") }}
+    )
+    .then(res => {
+      dispatch({
+        type: UPDATE_USER,
+        payload: {
+          username: res.data.username,
+          password: res.data.password,
+          birthdate: res.data.birthdate,
+          checkpassword: res.data.checkpassword
+        }
+      });
+    })
+    .catch(err => {
+      alert("something went wrong please try again");
+      dispatch({
+        type: UPDATE_USER_FAILURE,
+        payload: err
+      });
+    });
+
+    
+}
+
+
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_FETCHING = "GET_USERS_FETCHING";
 export const GET_USERS_FAILURE = "GET_USERS_FAILURE";

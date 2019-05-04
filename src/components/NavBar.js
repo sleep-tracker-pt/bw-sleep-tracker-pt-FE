@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {logout} from '../actions/';
 import styled from 'styled-components';
-import LogoMain from '../img/Logo-main.png';
+import logo from '../img/logo.png';
 import  '../index.css';
 
 
@@ -76,12 +76,15 @@ class NavBar extends React.Component {
           return (
           <Nav>
             <NavContainer>
-              <Link to="/Home" >
-                <img src={LogoMain}  width="40px" height="40px" />
+              <Link to="/home" >
+                <img src={logo}  width="40px" height="40px" />
               </Link>
               <NavRight>
                   <NavItem>
-                  <Link  to="/Home">Home</Link>
+                  <Link  to="/home">Home</Link>
+                  </NavItem>
+                  <NavItem>
+                  <Link  to="/account">Account</Link>
                   </NavItem>
                   <NavItem>
                   <a  href="/" onClick={this.handleLogout}>Logout</a>
@@ -94,12 +97,12 @@ class NavBar extends React.Component {
           return (
             <Nav>
             <NavContainer>
-              <Link to="/Home" >
-                <img src={LogoMain}  width="40px" height="40px" />
+              <Link to="/home" >
+                <img src={logo}  width="40px" height="40px" />
               </Link>
               <NavRight>
                   <NavItem>
-                  <Link  to="/Home">Home</Link>
+                  <Link  to="/home">Home</Link>
                   </NavItem>
                   <NavItem>
                   <Link  to="/login">Login</Link>
