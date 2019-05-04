@@ -293,7 +293,7 @@ class StatsContainer extends Component {
                 name="bed_t_rating"
                 id="mood4"
                 value="4"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.bed_t_rating === "4"}
                 onChange={this.handleCheck}
               />
@@ -302,7 +302,7 @@ class StatsContainer extends Component {
                 name="bed_t_rating"
                 id="mood3"
                 value="3"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.bed_t_rating === "3"}
                 onChange={this.handleCheck}
               />
@@ -311,7 +311,7 @@ class StatsContainer extends Component {
                 name="bed_t_rating"
                 id="mood2"
                 value="2"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.bed_t_rating === "2"}
                 onChange={this.handleCheck}
               />
@@ -320,7 +320,7 @@ class StatsContainer extends Component {
                 name="bed_t_rating"
                 id="mood1"
                 value="1"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.bed_t_rating === "1"}
                 onChange={this.handleCheck}
               />
@@ -329,7 +329,7 @@ class StatsContainer extends Component {
                 name="work_t_rating"
                 id="mood4work"
                 value="4"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.work_t_rating === "4"}
                 onChange={this.handleCheck}
               />
@@ -338,7 +338,7 @@ class StatsContainer extends Component {
                 name="work_t_rating"
                 id="mood3work"
                 value="3"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.work_t_rating === "3"}
                 onChange={this.handleCheck}
               />
@@ -347,7 +347,7 @@ class StatsContainer extends Component {
                 name="work_t_rating"
                 id="mood2work"
                 value="2"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.work_t_rating === "2"}
                 onChange={this.handleCheck}
               />
@@ -356,7 +356,7 @@ class StatsContainer extends Component {
                 name="work_t_rating"
                 id="mood1work"
                 value="1"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.work_t_rating === "1"}
                 onChange={this.handleCheck}
               />
@@ -365,7 +365,7 @@ class StatsContainer extends Component {
                 name="average_rating"
                 id="mood4avg"
                 value="4"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.average_rating === "4"}
                 onChange={this.handleCheck}
               />
@@ -374,7 +374,7 @@ class StatsContainer extends Component {
                 name="average_rating"
                 id="mood3avg"
                 value="3"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.average_rating === "3"}
                 onChange={this.handleCheck}
               />
@@ -383,7 +383,7 @@ class StatsContainer extends Component {
                 name="average_rating"
                 id="mood2avg"
                 value="2"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.average_rating === "2"}
                 onChange={this.handleCheck}
               />
@@ -392,50 +392,98 @@ class StatsContainer extends Component {
                 name="average_rating"
                 id="mood1avg"
                 value="1"
-                class="input-hidden"
+                className="input-hidden"
                 checked={this.state.average_rating === "1"}
                 onChange={this.handleCheck}
               />
               <p>bedtime mood:</p>
               <label for="mood4">
-                <i class="far fa-grin-beam fa-4x" />
+                {this.state.bed_t_rating === "4" ? (
+                  <i className="far fa-grin-beam fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin-beam fa-4x" />
+                )}
               </label>
               <label for="mood3">
-                <i class="far fa-grin fa-4x" />
+                {this.state.bed_t_rating === "3" ? (
+                  <i className="far fa-grin fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin fa-4x" />
+                )}
               </label>
               <label for="mood2">
-                <i class="far fa-frown-open fa-4x" />
+                {this.state.bed_t_rating === "2" ? (
+                  <i className="far fa-frown-open fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-frown-open fa-4x" />
+                )}
               </label>
               <label for="mood1">
-                <i class="far fa-grimace fa-4x" />
+                {this.state.bed_t_rating === "1" ? (
+                  <i className="far fa-grimace fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grimace fa-4x" />
+                )}
               </label>
 
               <p>work mood:</p>
               <label for="mood4work">
-                <i class="far fa-grin-beam fa-4x" />
+                {this.state.work_t_rating === "4" ? (
+                  <i className="far fa-grin-beam fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin-beam fa-4x" />
+                )}
               </label>
               <label for="mood3work">
-                <i class="far fa-grin fa-4x" />
+                {this.state.work_t_rating === "3" ? (
+                  <i className="far fa-grin fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin fa-4x" />
+                )}
               </label>
               <label for="mood2work">
-                <i class="far fa-frown-open fa-4x" />
+                {this.state.work_t_rating === "2" ? (
+                  <i className="far fa-frown-open fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-frown-open fa-4x" />
+                )}
               </label>
               <label for="mood1work">
-                <i class="far fa-grimace fa-4x" />
+                {this.state.work_t_rating === "1" ? (
+                  <i className="far fa-grimace fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grimace fa-4x" />
+                )}
               </label>
 
               <p>average mood:</p>
               <label for="mood4avg">
-                <i class="far fa-grin-beam fa-4x" />
+                {this.state.average_rating === "4" ? (
+                  <i className="far fa-grin-beam fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin-beam fa-4x" />
+                )}
               </label>
               <label for="mood3avg">
-                <i class="far fa-grin fa-4x" />
+                {this.state.average_rating === "3" ? (
+                  <i className="far fa-grin fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grin fa-4x" />
+                )}
               </label>
               <label for="mood2avg">
-                <i class="far fa-frown-open fa-4x" />
+                {this.state.average_rating === "2" ? (
+                  <i className="far fa-frown-open fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-frown-open fa-4x" />
+                )}
               </label>
               <label for="mood1avg">
-                <i class="far fa-grimace fa-4x" />
+                {this.state.average_rating === "1" ? (
+                  <i className="far fa-grimace fa-4x fa-spin" />
+                ) : (
+                  <i className="far fa-grimace fa-4x" />
+                )}
               </label>
             </form>
           </Modal.Body>
