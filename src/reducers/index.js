@@ -19,7 +19,9 @@ import {
   LOGOUT,
   GET_USERDATA,
   UPDATE_USER,
-  UPDATE_USER_FAILURE
+  UPDATE_USER_FAILURE,
+  CHECKLOGIN_SUCCESS,
+  CHECKLOGIN_FAILURE
 } from "../actions";
 
 import moment from "moment";
@@ -201,6 +203,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         isSending: false,
         err: action.payload
+      };
+    case CHECKLOGIN_SUCCESS:
+      return {
+        ...state,
+        loggingIn: true
+      };
+    case CHECKLOGIN_FAILURE:
+      return {
+        ...state,
+        loggingIn: false
       };
 
     default:
