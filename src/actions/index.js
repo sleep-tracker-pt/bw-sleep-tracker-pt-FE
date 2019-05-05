@@ -202,3 +202,14 @@ export const addNewSession = sleepSession => dispatch => {
       dispatch({ type: SEND_SLEEPSESSION_FAILURE, payload: err });
     });
 };
+
+export const CHECKLOGIN_SUCCESS= "CHECKLOGIN_SUCCESS";
+export const CHECKLOGIN_FAILURE = "CHECKLOGIN_FAILURE";
+
+export const checkIfLoggedIn = () => dispatch => { 
+  if (localStorage.getItem("token")) { 
+    dispatch({ type: CHECKLOGIN_SUCCESS});
+  } else { 
+    dispatch({ type: CHECKLOGIN_FAILURE});
+  }
+}

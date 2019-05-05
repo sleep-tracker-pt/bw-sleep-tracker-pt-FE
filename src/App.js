@@ -19,6 +19,9 @@ function App() {
           <NavBar />
         </div>
         <div>
+        <Route exact path="/" component={LoginPage} />
+        </div>
+        <div>
           <Route path="/login" component={LoginPage} />
         </div>
           <div>
