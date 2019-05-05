@@ -66,12 +66,11 @@ class WeekInReview extends Component {
     work_t_rating: 2,
     average_rating: 2,
     hours: 8,
-    showModal: false,
-    filteredSleepData: this.props.filteredSleepData
+    showModal: false
   };
 
-  componentWillUnmount() {
-    this.setState({ filteredSleepData: [] });
+  componentDidMount() {
+    getSleepData();
   }
 
   handleCloseModal = () => {
@@ -111,10 +110,8 @@ class WeekInReview extends Component {
 
     this.props.addNewSession(newSession);
     this.setState({
-      showModal: false,
-      filteredSleepData: this.props.filteredSleepData
+      showModal: false
     });
-    this.props.getSleepData();
   };
 
   handleChangeStart = date => {
@@ -137,7 +134,7 @@ class WeekInReview extends Component {
         <AreaChart
           width={400}
           height={200}
-          data={this.state.filteredSleepData}
+          data={this.props.filteredSleepData}
           syncId="anyId"
           margin={{
             top: 10,
@@ -161,7 +158,7 @@ class WeekInReview extends Component {
         <AreaChart
           width={400}
           height={200}
-          data={this.state.filteredSleepData}
+          data={this.props.filteredSleepData}
           syncId="anyId"
           margin={{
             top: 10,
