@@ -12,11 +12,13 @@ const Nav = styled.nav `
   height: 50px;
   background: rgba(211, 220, 227, .5);
   backdrop-filter: blur(80px);
-  margin: 0 auto;
+  ${'' /* margin: 0 auto; */}
   padding: 5px;
 `;
 
 const NavContainer = styled.div `
+  ${'' /* width: 100%; */}
+
  display: flex;
  justify-content: space-between;
  margin-left: 10px;
