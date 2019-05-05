@@ -120,7 +120,7 @@ class RecommendedHours extends Component {
           return `This week, you've averaged ${averageHours} hours of sleep per night. This means you are behind by ${range1 -
             averageHours} to ${range2 -
             averageHours} hours of sleep per night!`;
-        case averageHours > range1 && averageHours < range2:
+        case averageHours >= range1 && averageHours <= range2:
           return `This week, you've averaged ${averageHours} hours of sleep per night. This means you are getting exactly the amount of sleep you're supposed to! Great job 😇`;
         default:
           return "error";

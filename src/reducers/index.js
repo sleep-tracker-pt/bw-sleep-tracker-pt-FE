@@ -2,8 +2,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FETCHING,
   LOGIN_FAILURE,
-  ADD_USER_START, 
-  ADD_USER_SUCCESS, 
+  ADD_USER_START,
+  ADD_USER_SUCCESS,
   ADD_USER_FAILURE,
   GET_USERS_SUCCESS,
   GET_USERS_FETCHING,
@@ -19,11 +19,12 @@ import {
   LOGOUT,
   GET_USERDATA,
   UPDATE_USER,
-  UPDATE_USER_FAILURE
-  
+  UPDATE_USER_FAILURE,
+  CHECKLOGIN_SUCCESS,
+  CHECKLOGIN_FAILURE
 } from "../actions";
 
-// import {browserHistory} from 'react-router-dom';
+import moment from "moment";
 
 const initialState = {
   isSending: true,
@@ -35,13 +36,29 @@ const initialState = {
   transformedSleepData: [],
   filteredSleepData: [],
   postResponse: [],
-  userData: [],
+  userData: []
 };
+
+const emojify = value => {
+  switch (value) {
+    case "1":
+      return "🙁";
+    case "2":
+      return "😕";
+    case "3":
+      return "🙂";
+    case "4":
+      return "😁";
+    default:
+      return value;
+  }
+};
+const dateTransform = date =>
+  moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGOUT:
-      
       return {
         ...state,
         loggingIn: false,
@@ -74,7 +91,7 @@ const reducer = (state = initialState, action) => {
     case GET_USERS_FETCHING:
       return {
         ...state,
-        isFetching: true,
+        isFetching: true
       };
     case GET_USERS_FAILURE:
       return {
@@ -83,7 +100,7 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
 
-      case ADD_USER_START:
+    case ADD_USER_START:
       return {
         ...state,
         isSending: true,
@@ -93,16 +110,16 @@ const reducer = (state = initialState, action) => {
     case ADD_USER_SUCCESS:
       return {
         ...state,
-        isSending: false,
+        isSending: false
       };
 
-      case ADD_USER_FAILURE:
-        return {
-          ...state,
-          isSending: false,
-          err: action.payload,
-        };
-      case GET_SLEEPDATA_SUCCESS:
+    case ADD_USER_FAILURE:
+      return {
+        ...state,
+        isSending: false,
+        err: action.payload
+      };
+    case GET_SLEEPDATA_SUCCESS:
       return {
         ...state,
         isFetching: false,
@@ -111,7 +128,7 @@ const reducer = (state = initialState, action) => {
     case GET_SLEEPDATA_FETCHING:
       return {
         ...state,
-        isFetching: true,
+        isFetching: true
       };
     case GET_SLEEPDATA_FAILURE:
       return {
@@ -119,7 +136,7 @@ const reducer = (state = initialState, action) => {
         gettingUsers: false,
         error: action.payload
       };
-      case SEND_SLEEPSESSION_SUCCESS:
+    case SEND_SLEEPSESSION_SUCCESS:
       return {
         ...state,
         isSending: false,
@@ -128,7 +145,7 @@ const reducer = (state = initialState, action) => {
     case SLEEPSESSION_SENDING:
       return {
         ...state,
-        isSending: true,
+        isSending: true
       };
     case SEND_SLEEPSESSION_FAILURE:
       return {
@@ -136,35 +153,68 @@ const reducer = (state = initialState, action) => {
         isSending: false,
         error: action.payload
       };
-      case TRANSFORM_SLEEPDATA_TO_GRAPH:
+    case TRANSFORM_SLEEPDATA_TO_GRAPH:
       return {
         ...state,
         transformedSleepData: action.payload
+          .map(item => ({
+            ...item,
+            emojiBed: emojify(item.bed_t_rating),
+            emojiWork: emojify(item.work_t_rating),
+            emojiAverage: emojify(item.average_rating),
+            startDate: dateTransform(item.start)
+          }))
+          .reverse()
       };
-      case APPLY_RECENT_FILTER: 
-      return { 
+    case APPLY_RECENT_FILTER:
+      return {
         ...state,
         filteredSleepData: action.payload
-      }
-      case GET_USERDATA:
-      return { 
+          .map(item => ({
+            ...item,
+            emojiBed: emojify(item.bed_t_rating),
+            emojiWork: emojify(item.work_t_rating),
+            emojiAverage: emojify(item.average_rating),
+            startDate: dateTransform(item.start)
+          }))
+          .reverse()
+          .filter(item => {
+            return (
+              moment(item.startDate, "YYYY-MM-DD").isAfter(
+                moment().subtract(7, "days")
+              ) && moment(item.startDate, "YYYY-MM-DD").isBefore(moment())
+            );
+          })
+      };
+    case GET_USERDATA:
+      return {
         ...state,
         userData: action.payload,
         isUpdating: false
-      }
-      case UPDATE_USER:
+      };
+    case UPDATE_USER:
       return {
         ...state,
         userData: action.payload,
-        isUpdating: false,
-      }
-      case UPDATE_USER_FAILURE:
+        isUpdating: false
+      };
+    case UPDATE_USER_FAILURE:
       return {
         ...state,
         isSending: false,
-        err: action.payload,
+        err: action.payload
+      };
+    case CHECKLOGIN_SUCCESS:
+      return {
+        ...state,
+        loggingIn: true
+      };
+    case CHECKLOGIN_FAILURE:
+      return {
+        ...state,
+        loggingIn: false
+      };
 
-      }
     default:
       return state;
   }

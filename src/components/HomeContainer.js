@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import BlogAggregator from "./BlogAggregator";
 import HomeMoodChart from "./HomeMoodChart";
 import StatsContainer from "./StatsContainer";
@@ -6,7 +7,7 @@ import styled from "styled-components";
 import "../index.css";
 import read from "../img/read.svg";
 import sleeproutine from "../img/sleeproutine.png";
-import mood from "../img/mood.svg"
+import mood from "../img/mood.svg";
 import RecommendedHours from "./RecommendedHours";
 import NightlyStats from "./NightlyStats";
 
@@ -30,17 +31,17 @@ ${'' /* margin: 0; */}
 
 
 `;
-const HeaderGroup= styled.div `
-text-align: center;
+const HeaderGroup = styled.div`
+  text-align: center;
 `;
 
-const Title= styled.h3 `
-font-family: 'Open Sans', sans-serif; 
-${'' /* font-weight: 200; */}
-color: #fff;
-font-size: 30px;
-margin: 10px;
-text-align: center;
+const Title = styled.h3`
+  font-family: "Open Sans", sans-serif;
+  ${"" /* font-weight: 200; */}
+  color: #fff;
+  font-size: 30px;
+  margin: 10px;
+  text-align: center;
 `;
 
 
@@ -66,9 +67,9 @@ grid-row: row 10/ span 2;
 
 `;
 
-const ImgDiv = styled.div `
-text-align: center;
-margin: 10px;
+const ImgDiv = styled.div`
+  text-align: center;
+  margin: 10px;
 `;
 
 // const ImgTipsDiv = styled.div `
@@ -157,54 +158,64 @@ img {
 }
 }
 `;
-const HomeContainer = () => {
-  return (
+class HomeContainer extends Component {
+  
+  componentWillMount() { 
+    this.props.checkIfLoggedIn()
+  }
 
-    <>
-     <HeaderGroup>
-      <Title>Welcome to your SleepTracker Dashboard</Title>
-    </HeaderGroup>
-    <PageDiv>
+  render() {
+    return (
+      <>
+        <HeaderGroup>
+          <Title>Welcome to your SleepTracker Dashboard</Title>
+        </HeaderGroup>
+        <PageDiv>
+          <Grid2Div>
+            <ImgDiv>
+              <img src={mood} width="60%" />
+            </ImgDiv>
+            <h4>How does your mood relate to the number of hours you sleep?</h4>
+            <HomeMoodChart />
+          </Grid2Div>
 
-    <Grid2Div >
-      <ImgDiv>
-        <img src={mood} width="60%" />
-      </ImgDiv>
-      <h4>How does your mood relate to the number of hours you sleep?</h4>
-      <HomeMoodChart/>
-    </Grid2Div>
-
-    <Grid3Div> 
-      <StatsContainer/>
-      {/* <ImgTipsDiv>
+          <Grid3Div>
+            <StatsContainer />
+            {/* <ImgTipsDiv>
       <img src={tips} width="89%"/>
       </ImgTipsDiv> */}
-    </Grid3Div>
+          </Grid3Div>
 
-    <Grid4Div>
-      <RecommendedHours/>
-      
-    </Grid4Div>
+          <Grid4Div>
+            <RecommendedHours />
+          </Grid4Div>
 
-    <Grid1Div >
-        <ImgDiv>
-         <img src={read} width="40%"/>
-        </ImgDiv>
-        <BlogAggregator />
-      </Grid1Div>
+          <Grid1Div>
+            <ImgDiv>
+              <img src={read} width="40%" />
+            </ImgDiv>
+            <BlogAggregator />
+          </Grid1Div>
 
-      <Grid5Div>
-        <NightlyStats  />
-        <ImgDiv>
-          <img src={sleeproutine} width="100%" />
-        </ImgDiv>
-    </Grid5Div>
-    </PageDiv>
+          <Grid5Div>
+            <NightlyStats />
+            <ImgDiv>
+              <img src={sleeproutine} width="100%" />
+            </ImgDiv>
+          </Grid5Div>
+        </PageDiv>
+      </>
+    );
+  }
+}
 
-  
-
-    </>
-  );
+const mapStateToProps = state => {
+  return {
+    isloggedIn: state.loggingIn,
+  };
 };
 
-export default HomeContainer;
+export default connect(
+  mapStateToProps,
+  { checkIfLoggedIn}
+)(HomeContainer);
