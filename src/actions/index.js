@@ -5,7 +5,6 @@ export const LOGOUT = "LOGOUT";
 
 export const logout = res => dispatch => {
   localStorage.removeItem("token");
-  // localStorage.removeItem("userId", res.data.id);
   dispatch({ type: LOGOUT });
 };
 
@@ -137,34 +136,9 @@ export const getSleepData = () => dispatch => {
         type: GET_SLEEPDATA_SUCCESS,
         payload: res.data.sleepData
       });
-      const emojify = value => {
-        switch (value) {
-          case "1":
-            return "🙁";
-          case "2":
-            return "😕";
-          case "3":
-            return "🙂";
-          case "4":
-            return "😁";
-          default:
-            return value;
-        }
-      };
-      const dateTransform = date =>
-        moment(date, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
-      const result = res.data.sleepData
-        .map(item => ({
-          ...item,
-          emojiBed: emojify(item.bed_t_rating),
-          emojiWork: emojify(item.work_t_rating),
-          emojiAverage: emojify(item.average_rating),
-          startDate: dateTransform(item.start)
-        }))
-        .reverse();
       dispatch({
         type: TRANSFORM_SLEEPDATA_TO_GRAPH,
-        payload: result
+        payload: res.data.sleepData
       });
       dispatch({
         type: UPDATE_USER,
@@ -174,16 +148,9 @@ export const getSleepData = () => dispatch => {
           birthdate: res.data.birthdate
         }
       });
-      const pastWeek = result.filter(item => {
-        return (
-          moment(item.startDate, "YYYY-MM-DD").isAfter(
-            moment().subtract(7, "days")
-          ) && moment(item.startDate, "YYYY-MM-DD").isBefore(moment())
-        );
-      });
       dispatch({
         type: APPLY_RECENT_FILTER,
-        payload: pastWeek
+        payload: res.data.sleepData
       });
     })
     .catch(err => {
@@ -221,6 +188,10 @@ export const addNewSession = sleepSession => dispatch => {
       dispatch({
         type: SEND_SLEEPSESSION_SUCCESS,
         payload: res.data
+      });
+      dispatch({
+        type: APPLY_RECENT_FILTER,
+        payload: [...res.data]
       });
     })
     .catch(err => {
