@@ -4,6 +4,7 @@ import BlogAggregator from "./BlogAggregator";
 import HomeMoodChart from "./HomeMoodChart";
 import StatsContainer from "./StatsContainer";
 import styled from "styled-components";
+import { checkIfLoggedIn} from "../actions/"
 import "../index.css";
 import read from "../img/read.svg";
 import sleeproutine from "../img/sleeproutine.png";
