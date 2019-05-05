@@ -165,7 +165,6 @@ export const getSleepData = () => dispatch => {
 export const SEND_SLEEPSESSION_SUCCESS = "SEND_SLEEPSESSION_SUCCESS";
 export const SLEEPSESSION_SENDING = "SLEEPSESSION_SENDING";
 export const SEND_SLEEPSESSION_FAILURE = "SEND_SLEEPSESSION_FAILURE";
-export const ADD_TRANSFORMED_SESSION = "ADD_TRANSFORMED_SESSION";
 
 export const addNewSession = sleepSession => dispatch => {
   dispatch({ type: SLEEPSESSION_SENDING });
@@ -189,6 +188,10 @@ export const addNewSession = sleepSession => dispatch => {
       dispatch({
         type: SEND_SLEEPSESSION_SUCCESS,
         payload: res.data
+      });
+      dispatch({
+        type: APPLY_RECENT_FILTER,
+        payload: [...res.data]
       });
     })
     .catch(err => {
