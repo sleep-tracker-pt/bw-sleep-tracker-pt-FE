@@ -215,7 +215,7 @@ class RecommendedHours extends Component {
           {this.props.transformedSleepData.length > 0 && (
             <p>
               Your all time average for hours of sleep is{" "}
-              <h4>{this.getAverageHours(this.props.transformedSleepData)}</h4>. Your all
+              {this.getAverageHours(this.props.transformedSleepData)}. Your all
               time average mood score is{" "}
               {this.emojify(
                 Math.round(this.getAverageMood(this.props.transformedSleepData))
