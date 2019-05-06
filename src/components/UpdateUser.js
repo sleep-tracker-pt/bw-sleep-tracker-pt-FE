@@ -141,7 +141,7 @@ export class UpdateUser extends Component {
         </ImgDiv>
             <UserDiv>
               <UserName>Username:<br/>{this.props.userData.username}</UserName>
-              <Bday>Birthday: {this.props.userData.birthdate}</Bday>
+              <Bday>Birthday: {moment(this.props.userData.birthdate).format("MMM Do YYYY")}</Bday>
             </UserDiv>
 
             <UpdateForm onSubmit={this.updateHandler}>
@@ -192,7 +192,7 @@ export class UpdateUser extends Component {
           <img src={account} width="50%"/>
         </ImgDiv>
              <UserName>Username:<br/>{this.props.userData.username}</UserName>
-              <Bday>Birthday: {this.props.userData.birthdate}</Bday>
+              <Bday>Birthday: {moment(this.props.userData.birthdate).format("MMM Do YYYY")}</Bday>
           <Button onClick={this.updateOpener}>Update {this.props.userData.username}</Button>
           </UserDisplay>
         );
