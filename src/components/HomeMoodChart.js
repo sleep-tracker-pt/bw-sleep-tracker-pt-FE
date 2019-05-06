@@ -29,7 +29,7 @@ class HomeMoodChart extends Component {
     return (
       <StyledJumbotron>
         <ScatterChart
-          width={450}
+          width={300}
           height={300}
           margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
           fillOpacity="1"
