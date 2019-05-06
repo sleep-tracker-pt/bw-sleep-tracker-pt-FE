@@ -4,6 +4,7 @@ import moment from "moment";
 import "../index";
 import stats from "../img/stats.svg";
 import styled from "styled-components";
+import { getSleepData } from "../actions";
 const HoursDiv = styled.div``;
 
 const HeadHours = styled.h1`
@@ -65,6 +66,10 @@ class RecommendedHours extends Component {
         return value;
     }
   };
+
+  componentWillMount(){
+    this.props.getSleepData();
+  }
 
   calculateHours = date => {
     switch (true) {
@@ -252,5 +257,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { getSleepData }
 )(RecommendedHours);
