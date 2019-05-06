@@ -203,13 +203,42 @@ export const addNewSession = sleepSession => dispatch => {
     });
 };
 
-export const CHECKLOGIN_SUCCESS= "CHECKLOGIN_SUCCESS";
+export const CHECKLOGIN_SUCCESS = "CHECKLOGIN_SUCCESS";
 export const CHECKLOGIN_FAILURE = "CHECKLOGIN_FAILURE";
 
-export const checkIfLoggedIn = () => dispatch => { 
-  if (localStorage.getItem("token")) { 
-    dispatch({ type: CHECKLOGIN_SUCCESS});
-  } else { 
-    dispatch({ type: CHECKLOGIN_FAILURE});
+export const checkIfLoggedIn = () => dispatch => {
+  if (localStorage.getItem("token")) {
+    dispatch({ type: CHECKLOGIN_SUCCESS });
+  } else {
+    dispatch({ type: CHECKLOGIN_FAILURE });
   }
-}
+};
+
+export const EDIT_SESSION_SUCCESS = "EDIT_SESSION_SUCCESS";
+export const EDIT_SESSION_FAILURE = "EDIT_SESSION_FAILURE";
+
+export const editSession = (id, updatedSession) => dispatch => {
+  return axios
+    .put(
+      `https://sleeptrack.herokuapp.com/api/sleepData/${id}`,
+      updatedSession,
+      { headers: { authorize: localStorage.getItem("token") } }
+    )
+    .then(res => {
+      dispatch({
+        type: EDIT_SESSION_SUCCESS,
+        payload: [...res.data]
+      });
+      dispatch({
+        type: APPLY_RECENT_FILTER,
+        payload: [...res.data]
+      });
+    })
+    .catch(err => {
+      if (err.status === 401) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+      }
+      dispatch({ type: EDIT_SESSION_FAILURE, payload: err });
+    });
+};

@@ -19,7 +19,7 @@ class NightlyStat extends Component {
         <p>at work: {this.props.filteredSleepData.emojiWork}</p>
         <p>average: {this.props.filteredSleepData.emojiAverage}</p>
         <Button variant="outline-light" size="sm" block>
-          Edit
+          Edit sleep
         </Button>
         <Button variant="outline-danger" size="sm" block>
           Delete
