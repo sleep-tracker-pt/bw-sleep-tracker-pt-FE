@@ -26,17 +26,28 @@ const ImgDiv = styled.div`
 `;
 
 const RecP = styled.p`
-  ${"" /* text-align: center; */}
-
-  font-size: 24px;
+   text-align: center; 
+  line-height: 1.8;
+  font-size: 26px;
   font-weight: 200;
+  margin-top: 30px;
+
+  p{
+    margin-top: 40px;
+  }
 `;
 
 const BorADiv = styled.div`
-  ${"" /* text-align: center; */}
+  text-align: center;
+  margin-top: 30px;
+  line-height: 1.8;
 
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 200;
+
+  p{
+    margin-top: 10px;
+  }
 `;
 
 class RecommendedHours extends Component {
@@ -188,7 +199,7 @@ class RecommendedHours extends Component {
         </YearsDiv>
 
         <ImgDiv>
-          <img src={stats} width="60%" />
+          <img src={stats} width="80%" />
         </ImgDiv>
         <RecP>
           According to the National Sleep Foundation,{" "}
