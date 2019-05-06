@@ -227,7 +227,7 @@ export const editSession = (id, updatedSession) => dispatch => {
     .then(res => {
       dispatch({
         type: EDIT_SESSION_SUCCESS,
-        payload: [...res.data]
+        payload: res.data
       });
       dispatch({
         type: APPLY_RECENT_FILTER,
