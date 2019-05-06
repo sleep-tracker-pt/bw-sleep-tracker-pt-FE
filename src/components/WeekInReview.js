@@ -179,7 +179,7 @@ class WeekInReview extends Component {
           />
         </AreaChart>
 
-        <Button variant="primary" onClick={this.handleShowModal}>
+        <Button variant="outline-light" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
         <StyledModal

@@ -7,7 +7,7 @@ import styled from "styled-components";
 import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 
-import { editSession } from "../actions";
+import { editSession, deleteSession } from "../actions";
 
 import "./StatsComponent.css";
 import "../index.css";
@@ -102,6 +102,11 @@ class NightlyStat extends Component {
     });
   };
 
+  handleDelete = e => {
+    e.preventDefault();
+    this.props.deleteSession(this.props.filteredSleepData.id);
+  };
+
   render() {
     return (
       <div>
@@ -121,7 +126,12 @@ class NightlyStat extends Component {
         >
           Edit sleep
         </Button>
-        <Button variant="outline-danger" size="sm" block>
+        <Button
+          variant="outline-danger"
+          size="sm"
+          onClick={this.handleDelete}
+          block
+        >
           Delete
         </Button>
         <StyledModal
@@ -378,6 +388,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { editSession }
+    { editSession, deleteSession }
   )(NightlyStat)
 );
