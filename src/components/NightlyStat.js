@@ -41,7 +41,7 @@ const SessionForm = styled.form`
 `;
 
 const StatCard = styled.div`
-border: 2px dashed gray;
+border: 1px dashed gray;
 padding-left: 30px;
 padding-right: 30px
 padding-top: 10px;
