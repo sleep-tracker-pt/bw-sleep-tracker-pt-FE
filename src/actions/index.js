@@ -193,6 +193,10 @@ export const addNewSession = sleepSession => dispatch => {
         type: APPLY_RECENT_FILTER,
         payload: [...res.data]
       });
+      dispatch({
+        type: TRANSFORM_SLEEPDATA_TO_GRAPH,
+        payload: [...res.data]
+      });
     })
     .catch(err => {
       if (err.status === 401) {
