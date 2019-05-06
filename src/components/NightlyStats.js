@@ -12,6 +12,7 @@ const NightDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-top: 2%
 `;
 

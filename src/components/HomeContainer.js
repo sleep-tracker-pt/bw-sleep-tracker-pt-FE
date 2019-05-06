@@ -15,16 +15,19 @@ import NightlyStats from "./NightlyStats";
 
 const PageDiv= styled.div `
 display: grid;
-grid-gap: 20px;
-margin: 30px;
-grid-template-columns: repeat(6, [col]  );
+${'' /* width: 80%; */}
+grid-gap: 10px;
+${'' /* margin: 10px; */}
+grid-template-columns: repeat(1, auto  );
 grid-template-rows: repeat(4, [row] auto );
 color: #d3dce3;
 
 @media (max-width: 900px) {
-margin-left: -105px;
+margin-left: 3px;
+${'' /* grid-gap: 10px; */}
 display: grid;
-grid-template-columns: repeat(1, auto );
+${'' /* width: 350px; */}
+grid-template-columns: repeat(auto-fit, 1, auto  );
 ${'' /* grid-template-rows: repeat(8,  ); */}
 grid-gap: 0px;
 ${'' /* margin: 0; */}
@@ -55,8 +58,8 @@ grid-column: col 2 / span 7;
 grid-row: row 3 ;
 
 @media (max-width: 900px) {
-margin-left: 120px;
-width: 70%;
+${'' /* margin-left: 120px; */}
+width: 80%;
 grid-column: col 1 ;
 grid-row: row 8/ span 2;
 }
@@ -90,8 +93,8 @@ text-align: center;
 @media (max-width: 900px) {
 grid-column: col 1 / span 1;
 grid-row: row 5/ span 2;
-margin-left: 120px;
-width: 70%;
+${'' /* margin-left: 120px; */}
+width: 80%;
 
 }
 
@@ -113,8 +116,8 @@ grid-row: row 1 ;
 @media (max-width: 900px) {
 grid-column: col 1 / span 1;
 grid-row: row 3/ span 2;
-margin-left: 120px;
-width: 70%;
+${'' /* margin-left: 120px; */}
+width: 80%;
 
 }
 
@@ -135,8 +138,8 @@ grid-row: row 2;
 @media (max-width: 900px) {
 grid-column: col 1 / span 1;
 grid-row: row 1/ span 2;
-margin-left: 120px;
-width: 70%;
+${'' /* margin-left: 120px; */}
+width: 80%;
 
 }
 
@@ -157,8 +160,8 @@ grid-row: row 1;
 @media (max-width: 900px) {
 grid-column: col 1 / span 1;
 grid-row: row 1/ span 2;
-margin-left: 120px;
-width: 70%;
+${'' /* margin-left: 120px; */}
+width: 80%;
 
 }
 

@@ -141,7 +141,7 @@ class WeekInReview extends Component {
           <h5>Hours of sleep this week</h5>
 
           <AreaChart
-            width={500}
+            width={400}
             height={200}
             data={this.props.filteredSleepData}
             syncId="anyId"
@@ -165,7 +165,7 @@ class WeekInReview extends Component {
           </AreaChart>
           <h5>Mood this week</h5>
           <AreaChart
-            width={500}
+            width={400}
             height={200}
             data={this.props.filteredSleepData}
             syncId="anyId"
