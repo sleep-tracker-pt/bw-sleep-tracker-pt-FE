@@ -23,7 +23,8 @@ import {
   CHECKLOGIN_SUCCESS,
   CHECKLOGIN_FAILURE,
   EDIT_SESSION_SUCCESS,
-  EDIT_SESSION_FAILURE
+  EDIT_SESSION_FAILURE, 
+  EDIT_FILTERED_SESSION
 } from "../actions";
 
 import moment from "moment";
@@ -216,15 +217,29 @@ const reducer = (state = initialState, action) => {
         ...state,
         loggingIn: false
       };
-      case EDIT_SESSION_SUCCESS:
+    case EDIT_SESSION_SUCCESS:
       return {
         ...state,
         sleepData: [...state.sleepData, action.payload]
       };
-      case EDIT_SESSION_FAILURE:
+    case EDIT_SESSION_FAILURE:
       return {
         ...state,
         error: action.payload
+      };
+    case EDIT_FILTERED_SESSION:
+      return {
+        ...state,
+        filteredSleepData: [
+          ...state.sleepData,
+          ...action.payload,
+          {
+            emojiBed: emojify(action.payload.bed_t_rating),
+            emojiWork: emojify(action.payload.work_t_rating),
+            emojiAverage: emojify(action.payload.average_rating),
+            startDate: dateTransform(action.payload.start)
+          }
+        ]
       };
 
     default:

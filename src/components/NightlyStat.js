@@ -46,6 +46,7 @@ class NightlyStat extends Component {
     bed_t_rating: this.props.filteredSleepData.bed_t_rating,
     work_t_rating: this.props.filteredSleepData.work_t_rating,
     average_rating: this.props.filteredSleepData.average_rating,
+    hours: this.props.filteredSleepData.hours,
     showModal: false
   };
 
@@ -72,11 +73,33 @@ class NightlyStat extends Component {
   validateData = () => {
     return (
       moment(this.state.startDate).isBefore(this.state.endDate) &&
-      this.state.hours > 0 &&
       this.state.bed_t_rating &&
       this.state.work_t_rating &&
       this.state.average_rating
     );
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let editedSession = {
+      id: this.props.filteredSleepData.id,
+      userID: Number(localStorage.getItem("userId")),
+      start: moment(this.state.startDate, "YYYY-MM-DD HH:mm").format(
+        "YYYY-MM-DD HH:mm"
+      ),
+      end: moment(this.state.endDate, "YYYY-MM-DD HH:mm").format(
+        "YYYY-MM-DD HH:mm"
+      ),
+      hours: Number(this.state.hours),
+      bed_t_rating: this.state.bed_t_rating,
+      work_t_rating: this.state.work_t_rating,
+      average_rating: this.state.average_rating
+    };
+
+    this.props.editSession(this.props.filteredSleepData.id, editedSession);
+    this.setState({
+      showModal: false
+    });
   };
 
   render() {
@@ -339,7 +362,7 @@ class NightlyStat extends Component {
               onClick={this.handleSubmit}
               disabled={!this.validateData()}
             >
-              Save
+              Submit edits
             </Button>
           </Modal.Footer>
         </StyledModal>
@@ -349,8 +372,7 @@ class NightlyStat extends Component {
 }
 
 const mapStateToProps = state => {
-  return {
-  };
+  return {};
 };
 
 export default withRouter(

@@ -216,6 +216,7 @@ export const checkIfLoggedIn = () => dispatch => {
 
 export const EDIT_SESSION_SUCCESS = "EDIT_SESSION_SUCCESS";
 export const EDIT_SESSION_FAILURE = "EDIT_SESSION_FAILURE";
+export const EDIT_FILTERED_SESSION = "EDIT_FILTERED_SESSION";
 
 export const editSession = (id, updatedSession) => dispatch => {
   return axios
@@ -231,7 +232,7 @@ export const editSession = (id, updatedSession) => dispatch => {
       });
       dispatch({
         type: APPLY_RECENT_FILTER,
-        payload: [...res.data]
+        payload: res.data
       });
     })
     .catch(err => {
