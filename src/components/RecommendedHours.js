@@ -27,13 +27,13 @@ const ImgDiv = styled.div`
 `;
 
 const RecP = styled.p`
-   text-align: center; 
+  text-align: center;
   line-height: 1.8;
   font-size: 26px;
   font-weight: 200;
   margin-top: 30px;
 
-  p{
+  p {
     margin-top: 40px;
   }
 `;
@@ -46,7 +46,7 @@ const BorADiv = styled.div`
   font-size: 26px;
   font-weight: 200;
 
-  p{
+  p {
     margin-top: 10px;
   }
 `;
@@ -67,7 +67,7 @@ class RecommendedHours extends Component {
     }
   };
 
-  componentWillMount(){
+  componentDidMount() {
     this.props.getSleepData();
   }
 
@@ -228,14 +228,18 @@ class RecommendedHours extends Component {
               .
             </p>
           )}
-          {this.getAverageHappySleep(this.props.transformedSleepData) && (
+          {this.props.transformedSleepData
+            .filter(item => item.average_rating === "4")
+            .map(item => item.hours).length > 0 && (
             <p>
               The average number of hours you slept when you said your mood was
               😁 is {this.getAverageHappySleep(this.props.transformedSleepData)}
               .
             </p>
           )}
-          {this.getAverageSadSleep(this.props.transformedSleepData) && (
+          {this.props.transformedSleepData
+            .filter(item => item.average_rating === "1")
+            .map(item => item.hours).length > 0 && (
             <p>
               The average number of hours you slept when you said your mood was
               😬 is {this.getAverageSadSleep(this.props.transformedSleepData)}.
