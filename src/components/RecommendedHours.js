@@ -122,10 +122,11 @@ class RecommendedHours extends Component {
   };
 
   getAverageHappySleep = sleepData => {
-    if (sleepData) {
-      let happySleep = sleepData
-        .filter(item => item.average_rating === "4")
-        .map(item => item.hours);
+    let happySleep = sleepData
+      .filter(item => item.average_rating === "4")
+      .map(item => item.hours);
+
+    if (happySleep.length > 0) {
       return (
         happySleep.reduce((total, count) => total + count, 0) /
         happySleep.length
@@ -136,10 +137,10 @@ class RecommendedHours extends Component {
   };
 
   getAverageSadSleep = sleepData => {
-    if (sleepData) {
-      let sadSleep = sleepData
-        .filter(item => item.average_rating === "1")
-        .map(item => item.hours);
+    let sadSleep = sleepData
+      .filter(item => item.average_rating === "1")
+      .map(item => item.hours);
+    if (sadSleep.length > 0) {
       return (
         sadSleep.reduce((total, count) => total + count, 0) / sadSleep.length
       );
