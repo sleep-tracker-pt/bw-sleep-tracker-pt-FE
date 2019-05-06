@@ -24,7 +24,9 @@ import {
   CHECKLOGIN_FAILURE,
   EDIT_SESSION_SUCCESS,
   EDIT_SESSION_FAILURE, 
-  EDIT_FILTERED_SESSION
+  EDIT_FILTERED_SESSION,
+  DELETE_SESSION_SUCCESS,
+  DELETE_SESSION_FAILURE
 } from "../actions";
 
 import moment from "moment";
@@ -220,7 +222,7 @@ const reducer = (state = initialState, action) => {
     case EDIT_SESSION_SUCCESS:
       return {
         ...state,
-        sleepData: [...state.sleepData, action.payload]
+        sleepData: action.payload
       };
     case EDIT_SESSION_FAILURE:
       return {
@@ -240,6 +242,16 @@ const reducer = (state = initialState, action) => {
             startDate: dateTransform(action.payload.start)
           }
         ]
+      };
+      case DELETE_SESSION_SUCCESS:
+      return {
+        ...state,
+        sleepData: action.payload
+      };
+    case DELETE_SESSION_FAILURE:
+      return {
+        ...state,
+        error: action.payload
       };
 
     default:

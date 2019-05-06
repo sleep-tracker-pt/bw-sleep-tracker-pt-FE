@@ -243,3 +243,29 @@ export const editSession = (id, updatedSession) => dispatch => {
       dispatch({ type: EDIT_SESSION_FAILURE, payload: err });
     });
 };
+
+export const DELETE_SESSION_SUCCESS = "DELETE_SESSION_SUCCESS"
+export const DELETE_SESSION_FAILURE = "DELETE_SESSION_FAILURE";
+
+
+export const deleteSession = id => dispatch => {
+  return axios.delete(`https://sleeptrack.herokuapp.com/api/sleepData/${id}`, {
+    headers: { authorize: localStorage.getItem("token") }
+  })
+  .then(res => {
+    dispatch({
+      type: DELETE_SESSION_SUCCESS,
+      payload: res.data
+    });
+    dispatch({
+      type: APPLY_RECENT_FILTER,
+      payload: res.data
+    });})
+    .catch(err => {
+      if (err.status === 401) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+      }
+      dispatch({ type: DELETE_SESSION_FAILURE, payload: err });
+    });
+};
