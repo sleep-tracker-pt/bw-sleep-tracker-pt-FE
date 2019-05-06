@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { checkIfLoggedIn} from "../actions/"
 import "../index.css";
 import read from "../img/read.svg";
-import sleeproutine from "../img/sleeproutine.png";
+import tips from "../img/tips.png";
 import mood from "../img/mood.svg";
 import RecommendedHours from "./RecommendedHours";
 import NightlyStats from "./NightlyStats";
@@ -59,7 +59,9 @@ grid-row: row 3 ;
 
 @media (max-width: 900px) {
 ${'' /* margin-left: 120px; */}
-width: 80%;
+${'' /* width: 80%; */}
+margin-top: 10px;
+
 grid-column: col 1 ;
 grid-row: row 8/ span 2;
 }
@@ -94,7 +96,11 @@ text-align: center;
 grid-column: col 1 / span 1;
 grid-row: row 5/ span 2;
 ${'' /* margin-left: 120px; */}
-width: 80%;
+${'' /* width: 80%; */}
+margin-top: 10px;
+img {
+  display:none;
+}
 
 }
 
@@ -117,7 +123,9 @@ grid-row: row 1 ;
 grid-column: col 1 / span 1;
 grid-row: row 3/ span 2;
 ${'' /* margin-left: 120px; */}
-width: 80%;
+${'' /* width: 80%; */}
+margin-top: 10px;
+
 
 }
 
@@ -139,7 +147,8 @@ grid-row: row 2;
 grid-column: col 1 / span 1;
 grid-row: row 1/ span 2;
 ${'' /* margin-left: 120px; */}
-width: 80%;
+${'' /* width: 80%; */}
+margin-top: 10px;
 
 }
 
@@ -161,7 +170,9 @@ grid-row: row 1;
 grid-column: col 1 / span 1;
 grid-row: row 1/ span 2;
 ${'' /* margin-left: 120px; */}
-width: 80%;
+${'' /* width: 80%; */}
+margin-top: 10px;
+
 
 }
 
@@ -195,7 +206,7 @@ class HomeContainer extends Component {
             <h4>How does your mood relate to the number of hours you sleep?</h4>
             <HomeMoodChart />
             <ImgDiv>
-              <img src={sleeproutine} width="100%" />
+              <img src={tips} width="80%" />
             </ImgDiv>
           </Grid2Div>
 
