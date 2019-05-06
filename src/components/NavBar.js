@@ -17,7 +17,7 @@ const Nav = styled.nav `
 `;
 
 const NavContainer = styled.div `
-  ${'' /* width: 100%; */}
+  width: 100%;
 
  display: flex;
  justify-content: space-between;
