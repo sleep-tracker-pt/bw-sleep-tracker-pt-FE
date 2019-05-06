@@ -60,7 +60,7 @@ const Flexbox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 class WeekInReview extends Component {

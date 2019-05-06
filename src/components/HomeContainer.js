@@ -22,11 +22,11 @@ grid-template-rows: repeat(4, [row] auto );
 color: #d3dce3;
 
 @media (max-width: 900px) {
-  margin-left: -105px;
+margin-left: -105px;
 display: grid;
 grid-template-columns: repeat(1, auto );
 ${'' /* grid-template-rows: repeat(8,  ); */}
-grid-gap: 5px;
+grid-gap: 0px;
 ${'' /* margin: 0; */}
 }
 
@@ -51,12 +51,13 @@ const Grid1Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 10px;
-grid-column: col 1 / span 4;
-grid-row: row 2 ;
+grid-column: col 2 / span 7;
+grid-row: row 3 ;
 
 @media (max-width: 900px) {
-margin-left: 100px;
-grid-column: col 1 / span 1;
+margin-left: 120px;
+width: 70%;
+grid-column: col 1 ;
 grid-row: row 8/ span 2;
 }
 
@@ -82,27 +83,23 @@ const Grid2Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 5/ span 2;
+grid-column: col 2/ span 3;
 grid-row: row 2;
 text-align: center;
 
 @media (max-width: 900px) {
-  margin-left: 100px;
-
 grid-column: col 1 / span 1;
 grid-row: row 5/ span 2;
+margin-left: 120px;
+width: 70%;
+
 }
 
 @media (max-width: 1024px) {
-${'' /* margin-left: 20px; */}
+  ${'' /* margin-left: 100px; */}
 grid-column: col 1 / span 5;
 grid-row: row 5/ span 2;
-
-img {
-  display:none;
 }
-}
-
 `;
 
 
@@ -114,10 +111,11 @@ grid-column: col 1 / span 4;
 grid-row: row 1 ;
 
 @media (max-width: 900px) {
-  margin-left: 100px;
-
 grid-column: col 1 / span 1;
 grid-row: row 3/ span 2;
+margin-left: 120px;
+width: 70%;
+
 }
 
 @media (max-width: 1024px) {
@@ -131,14 +129,15 @@ const Grid4Div = styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 7 / span 3;
+grid-column: col 5 / span 4;
 grid-row: row 2;
 
 @media (max-width: 900px) {
-  margin-left: 100px;
-
 grid-column: col 1 / span 1;
 grid-row: row 1/ span 2;
+margin-left: 120px;
+width: 70%;
+
 }
 
 @media (max-width: 1024px) {
@@ -156,18 +155,21 @@ grid-column: col 5 / span 5 ;
 grid-row: row 1;
 
 @media (max-width: 900px) {
-  margin-left: 100px;
-
 grid-column: col 1 / span 1;
 grid-row: row 1/ span 2;
+margin-left: 120px;
+width: 70%;
+
 }
 
 @media (max-width: 1024px) {
-${'' /* margin-left: 100px; */}
+${'' /* margin-left: 20px; */}
 grid-column: col 1 / span 5;
 grid-row: row 8/ span 2;
 
-
+img {
+  display:none;
+}
 }
 `;
 class HomeContainer extends Component {

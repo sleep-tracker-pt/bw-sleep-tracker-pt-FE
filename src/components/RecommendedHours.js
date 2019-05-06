@@ -11,7 +11,7 @@ const HeadHours = styled.h1`
   text-align: center;
   font-weight: 200;
   ${"" /* margin-bottom: 40px; */}
-  font-size: 50px;
+  font-size: 100px;
 `;
 
 const YearsDiv = styled.div`
@@ -205,7 +205,7 @@ class RecommendedHours extends Component {
         </YearsDiv>
 
         <ImgDiv>
-          <img src={stats} width="80%" />
+          <img src={stats} width="100%" />
         </ImgDiv>
         <RecP>
           According to the National Sleep Foundation,{" "}
