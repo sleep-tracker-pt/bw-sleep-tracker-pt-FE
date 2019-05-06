@@ -40,6 +40,21 @@ const BorADiv = styled.div`
 `;
 
 class RecommendedHours extends Component {
+  emojify = value => {
+    switch (value) {
+      case 1:
+        return "🙁";
+      case 2:
+        return "😕";
+      case 3:
+        return "🙂";
+      case 4:
+        return "😁";
+      default:
+        return value;
+    }
+  };
+
   calculateHours = date => {
     switch (true) {
       case 0 <= date && date <= 2:
@@ -97,7 +112,40 @@ class RecommendedHours extends Component {
 
   getAverageHours = sleepData => {
     let hours = sleepData.map(item => item.hours);
-    return hours.reduce((acc, c) => acc + c, 0) / hours.length;
+    return hours.reduce((total, count) => total + count, 0) / hours.length;
+  };
+
+  getAverageMood = sleepData => {
+    let mood = sleepData.map(item => Number(item.average_rating));
+
+    return mood.reduce((total, count) => total + count, 0) / mood.length;
+  };
+
+  getAverageHappySleep = sleepData => {
+    if (sleepData) {
+      let happySleep = sleepData
+        .filter(item => item.average_rating === "4")
+        .map(item => item.hours);
+      return (
+        happySleep.reduce((total, count) => total + count, 0) /
+        happySleep.length
+      );
+    } else {
+      return;
+    }
+  };
+
+  getAverageSadSleep = sleepData => {
+    if (sleepData) {
+      let sadSleep = sleepData
+        .filter(item => item.average_rating === "1")
+        .map(item => item.hours);
+      return (
+        sadSleep.reduce((total, count) => total + count, 0) / sadSleep.length
+      );
+    } else {
+      return;
+    }
   };
 
   behindOrAhead = () => {
@@ -144,14 +192,38 @@ class RecommendedHours extends Component {
         </ImgDiv>
         <RecP>
           According to the National Sleep Foundation,{" "}
-          <strong>
+          <b>
             {
               this.calculateHours(
                 moment().diff(this.props.userData.birthdate, "years")
               )["response"]
             }{" "}
-          </strong>
-          per night.
+          </b>
+          per night.{" "}
+          {this.props.transformedSleepData.length > 0 && (
+            <p>
+              Your all time average for hours of sleep is{" "}
+              {this.getAverageHours(this.props.transformedSleepData)}. Your all
+              time average mood score is{" "}
+              {this.emojify(
+                Math.round(this.getAverageMood(this.props.transformedSleepData))
+              )}
+              .
+            </p>
+          )}
+          {this.getAverageHappySleep(this.props.transformedSleepData) && (
+            <p>
+              The average number of hours you slept when you said your mood was
+              😁 is {this.getAverageHappySleep(this.props.transformedSleepData)}
+              .
+            </p>
+          )}
+          {this.getAverageSadSleep(this.props.transformedSleepData) && (
+            <p>
+              The average number of hours you slept when you said your mood was
+              😬 is {this.getAverageSadSleep(this.props.transformedSleepData)}.
+            </p>
+          )}
         </RecP>
         <BorADiv>{this.behindOrAhead()}</BorADiv>
       </HoursDiv>
@@ -160,6 +232,7 @@ class RecommendedHours extends Component {
 }
 const mapStateToProps = state => {
   return {
+    transformedSleepData: state.transformedSleepData,
     filteredSleepData: state.filteredSleepData,
     userData: state.userData
   };
