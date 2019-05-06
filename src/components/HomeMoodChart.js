@@ -12,15 +12,13 @@ import {
   Legend,
   LabelList
 } from "recharts";
-import { Jumbotron } from "react-bootstrap";
 
 import { getSleepData } from "../actions";
 import styled from "styled-components";
 
-const StyledJumbotron = styled(Jumbotron) `
-${'' /* width: 350px;
+const StyledJumbotron = styled.div`
+  ${"" /* width: 350px;
 height: 300px; */}
-
 `;
 class HomeMoodChart extends Component {
   componentWillMount() {
@@ -29,9 +27,14 @@ class HomeMoodChart extends Component {
 
   render() {
     return (
-      <StyledJumbotron fluid>
-        <ScatterChart width={450} height={300} margin={{top: 20, right: 20, bottom: 20, left: 20}} fillOpacity="1">
-          <CartesianGrid />
+      <StyledJumbotron>
+        <ScatterChart
+          width={450}
+          height={300}
+          margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+          fillOpacity="1"
+        >
+          <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey={"bed_t_rating"} type="number" name="Mood" />
           <YAxis
             dataKey={"hours"}
@@ -39,20 +42,26 @@ class HomeMoodChart extends Component {
             name="Hours of sleep"
             unit="hours"
           />
-         
           <Scatter
-            name="Sleep Quality"
-            data={this.props.sleepData}
-            fill="#8884d8"
+            name="All time"
+            data={this.props.filteredSleepData}
+            fill="#1ba261"
+            shape="triangle"
           />
-           <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <LabelList dataKey="start" />
-         
-          <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-        
+          <Scatter
+            name="This week"
+            data={this.props.sleepData}
+            fill="#ffc107"
+            shape="star"
+          />
 
-        <Legend verticalAlign="bottom" />
-       </ScatterChart>
+          <Tooltip cursor={{ strokeDasharray: "4 4" }} />
+          <LabelList dataKey="start" />
+
+          <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+
+          <Legend verticalAlign="bottom" />
+        </ScatterChart>
       </StyledJumbotron>
     );
   }
@@ -60,7 +69,8 @@ class HomeMoodChart extends Component {
 
 const mapStateToProps = state => {
   return {
-    sleepData: state.sleepData
+    sleepData: state.sleepData,
+    filteredSleepData: state.filteredSleepData
   };
 };
 
