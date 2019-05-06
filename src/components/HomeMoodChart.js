@@ -10,15 +10,18 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  LabelList
+  LabelList,
+  ResponsiveContainer
 } from "recharts";
 
 import { getSleepData } from "../actions";
 import styled from "styled-components";
 
 const StyledJumbotron = styled.div`
-  ${"" /* width: 350px;
-height: 300px; */}
+   /* width: 350px;
+height: 300px; */
+
+
 `;
 class HomeMoodChart extends Component {
   componentWillMount() {
@@ -28,8 +31,9 @@ class HomeMoodChart extends Component {
   render() {
     return (
       <StyledJumbotron>
+      <ResponsiveContainer width="75%" height={400}>
         <ScatterChart
-          width={300}
+          width={350}
           height={300}
           margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
           fillOpacity="1"
@@ -62,6 +66,7 @@ class HomeMoodChart extends Component {
 
           <Legend verticalAlign="bottom" />
         </ScatterChart>
+        </ResponsiveContainer>
       </StyledJumbotron>
     );
   }

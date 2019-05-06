@@ -7,7 +7,8 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip
+  Tooltip,
+  ResponsiveContainer
 } from "recharts";
 import { Modal, Form, Button } from "react-bootstrap";
 import DateTimePicker from "react-datetime-picker";
@@ -139,7 +140,7 @@ class WeekInReview extends Component {
         <Flexbox>
           <h2>Week in review </h2>
           <h5>Hours of sleep this week</h5>
-
+          <ResponsiveContainer width="75%" height={200}>
           <AreaChart
             width={400}
             height={200}
@@ -163,10 +164,13 @@ class WeekInReview extends Component {
               fill="#8884d8"
             />
           </AreaChart>
+          </ResponsiveContainer>
           <h5>Mood this week</h5>
+          
+          <ResponsiveContainer width="75%" height={200}>
           <AreaChart
             width={400}
-            height={200}
+            height={300}
             data={this.props.filteredSleepData}
             syncId="anyId"
             margin={{
@@ -187,6 +191,7 @@ class WeekInReview extends Component {
               fill="#82ca9d"
             />
           </AreaChart>
+          </ResponsiveContainer>
 
           <Button variant="outline-light" onClick={this.handleShowModal}>
             Add sleep session
