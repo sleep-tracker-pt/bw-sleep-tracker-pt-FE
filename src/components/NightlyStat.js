@@ -41,8 +41,9 @@ const SessionForm = styled.form`
 `;
 
 const StatCard = styled.div`
-border: 3px dotted gray;
-padding: 12px;
+border: 1px solid rgba(211, 220, 227, 0.2);
+padding: 8px;
+margin: 5px;
 border-radius: 5px;
 `
 class NightlyStat extends Component {
