@@ -17,7 +17,7 @@ const PageDiv= styled.div `
 display: grid;
 grid-gap: 20px;
 margin: 30px;
-grid-template-columns: repeat(6, [col] 150px );
+grid-template-columns: repeat(6, [col]  );
 grid-template-rows: repeat(4, [row] auto );
 color: #d3dce3;
 
@@ -51,17 +51,17 @@ const Grid1Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 10px;
-grid-column: col 1 / span 3;
+grid-column: col 1 / span 4;
 grid-row: row 2 ;
 
 @media (max-width: 900px) {
-${'' /* margin-left: -10px; */}
+margin-left: 100px;
 grid-column: col 1 / span 1;
 grid-row: row 8/ span 2;
 }
 
 @media (max-width: 1024px) {
-  margin-left: 100px;
+  ${'' /* margin-left: 100px; */}
 grid-column: col 1 / span 5;
 grid-row: row 10/ span 2;
 }
@@ -82,20 +82,27 @@ const Grid2Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 1/ span 3;
-grid-row: row ;
+grid-column: col 5/ span 2;
+grid-row: row 2;
 text-align: center;
 
 @media (max-width: 900px) {
+  margin-left: 100px;
+
 grid-column: col 1 / span 1;
 grid-row: row 5/ span 2;
 }
 
 @media (max-width: 1024px) {
-  margin-left: 100px;
+${'' /* margin-left: 20px; */}
 grid-column: col 1 / span 5;
 grid-row: row 5/ span 2;
+
+img {
+  display:none;
 }
+}
+
 `;
 
 
@@ -103,16 +110,18 @@ const Grid3Div= styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 4 / span 3;
+grid-column: col 1 / span 4;
 grid-row: row 1 ;
 
 @media (max-width: 900px) {
+  margin-left: 100px;
+
 grid-column: col 1 / span 1;
 grid-row: row 3/ span 2;
 }
 
 @media (max-width: 1024px) {
-  margin-left: 100px;
+  ${'' /* margin-left: 100px; */}
 grid-column: col 1 / span 5;
 grid-row: row 3/ span 2;
 }
@@ -123,15 +132,17 @@ background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
 grid-column: col 7 / span 3;
-grid-row: row 1;
+grid-row: row 2;
 
 @media (max-width: 900px) {
+  margin-left: 100px;
+
 grid-column: col 1 / span 1;
 grid-row: row 1/ span 2;
 }
 
 @media (max-width: 1024px) {
-  margin-left: 100px;
+  ${'' /* margin-left: 100px; */}
 grid-column: col 1 / span 5;
 grid-row: row 1/ span 2;
 }
@@ -141,22 +152,22 @@ const Grid5Div = styled.div `
 background-color: #0f2f5a;
 border-radius: 8px;
 padding: 20px;
-grid-column: col 4 / span 7 ;
-grid-row: row 2;
+grid-column: col 5 / span 5 ;
+grid-row: row 1;
 
 @media (max-width: 900px) {
+  margin-left: 100px;
+
 grid-column: col 1 / span 1;
 grid-row: row 1/ span 2;
 }
 
 @media (max-width: 1024px) {
-margin-left: 100px;
+${'' /* margin-left: 100px; */}
 grid-column: col 1 / span 5;
 grid-row: row 8/ span 2;
 
-img {
-  display:none;
-}
+
 }
 `;
 class HomeContainer extends Component {
@@ -178,6 +189,9 @@ class HomeContainer extends Component {
             </ImgDiv>
             <h4>How does your mood relate to the number of hours you sleep?</h4>
             <HomeMoodChart />
+            <ImgDiv>
+              <img src={sleeproutine} width="100%" />
+            </ImgDiv>
           </Grid2Div>
 
           <Grid3Div>
@@ -200,9 +214,6 @@ class HomeContainer extends Component {
 
           <Grid5Div>
             <NightlyStats />
-            <ImgDiv>
-              <img src={sleeproutine} width="100%" />
-            </ImgDiv>
           </Grid5Div>
         </PageDiv>
       </>
