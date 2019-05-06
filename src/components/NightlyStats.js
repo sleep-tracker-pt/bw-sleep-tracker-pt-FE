@@ -12,10 +12,7 @@ text-align: center;
 const NightDiv = styled.div `
 display: flex;
 flex-direction: row;
-justify-content: space-between;
-
-
-
+justify-content: space-around
 `;
 class NightlyStats extends Component {
   render() {

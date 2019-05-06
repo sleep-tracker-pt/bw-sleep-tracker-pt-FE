@@ -39,6 +39,15 @@ const SessionForm = styled.form`
   margin: 0 auto;
   text-align: center;
 `;
+
+const StatCard = styled.div`
+border: 2px dashed gray;
+padding-left: 30px;
+padding-right: 30px
+padding-top: 10px;
+padding-bottom: 10px
+margin: 5px;
+`
 class NightlyStat extends Component {
   state = {
     startDate: moment(this.props.filteredSleepData.startDate).toDate(),
@@ -110,11 +119,12 @@ class NightlyStat extends Component {
   render() {
     return (
       <div>
-        <p>
+        <StatCard>
+        <h5>
           {moment(this.props.filteredSleepData.start)
             .startOf("day")
             .fromNow()}
-        </p>
+        </h5>
         <p>to bed: {this.props.filteredSleepData.emojiBed}</p>
         <p>at work: {this.props.filteredSleepData.emojiWork}</p>
         <p>average: {this.props.filteredSleepData.emojiAverage}</p>
@@ -134,6 +144,7 @@ class NightlyStat extends Component {
         >
           Delete
         </Button>
+        </StatCard>
         <StyledModal
           size="lg"
           show={this.state.showModal}

@@ -57,8 +57,11 @@ color: ;
 background: background: rgba(211, 220, 227, 0.7);`;
 
 const Flexbox = styled.div`
-display: flex;
-flex-direction: column;`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 class WeekInReview extends Component {
   state = {
@@ -133,60 +136,61 @@ class WeekInReview extends Component {
   render() {
     return (
       <div>
-        <h2>Week in review </h2>
-        <h5>Hours of sleep this week</h5>
         <Flexbox>
-        <AreaChart
-          width={400}
-          height={200}
-          data={this.props.filteredSleepData}
-          syncId="anyId"
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="startDate" />
-          <YAxis dataKey="hours" />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="hours"
-            stroke="#8884d8"
-            fill="#8884d8"
-          />
-        </AreaChart>
-        <h5>Mood this week</h5>
-        <AreaChart
-          width={400}
-          height={200}
-          data={this.props.filteredSleepData}
-          syncId="anyId"
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="startDate" />
-          <YAxis dataKey="average_rating" />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="average_rating"
-            stroke="#82ca9d"
-            fill="#82ca9d"
-          />
-        </AreaChart>
+          <h2>Week in review </h2>
+          <h5>Hours of sleep this week</h5>
 
-        <Button variant="outline-light" onClick={this.handleShowModal}>
-          Add sleep session
-        </Button>
+          <AreaChart
+            width={500}
+            height={200}
+            data={this.props.filteredSleepData}
+            syncId="anyId"
+            margin={{
+              top: 10,
+              right: 30,
+              left: 0,
+              bottom: 0
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="startDate" />
+            <YAxis dataKey="hours" />
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="hours"
+              stroke="#8884d8"
+              fill="#8884d8"
+            />
+          </AreaChart>
+          <h5>Mood this week</h5>
+          <AreaChart
+            width={500}
+            height={200}
+            data={this.props.filteredSleepData}
+            syncId="anyId"
+            margin={{
+              top: 10,
+              right: 30,
+              left: 0,
+              bottom: 0
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="startDate" />
+            <YAxis dataKey="average_rating" />
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="average_rating"
+              stroke="#82ca9d"
+              fill="#82ca9d"
+            />
+          </AreaChart>
+
+          <Button variant="outline-light" onClick={this.handleShowModal}>
+            Add sleep session
+          </Button>
         </Flexbox>
         <StyledModal
           size="lg"
