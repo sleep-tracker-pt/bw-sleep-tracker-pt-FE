@@ -56,6 +56,10 @@ const StyledModal = styled(Modal)`
 color: ;
 background: background: rgba(211, 220, 227, 0.7);`;
 
+const Flexbox = styled.div`
+display: flex;
+flex-direction: column;`
+
 class WeekInReview extends Component {
   state = {
     startDate: moment().toDate(),
@@ -131,6 +135,7 @@ class WeekInReview extends Component {
       <div>
         <h2>Week in review </h2>
         <h5>Hours of sleep this week</h5>
+        <Flexbox>
         <AreaChart
           width={400}
           height={200}
@@ -182,6 +187,7 @@ class WeekInReview extends Component {
         <Button variant="outline-light" onClick={this.handleShowModal}>
           Add sleep session
         </Button>
+        </Flexbox>
         <StyledModal
           size="lg"
           show={this.state.showModal}
