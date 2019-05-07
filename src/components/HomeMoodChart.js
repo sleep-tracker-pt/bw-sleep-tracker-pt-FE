@@ -18,11 +18,13 @@ import { getSleepData } from "../actions";
 import styled from "styled-components";
 
 const StyledJumbotron = styled.div`
-   /* width: 350px;
-height: 300px; */
-
-
+text-align: center;
+margin-left: 130px;
 `;
+
+
+
+
 class HomeMoodChart extends Component {
   componentWillMount() {
     this.props.getSleepData();
