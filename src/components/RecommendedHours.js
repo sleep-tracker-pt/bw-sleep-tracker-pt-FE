@@ -103,13 +103,7 @@ class RecommendedHours extends Component {
           range1: 7,
           range2: 9
         };
-      case 12 <= date && date <= 64:
-        return {
-          response: "you need 10 to 13 hours of sleep",
-          range1: 10,
-          range2: 13
-        };
-      case 64 <= date && date <= 64:
+      case 25 <= date && date <= 64:
         return {
           response: "you need 7 to 9 hours of sleep",
           range1: 7,
