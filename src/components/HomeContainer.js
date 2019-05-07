@@ -96,13 +96,15 @@ text-align: center;
 grid-column: col 1 / span 1;
 grid-row: row 5/ span 2;
 ${'' /* margin-left: 120px; */}
-${'' /* width: 80%; */}
+${'' /* width: 80%;   */}
 margin-top: 10px;
-img {
+  img {
   display:none;
-}
+  }
 
-}
+};
+
+
 
 @media (max-width: 1080px) {
   ${'' /* margin-left: 100px; */}
@@ -110,7 +112,21 @@ grid-column: col 1 / span 5;
 grid-row: row 5/ span 2;
 }
 `;
+ 
+const ImgDivTips = styled.div `
 
+@media (max-width: 1080px) {
+  
+  display: none;
+  }
+  
+@media (max-width: 900px) {
+
+  display: none;
+}
+
+
+`;
 
 const Grid3Div= styled.div `
 background-color: #0f2f5a;
@@ -205,9 +221,9 @@ class HomeContainer extends Component {
             </ImgDiv>
             <h4>How does your mood relate to the number of hours you sleep?</h4>
             <HomeMoodChart />
-            <ImgDiv>
+            <ImgDivTips>
               <img src={tips} width="80%" />
-            </ImgDiv>
+            </ImgDivTips>
           </Grid2Div>
 
           <Grid3Div>

@@ -17,9 +17,18 @@ import {
 import { getSleepData } from "../actions";
 import styled from "styled-components";
 
-const StyledJumbotron = styled.div`
-text-align: center;
-margin-left: 160px;
+const ChartDiv = styled.div`
+margin-left: 150px;
+
+
+@media (max-width: 1024px) {
+  margin-left: 200px;
+}
+
+
+@media (max-width: 900px) {
+  margin-left: 0px;
+}
 `;
 
 
@@ -32,10 +41,11 @@ class HomeMoodChart extends Component {
 
   render() {
     return (
-      <StyledJumbotron>
+      
       <ResponsiveContainer width="75%" height={400}>
+        <ChartDiv>
         <ScatterChart
-          width={350}
+          width={550}
           height={300}
           margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
           fillOpacity="1"
@@ -68,8 +78,9 @@ class HomeMoodChart extends Component {
 
           <Legend verticalAlign="bottom" />
         </ScatterChart>
+        </ChartDiv>
         </ResponsiveContainer>
-      </StyledJumbotron>
+      
     );
   }
 }
