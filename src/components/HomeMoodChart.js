@@ -19,7 +19,7 @@ import styled from "styled-components";
 
 const StyledJumbotron = styled.div`
 text-align: center;
-margin-left: 130px;
+margin-left: 160px;
 `;
 
 
